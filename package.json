@@ -1,0 +1,32 @@
+{
+  "name": "grad_dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest",
+    "start-server": "json-server --watch ./mock_server/db.json",
+    "start-auth": "nodemon ./mock_server/server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.8.3",
+    "json-server": "^0.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "nuxt": "^2.14.12",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^3.4.2",
+    "@vue/test-utils": "^1.1.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.6.3",
+    "bcrypt": "^5.0.1",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "vue-jest": "^3.0.4"
+  }
+}
