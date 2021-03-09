@@ -3,18 +3,21 @@ const fs = require('fs');
 const bcrypt = require("bcrypt");
 
 const userDb = JSON.parse(fs.readFileSync('./mock_server/user.json', 'utf-8'));
+//colocar no .env
 const SECRET_KEY = "123456";
 const expiresIn = '1h';
 
 
 module.exports = {
     createToken: function createToken(payload) {
-        return jwt.sign(payload, SECRET_KEY, { expiresIn });
+        return jwt.sign({ username: payload.empId, password: payload.password }, SECRET_KEY, { expiresIn });
 
     },
 
     verifyToken: function verifyToken(token) {
-        return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? decode : err);
+
+
+        return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? Promise.resolve(decode) : Promise.reject(err));
 
     },
 
@@ -36,8 +39,11 @@ module.exports = {
     },
     findUser: function findUser(empId) {
         const user = userDb.users.filter(user => { return user.empId === empId; });
-        return user[0].id;
+        const userObject = {
+            id: user[0].id,
+            role: user[0].role
+        };
+        return userObject;
+
     }
-
-
 };

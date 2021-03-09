@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const jsonServer = require('json-server');
-const { authRouter, newUser, addScore } = require('./router/router');
+const { authRouter, newUser, addScore, getScoreFromUser, getEmployeesFromUserDB } = require('./router/router');
 const helpers = require('./helpers');
 
 const { verifyToken } = helpers;
@@ -17,7 +17,10 @@ server.post("/auth/login", authRouter);
 server.post("/auth/register", newUser);
 server.post("/auth/user/score", addScore);
 
-server.use(/^(?!\/auth).*$/, (req, res, next) => {
+server.get("/users", getEmployeesFromUserDB);
+server.get("/users/scores?", getScoreFromUser);
+
+server.use(/^(?!\/auth).*$/, async (req, res, next) => {
 
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
         const status = 401;
@@ -26,13 +29,16 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
         return;
     }
     try {
-        verifyToken(req.headers.authorization.split(' ')[1]);
+        await verifyToken(req.headers.authorization.split(' ')[1]);
         next();
-    } catch (err) {
+    }
+    catch (err) {
         const status = 401;
         const message = 'Error: access_token is not valid';
         res.status(status).json({ status, message });
     }
+
+
 });
 
 server.use(router);

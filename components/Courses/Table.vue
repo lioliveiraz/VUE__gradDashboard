@@ -16,10 +16,10 @@
         <td>{{ course.week }}</td>
         <td>{{ course.course_code }}</td>
         <td>{{ course.course_name }}</td>
-        <td>{{ course.assesment ? "assesment" : "self-paced" }}</td>
+        <td>{{ course.assessment ? "assessment" : "self-paced" }}</td>
         <td>{{ course.source }}</td>
         <td>{{ course.duration }}</td>
-        <td><a :href="courses.link">link</a></td>
+        <td><a :href="course.link">link</a></td>
       </tr>
     </tbody>
   </table>

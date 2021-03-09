@@ -2,12 +2,13 @@ const helpers = require('../helpers');
 const { createToken, isAuthenticated, isUserRegistered, findUser } = helpers;
 const fs = require('fs');
 const bcrypt = require("bcrypt");
+const { Console } = require('console');
+const userDb = JSON.parse(fs.readFileSync('./mock_server/user.json', 'utf-8'));
 
 module.exports = {
     authRouter: async (req, res) => {
-        const { empId, password, name, id, adm } = req.body;
+        const { empId, password } = req.body;
         const isAuth = await isAuthenticated({ empId, password });
-        console.log(isAuth);
         if (!isAuth) {
 
             const status = 401;
@@ -15,9 +16,9 @@ module.exports = {
             res.status(status).json({ status, message });
             return;
         }
-        const userId = findUser(empId);
+        const userObject = findUser(empId);
         const access_token = createToken({ empId, password });
-        res.status(200).json({ access_token, user: { id: userId } });
+        res.status(200).json({ access_token, user: { id: userObject.id, role: userObject.role } });
     },
     newUser: async (req, res) => {
         const { empId, password, name } = req.body;
@@ -35,14 +36,14 @@ module.exports = {
             const last_id = parsedData.users[parsedData.users.length - 1].id;
 
             let user = {
-                id: last_id + 1, empId, password: hashedPassword, name, adm: false
+                id: last_id + 1, empId, password: hashedPassword, name, role: ["GRAD"], assessments_score: {}
             };
 
             parsedData.users.push(user);
             fs.writeFile("./mock_server/user.json", JSON.stringify(parsedData), (err, result) => {
                 err && res.status(401).json({ message: err });
 
-                res.status(200).json({ message: "Your score was added" });
+                res.status(200).json({ message: "Your user was created" });
                 return;
             });
         });
@@ -51,22 +52,48 @@ module.exports = {
     addScore: (req, res) => {
         const data = req.body.data;
         const { userId, userInputData } = data;
-        console.log(userInputData);
-        fs.readFile("./mock_server/user.json", (err, fileData) => {
-            let parsedData = JSON.parse(fileData.toString());
+        let user = userDb.users.filter(user => userId == user.id);
+        user = user[0];
+        user['assessments_score'] = [...user['assessments_score'], { code: userInputData.code, score: userInputData.score }];
 
-            let user = parsedData.users.filter(user => userId == user.id);
-            user = user[0];
-            user['assessments_score'][userInputData.code] = userInputData.score;
-
-            fs.writeFile("./mock_server/user.json", JSON.stringify(parsedData), (err, result) => {
-                err && res.status(401).json({ message: err });
-
-                res.status(200).json({ message: "Your user was created" });
-                return;
-            });
+        fs.writeFile("./mock_server/user.json", JSON.stringify(userDb), (err, result) => {
+            err && res.status(401).json({ message: err });
+            res.status(200).json({ message: "Your score was added" });
+            return;
         });
+
+    },
+
+    getScoreFromUser: (req, res) => {
+        const id = req.query.id;
+        let user = userDb.users.filter(user => id == user.id || id == user.empId);
+        user = user[0];
+        if (user === undefined) {
+            res.status(404).json({ message: "User not found" });
+        }
+        const returnScores = {
+            scores: user.assessments_score
+        };
+        res.status(200).json(returnScores);
+
+    },
+
+    getEmployeesFromUserDB: (req, res) => {
+        let user = userDb.users.filter(user => user.role[0] === "GRAD");
+        let returnedUser = [];
+
+        user.forEach(grad => {
+            returnedUser.push({
+                id: grad.id,
+                empId: grad.empId,
+                name: grad.name,
+                assessments_score: grad.assessments_score
+            });
+
+        });
+        res.status(200).json(returnedUser);
     }
+
 
 
 };

@@ -15,7 +15,7 @@
 <script>
 import Input from "../components/Input";
 import { handleLogin } from "../api/requests";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "HomePage",
@@ -32,6 +32,9 @@ export default {
       errors: {},
     };
   },
+  computed: {
+    ...mapGetters("auth", ["adm"]),
+  },
   methods: {
     ...mapActions("auth", ["actionLogin"]),
     getUserInput(inputValue, inputName) {
@@ -42,7 +45,9 @@ export default {
       handleLogin(this.userData)
         .then((res) => {
           this.actionLogin(res);
-          this.$router.push({ query: "Dashboard" });
+          this.adm == "ADM"
+            ? this.$router.push({ query: "dashboard" })
+            : this.$router.push({ query: "adm_dashboard" });
         })
         .catch((err) => console.log(err));
     },
