@@ -3,7 +3,9 @@
     <nav>
       <ul>
         <li><nuxt-link to="/adm/dashboard">home</nuxt-link></li>
-        <li><nuxt-link to="/adm/updatepath">create employee</nuxt-link></li>
+        <li>
+          <nuxt-link to="/adm/registeremployee">register employee</nuxt-link>
+        </li>
         <li>
           <nuxt-link to="/adm/updatepath">update learning path</nuxt-link>
         </li>

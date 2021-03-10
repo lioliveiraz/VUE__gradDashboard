@@ -4,7 +4,7 @@
             "id": 3,
             "empId": "548213",
             "password": "$2b$10$roCmnDswsUWcPGkt3H1FEO/x5GtWYxNknGOXN4jGcmyHHJ2if6fyO",
-            "name": "Normal",
+            "name": "Maria",
             "role": [
                 "GRAD"
             ],
@@ -29,6 +29,16 @@
             "empId": "222222",
             "password": "$2b$10$2dWAOxpcPfdja38/UusTVu3teYFSD8ZZqUGKmZQxk0c/lDzmSUBP.",
             "name": "ligia",
+            "role": [
+                "GRAD"
+            ],
+            "assessments_score": []
+        },
+        {
+            "id": 6,
+            "empId": "33333",
+            "password": "$2b$10$CKn5tAL0NM5EpJen3nuioelkGdyj8ZKMzgz5MqzpWByXLQ7reLQL.",
+            "name": "Joana",
             "role": [
                 "GRAD"
             ],

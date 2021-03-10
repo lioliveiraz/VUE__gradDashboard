@@ -9,11 +9,16 @@
 
       <Input
         @getUserInput="getUserInput"
-        :attributeObj="{ type: 'text', name: 'empId', placeholder: '875463' }"
+        :attributeObj="{
+          type: 'text',
+          name: 'empId',
+          placeholder: '875463',
+          required: true,
+        }"
       />
       <Input
         @getUserInput="getUserInput"
-        :attributeObj="{ type: 'password', name: 'password' }"
+        :attributeObj="{ type: 'password', name: 'password', required: true }"
       />
       <input
         type="submit"

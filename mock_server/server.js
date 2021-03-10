@@ -31,7 +31,6 @@ server.use(/^(?!\/auth).*$/, async (req, res, next) => {
         return;
     }
     try {
-
         await verifyToken(req.headers.authorization.split(' ')[1]);
         next();
     }

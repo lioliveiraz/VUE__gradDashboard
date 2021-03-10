@@ -14,7 +14,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
-    "easy-circular-progress": "^1.0.4",
     "json-server": "^0.16.3",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^5.0.0",

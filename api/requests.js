@@ -19,6 +19,14 @@ export const addCourse = async (data, token) => {
     });
     return response.data;
 };
+export const registerEmployee = async (data, token) => {
+    const response = await http.post("/auth/register", {
+        data,
+        headers: { 'Authorization': `Bearer ${token}` }
+
+    });
+    return response;
+};
 
 
 export const getCourses = async (token) => {

@@ -5,7 +5,7 @@
       class="h-12 bg-gray-300 border-yellow-200"
       :type="attributeObj.type"
       :name="attributeObj.name"
-      :placeholder="attributeObj.placeHolder"
+      :placeholder="attributeObj.placeholder"
       autofocus
       v-model="currentValue"
       :required="attributeObj.required"

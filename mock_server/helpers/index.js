@@ -34,8 +34,8 @@ module.exports = {
 
 
     },
-    isUserRegistered: function isUserRegistered({ empId, name }) {
-        return userDb.users.findIndex(user => user.empId === empId || user.name === name) !== -1;
+    isUserRegistered: function isUserRegistered({ empId }) {
+        return userDb.users.findIndex(user => user.empId === empId) !== -1;
     },
     findUser: function findUser(empId) {
         const user = userDb.users.filter(user => { return user.empId === empId; });

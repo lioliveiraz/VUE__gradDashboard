@@ -10,7 +10,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Courses from "../../components/Courses/Courses";
-import CourseForm from "../../components/Courses/CourseForm";
+import CourseForm from "../../components/Courses/Form";
 
 export default {
   middleware: "courses",

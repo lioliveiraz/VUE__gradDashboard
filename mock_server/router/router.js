@@ -20,9 +20,9 @@ module.exports = {
         res.status(200).json({ access_token, user: { id: userObject.id, role: userObject.role, name: userObject.name } });
     },
     newUser: async (req, res) => {
-        const { empId, password, name } = req.body;
+        const { empId, password, name } = req.body.data;
         let hashedPassword = await bcrypt.hash(password, 10);
-        if (isUserRegistered({ empId, name }) === true) {
+        if (isUserRegistered({ empId }) === true) {
             const status = 401;
             const message = 'This user is already registered';
             res.status(status).json({ status, message });
@@ -35,7 +35,7 @@ module.exports = {
             const last_id = parsedData.users[parsedData.users.length - 1].id;
 
             let user = {
-                id: last_id + 1, empId, password: hashedPassword, name, role: ["GRAD"], assessments_score: {}
+                id: last_id + 1, empId, password: hashedPassword, name, role: ["GRAD"], assessments_score: []
             };
 
             parsedData.users.push(user);
