@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const jsonServer = require('json-server');
-const { authRouter, newUser, addScore, getScoreFromUser, getEmployeesFromUserDB } = require('./router/router');
+const { authRouter, newUser, addScore, getScoreFromUser, getEmployeesFromUserDB, addCourse } = require('./router/router');
 const helpers = require('./helpers');
 
 const { verifyToken } = helpers;
@@ -16,6 +16,7 @@ server.use(bodyParser.json());
 server.post("/auth/login", authRouter);
 server.post("/auth/register", newUser);
 server.post("/auth/user/score", addScore);
+server.post("/auth/courses", addCourse);
 
 server.get("/users", getEmployeesFromUserDB);
 server.get("/users/scores?", getScoreFromUser);
@@ -23,12 +24,14 @@ server.get("/users/scores?", getScoreFromUser);
 server.use(/^(?!\/auth).*$/, async (req, res, next) => {
 
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+
         const status = 401;
         const message = 'Bad authorization header';
         res.status(status).json({ status, message });
         return;
     }
     try {
+
         await verifyToken(req.headers.authorization.split(' ')[1]);
         next();
     }

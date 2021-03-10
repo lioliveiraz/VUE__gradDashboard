@@ -1,10 +1,21 @@
 <template>
-  <div class="main">
-    <Nuxt />
-    <footer></footer>
+  <div class="main bg-gray-800">
+    <div class="backDrop">
+      <Nuxt />
+    </div>
   </div>
 </template>
 <script>
+import "vue-toastification/dist/index.css";
+import Vue from "vue";
+import Toast from "vue-toastification";
+
+Vue.use(Toast, {
+  position: "top-right",
+  newestOnTop: true,
+  maxToasts: 3,
+  pauseOnHover: true,
+});
 export default {};
 </script>
 
@@ -66,5 +77,16 @@ footer {
 }
 .main {
   height: 100vh;
+  background-image: url("../assets/backgorund.jpg");
+  background-size: cover;
+}
+.backDrop {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.692);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

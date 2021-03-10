@@ -1,20 +1,46 @@
 <template>
-  <div class="main--graduate">
-    <nav>
-      <ul>
-        <li><nuxt-link to="dashboard">home</nuxt-link></li>
-        <li><nuxt-link to="learningpath">courses</nuxt-link></li>
-        <li><nuxt-link to="scores">scores</nuxt-link></li>
-        <li><button @click="handleLogout">logout</button></li>
+  <div class="main--graduate flex">
+    <nav class="bg-gray-900 w-1/3 h-full text-gray-200 p-1">
+      <ul class="md:text-2xl w-4/5">
+        <li class="m-1">
+          <div
+            class="bg-gray-800 rounded-full md:w-40 md:h-40 imageCenter border-teal-600 border-4"
+          >
+            <img src="../assets/logo.svg" alt="logo" id="logo" />
+          </div>
+        </li>
+        <li class="m-1">
+          <nuxt-link to="dashboard">home</nuxt-link>
+        </li>
+        <li class="m-1">
+          <nuxt-link to="learningpath">courses</nuxt-link>
+        </li>
+        <li class="m-1"><nuxt-link to="scores">scores</nuxt-link></li>
+        <button
+          class="border-orange-500 shadow-outline logout md:text-2xl p-2"
+          @click="handleLogout"
+        >
+          Logout
+        </button>
       </ul>
     </nav>
-    <Nuxt />
+    <div class="bg-gray-200 w-full graduate--content h-full">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Vue from "vue";
+import Toast from "vue-toastification";
 
+Vue.use(Toast, {
+  position: "top-right",
+  newestOnTop: true,
+  maxToasts: 3,
+  pauseOnHover: true,
+});
 export default {
   middleware: "courses",
   methods: {
@@ -26,3 +52,51 @@ export default {
   },
 };
 </script>
+<style scoped>
+.main--graduate {
+  height: 100vh;
+  overflow-x: hidden;
+}
+.graduate--content {
+  background: rgb(214, 214, 214);
+}
+img {
+  height: 70%;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.imageCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+ul {
+  height: 80%;
+}
+li:first-child {
+  margin-bottom: 50px;
+}
+li {
+  text-transform: capitalize;
+}
+.logout {
+  cursor: pointer;
+  position: relative;
+  top: 30%;
+  text-align: center;
+}
+.logout:hover {
+  background: rgba(74, 255, 255, 0.329);
+}
+
+a.nuxt-link-exact-active,
+a:hover {
+  color: rgb(74, 255, 255);
+}
+</style>

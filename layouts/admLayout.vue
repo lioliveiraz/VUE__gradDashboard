@@ -16,7 +16,15 @@
 
 <script>
 import { mapActions } from "vuex";
+import Vue from "vue";
+import Toast from "vue-toastification";
 
+Vue.use(Toast, {
+  position: "top-right",
+  newestOnTop: true,
+  maxToasts: 3,
+  pauseOnHover: true,
+});
 export default {
   methods: {
     ...mapActions("auth", ["actionLogout"]),

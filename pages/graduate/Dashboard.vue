@@ -1,14 +1,20 @@
 <template>
-  <section>
-    <ScoresTable :scores="scores" />
-    <div>
-      <p>Total hours:{{ totalHours }}</p>
-    </div>
-  </section>
+  <div>
+    <section>
+      <h1>Welcome {{ name }}</h1>
+    </section>
+    <section>
+      <div>
+        <ScoresTable :scores="scores" />
+      </div>
+      <div></div>
+    </section>
+  </div>
 </template>
 
 <script>
 import ScoresTable from "../../components/Scores/ScoresTable";
+
 import { mapGetters } from "vuex";
 export default {
   watchQuery: ["dashboard"],
@@ -24,6 +30,7 @@ export default {
   layout: "graduate",
   computed: {
     ...mapGetters("courses", ["courses", "scores"]),
+    ...mapGetters("auth", ["name"]),
   },
   mounted() {
     this.calculateCourseHours();

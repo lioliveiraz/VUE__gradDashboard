@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const userDb = JSON.parse(fs.readFileSync('./mock_server/user.json', 'utf-8'));
 //colocar no .env
 const SECRET_KEY = "123456";
-const expiresIn = '1h';
+const expiresIn = '10h';
 
 
 module.exports = {
@@ -41,7 +41,8 @@ module.exports = {
         const user = userDb.users.filter(user => { return user.empId === empId; });
         const userObject = {
             id: user[0].id,
-            role: user[0].role
+            role: user[0].role,
+            name: user[0].name
         };
         return userObject;
 

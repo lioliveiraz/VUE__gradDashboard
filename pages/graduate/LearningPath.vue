@@ -1,6 +1,6 @@
 <template>
-  <div v-if="courses && assessmentsArr">
-    <Courses :coursesArr="courses" :assessmentsArr="assessmentsArr" />
+  <div v-if="coursesArr && assessmentsArr">
+    <Courses :coursesArr="coursesArr" :assessmentsArr="assessmentsArr" />
   </div>
 </template>
 

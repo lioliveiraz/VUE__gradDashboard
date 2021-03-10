@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <label>{{ attributeObj.name }}</label>
+  <div class="form--input flex flex-col m-2 w-5/6">
+    <label>{{ attributeObj.name.toUpperCase() }}</label>
     <input
+      class="h-12 bg-gray-300 border-yellow-200"
       :type="attributeObj.type"
       :name="attributeObj.name"
       :placeholder="attributeObj.placeHolder"
       autofocus
       v-model="currentValue"
-      required
+      :required="attributeObj.required"
     />
   </div>
 </template>
@@ -27,4 +28,7 @@ export default {
 </script>
 
 <style>
+.form--input label {
+  font-weight: 700;
+}
 </style>

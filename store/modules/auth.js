@@ -2,12 +2,14 @@
 const state = {
     token: window.localStorage.getItem('token'),
     user_id: window.localStorage.getItem('user_id'),
-    isAdm: window.localStorage.getItem('adm')
+    isAdm: window.localStorage.getItem('adm'),
+    name: window.localStorage.getItem('user_name')
 };
 const getters = {
     isLoggedIn: state => !!state.token,
     token: state => state.token,
-    adm: state => state.isAdm
+    adm: state => state.isAdm,
+    name: state => state.name
 
 };
 const actions = {
@@ -15,12 +17,15 @@ const actions = {
         const token = data["access_token"];
         const id = data['user']['id'];
         const role = data['user']['role'];
+        const name = data['user']['name'];
 
         commit('setToken', token);
         commit('setId', id);
+        commit('setName', name);
 
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user_id', id);
+        window.localStorage.setItem('user_name', name);
 
 
         if (role[0] === "ADM") {
@@ -36,10 +41,12 @@ const actions = {
         commit('setToken', null);
         commit('setId', null);
         commit('setAdm', null);
+        commit('setName', null);
 
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('user_id');
         window.localStorage.removeItem('adm');
+        window.localStorage.removeItem('user_name');
 
     },
 
@@ -52,8 +59,11 @@ const mutations = {
     setId: (state, id) => {
         state.id = id;
     },
-    setAdm: (state, adm) => {
-        state.adm = adm;
+    setAdm: (state, isAdm) => {
+        state.isAdm = isAdm;
+    },
+    setName: (state, name) => {
+        state.name = name;
     }
 };
 

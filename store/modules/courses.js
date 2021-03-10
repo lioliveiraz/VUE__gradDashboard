@@ -13,7 +13,6 @@ const getters = {
 };
 const actions = {
     fetchCourses: async ({ commit }, token) => {
-
         if (token) {
             try {
                 const res = await getCourses(token);
