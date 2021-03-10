@@ -2,18 +2,18 @@
 const state = {
     token: window.localStorage.getItem('token'),
     user_id: window.localStorage.getItem('user_id'),
-    isAdm: window.localStorage.getItem('adm'),
-    name: window.localStorage.getItem('user_name')
+    user_isAdm: window.localStorage.getItem('user_isAdm'),
+    user_name: window.localStorage.getItem('user_name')
 };
 const getters = {
     isLoggedIn: state => !!state.token,
-    token: state => state.token,
-    adm: state => state.isAdm,
-    name: state => state.name
+    getToken: state => state.token,
+    getAdm: state => !!state.user_isAdm,
+    getName: state => state.user_name
 
 };
 const actions = {
-    actionLogin: ({ commit }, data) => {
+    login: ({ commit }, data) => {
         const token = data["access_token"];
         const id = data['user']['id'];
         const role = data['user']['role'];
@@ -22,16 +22,15 @@ const actions = {
         commit('setToken', token);
         commit('setId', id);
         commit('setName', name);
-
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user_id', id);
         window.localStorage.setItem('user_name', name);
 
-
         if (role[0] === "ADM") {
             commit('setAdm', role[0]);
-            window.localStorage.setItem('adm', role[0]);
+            window.localStorage.setItem('user_isAdm', role[0]);
         } else {
+
             commit('setAdm', null);
         }
 
@@ -45,7 +44,7 @@ const actions = {
 
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('user_id');
-        window.localStorage.removeItem('adm');
+        window.localStorage.removeItem('user_isAdm');
         window.localStorage.removeItem('user_name');
 
     },
@@ -57,13 +56,13 @@ const mutations = {
         state.token = token;
     },
     setId: (state, id) => {
-        state.id = id;
+        state.user_id = id;
     },
     setAdm: (state, isAdm) => {
-        state.isAdm = isAdm;
+        state.user_isAdm = isAdm;
     },
     setName: (state, name) => {
-        state.name = name;
+        state.user_name = name;
     }
 };
 

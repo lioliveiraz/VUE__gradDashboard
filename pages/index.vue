@@ -20,6 +20,7 @@
         @getUserInput="getUserInput"
         :attributeObj="{ type: 'password', name: 'password', required: true }"
       />
+
       <input
         type="submit"
         class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
@@ -31,8 +32,9 @@
 
 <script>
 import Input from "../components/Input";
-import { handleLogin } from "../api/requests";
+import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
+import { userValidation } from "../helpers/validation";
 
 export default {
   name: "HomePage",
@@ -41,41 +43,56 @@ export default {
   },
 
   head() {
-    return { title: "GradDash" };
+    return { title: "Welcome" };
   },
   data() {
     return {
-      userData: {},
+      loginUserData: {},
       errors: {},
-      toast: "",
     };
   },
   computed: {
-    ...mapGetters("auth", ["adm"]),
+    ...mapGetters("auth", ["getAdm"]),
   },
   methods: {
-    ...mapActions("auth", ["actionLogin"]),
+    ...mapActions("auth", ["login"]),
+
     getUserInput(inputValue, inputName) {
-      this.userData[inputName] = inputValue;
+      this.loginUserData[inputName] = inputValue;
     },
+
     async handleSubmit(e) {
       e.preventDefault();
-      handleLogin(this.userData)
-        .then((res) => {
-          this.actionLogin(res.data);
-          this.adm == "ADM"
-            ? this.$router.push({ query: "dashboard" })
-            : this.$router.push({ query: "adm_dashboard" });
-        })
-        .catch((err) =>
-          this.$toast(err.response.data.message, { type: "error" })
-        );
+      const errors = userValidation(this.loginUserData);
+
+      if (Object.entries(errors).length === 0) {
+        handleLogin(this.loginUserData)
+          .then((res) => {
+            this.login(res.data);
+            this.getAdm
+              ? this.$router.push({ query: "adm_dashboard" })
+              : this.$router.push({ query: "dashboard" });
+          })
+          .catch((err) =>
+            this.$toast(err.response.data.message, { type: "error" })
+          );
+      }
     },
   },
 };
 </script>
 
 <style>
+* {
+  margin: 0;
+  text-decoration: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
 .home--main {
   height: 75%;
 }
@@ -88,5 +105,8 @@ export default {
 #logo {
   width: 100%;
   height: 100%;
+}
+input[type="submit"] {
+  cursor: pointer;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="coursesArr && assessmentsArr">
-    <Courses :coursesArr="coursesArr" :assessmentsArr="assessmentsArr" />
+  <div v-if="courses && assessments" class="w-full h-full courses--main">
+    <Courses :coursesArr="courses" :assessmentsArr="assessments" />
   </div>
 </template>
 
@@ -19,10 +19,24 @@ export default {
   },
   async created() {},
   computed: {
-    ...mapState("courses", ["coursesArr", "assessmentsArr"]),
+    ...mapState("courses", ["courses", "assessments"]),
   },
 };
 </script>
 
 <style>
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+.courses--main {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 </style>

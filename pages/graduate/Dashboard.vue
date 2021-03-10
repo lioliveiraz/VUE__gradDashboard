@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <section>
-      <h1>Welcome {{ name }}</h1>
-    </section>
-    <section>
-      <div>
-        <ProgressBar :circle="circle" />
+  <div class="graduate--dashboard">
+    <h1 class="text-4xl text-teal-500 font-extrabold m-6 md:text-6xl">
+      Welcome {{ getName }}
+    </h1>
+
+    <section class="w-full h-full">
+      <div class="w-full md:h-64 md:w-5/6 score--table">
+        <h2 class="text-gray-600 m-2 text-2xl">Your Score</h2>
+        <ScoresTable :scores="getScores" />
       </div>
-      <div>
-        <ScoresTable :scores="scores" />
+      <div class="w-5/6 m-3 md:h-64">
+        <h2 class="text-gray-600 m-2 text-2xl">Your course time</h2>
+
+        <ProgressBar :circle="circle" />
       </div>
     </section>
   </div>
@@ -22,6 +26,11 @@ import { mapGetters } from "vuex";
 export default {
   watchQuery: ["dashboard"],
   layout: "graduate",
+  head() {
+    return {
+      title: "Dashboard",
+    };
+  },
   components: {
     ScoresTable,
     ProgressBar,
@@ -29,24 +38,26 @@ export default {
   data() {
     return {
       circle: {
-        strokeColor: "#428bca",
-        strokeWidth: "10",
-        size: "250",
+        strokeColor: "#38b2ac",
+        strokeWidth: "7",
+        size: "150",
         text: 0,
       },
+      courses: [],
     };
   },
   layout: "graduate",
   computed: {
-    ...mapGetters("courses", ["courses", "scores"]),
-    ...mapGetters("auth", ["name"]),
+    ...mapGetters("courses", ["getCourses", "getScores"]),
+    ...mapGetters("auth", ["getName"]),
   },
   mounted() {
     this.calculateCourseHours();
   },
+
   methods: {
     calculateCourseHours() {
-      this.circle.text = this.courses.reduce((acc, cur) => {
+      this.circle.text = this.getCourses.reduce((acc, cur) => {
         return acc + cur.duration;
       }, 0);
     },
@@ -54,5 +65,27 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.graduate--dashboard {
+  height: 100vh;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.graduate--dashboard h1 {
+  width: 65%;
+  text-align: center;
+}
+.graduate--dashboard section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.graduate--dashboard section div:first-child {
+  background: rgb(219, 219, 219);
+
+  padding: 10px;
+  overflow-y: scroll;
+}
 </style>

@@ -10,7 +10,7 @@
         :stroke-dasharray="
           2 * Math.PI * (circle.size / 2 - circle.strokeWidth / 2)
         "
-        fill="#333"
+        fill="#e2e8f0"
       />
       <text class="svg--text" :x="circle.size / 2" :y="circle.size / 2">
         {{ circle.text }}h
@@ -22,24 +22,19 @@
 <script>
 export default {
   props: ["circle"],
-  data() {
-    return {};
-  },
-  mounted() {
-    console.log(this.circle);
-  },
 };
 </script>
 
 <style scoped>
 svg {
   animation: offsettozero 5s linear forwards;
-  stroke-dashoffset: 766;
+  stroke-dashoffset: 439;
 }
 .svg--text {
   font-size: 3rem;
   text-anchor: middle;
   font-weight: bold;
+  color: #38b2ac;
 }
 
 @keyframes offsettozero {

@@ -1,67 +1,73 @@
 <template>
-  <div>
-    <form @submit="handleSubmit">
-      <p>{{ toast }}</p>
-      <select name="code" v-model="userInput.code">
-        <option
-          :value="assessment.course_code"
-          v-for="assessment in assessmentsArr"
-          :key="assessment.id"
-        >
-          {{ assessment.course_name }}({{ assessment.course_code }})
-        </option>
-      </select>
-      <Input
-        @getUserInput="getUserInput"
-        :attributeObj="{ type: 'number', name: 'score', placeholder: '875463' }"
-      />
-      <input type="submit" />
-    </form>
-
-    <div v-for="(score, index) in scores" :key="index">
-      <p>{{ score.code }} || {{ score.score }}</p>
+  <div class="scores--main">
+    <div class="scores--container">
+      <div class="w-full">
+        <h3 class="text-gray-600 m-2 text-2xl">Add new Score</h3>
+        <Form
+          :scores="scores"
+          :courses="courses"
+          :assessments="assessments"
+          :handleKey="handleKey"
+        />
+      </div>
+      <div class="w-full" :key="key">
+        <h3 class="text-gray-600 m-2 text-2xl">Your scores</h3>
+        <ScoresTable :scores="scores" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Input from "../../components/Input";
-import { addScore } from "../../api/requests";
+import ScoresTable from "../../components/Scores/ScoresTable";
+import Form from "../../components/Scores/Form";
 import { mapState } from "vuex";
 
 export default {
   name: "gaduateScores",
   layout: "graduate",
-  components: Input,
-
+  components: { ScoresTable, Form },
   data() {
     return {
-      userInput: {},
-      toast: "",
+      key: 0,
     };
   },
   computed: {
-    ...mapState("auth", ["user_id", "token"]),
-    ...mapState("courses", ["coursesArr", "assessmentsArr", "scores"]),
+    ...mapState("courses", ["courses", "assessments", "scores"]),
   },
   methods: {
-    getUserInput(inputValue, inputName) {
-      this.userInput[inputName] = inputValue;
-    },
-
-    async handleSubmit(e) {
-      e.preventDefault();
-      try {
-        const res = await addScore(this.userInput, this.user_id, this.token);
-        this.toast = res.message;
-      } catch (error) {
-        console.log(error);
-        this.toast = "Something went wrong";
-      }
+    handleKey() {
+      this.key++;
     },
   },
 };
 </script>
 
 <style>
+.scores--main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+}
+.scores--container {
+  height: 90%;
+}
+.scores--container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 700px) {
+  .scores--container {
+    width: 70%;
+    height: 85%;
+  }
+  .scores--container div:first-child {
+    width: 50%;
+  }
+}
 </style>

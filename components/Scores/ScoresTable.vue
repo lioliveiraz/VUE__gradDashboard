@@ -1,25 +1,33 @@
 <template>
-  <table class="table-auto">
+  <table class="table-auto border-separate">
     <thead>
-      <tr>
-        <th>N</th>
+      <tr class="border-4">
+        <th class="border border-teal-600 p-2">N</th>
 
-        <th>Assesment Code</th>
+        <th class="border border-teal-600 p-2">Assesment Code</th>
 
-        <th>Score</th>
-        <th>Passed</th>
+        <th class="border border-teal-600 p-2">Score</th>
+        <th class="border border-teal-600 p-2">Passed</th>
       </tr>
     </thead>
     <tbody>
       <tr
-        class="bg-emerald-200"
+        class="border border-teal-600 p-2"
         v-for="({ code, score }, i) in scores"
         :key="i"
       >
-        <td>{{ i + 1 }}</td>
-        <td>{{ code }}</td>
-        <td>{{ score }}</td>
-        <td>{{ score > 140 ? "Yes" : "No" }}</td>
+        <td class="border border-teal-600 p-2">{{ i + 1 }}</td>
+        <td class="border border-teal-600 p-2">{{ code }}</td>
+        <td class="border border-teal-600 p-2">{{ score }}</td>
+        <td
+          :class="
+            score > 140
+              ? 'border border-teal-600 p-2 bg-green-900 text-gray-200'
+              : 'border border-teal-600 p-2 bg-red-800 text-gray-200'
+          "
+        >
+          {{ score > 140 ? "Yes" : "No" }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -29,10 +37,16 @@
 export default {
   props: ["scores"],
   layout: "admLayout",
+  middleware: "courses",
 
-  mounted() {},
+  created() {
+    console.log("here");
+  },
 };
 </script>
 
 <style>
+table {
+  width: 100%;
+}
 </style>

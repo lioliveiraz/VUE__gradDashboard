@@ -1,10 +1,10 @@
 <template>
   <div class="main--graduate flex">
-    <nav class="bg-gray-900 w-1/3 h-full text-gray-200 p-1">
+    <nav class="bg-gray-900 w-4/12 h-full text-gray-200 p-1">
       <ul class="md:text-2xl w-4/5">
         <li class="m-1">
           <div
-            class="bg-gray-800 rounded-full md:w-40 md:h-40 imageCenter border-teal-600 border-4"
+            class="bg-gray-800 rounded-full md:w-40 md:h-40 imageCenter border-teal-600 border-4 object-cover"
           >
             <img src="../assets/logo.svg" alt="logo" id="logo" />
           </div>
@@ -17,7 +17,7 @@
         </li>
         <li class="m-1"><nuxt-link to="scores">scores</nuxt-link></li>
         <button
-          class="border-orange-500 shadow-outline logout md:text-2xl p-2"
+          class="md:border-orange-500 md:shadow-outline logout md:text-2xl p-2"
           @click="handleLogout"
         >
           Logout
@@ -52,7 +52,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style >
 .main--graduate {
   height: 100vh;
   overflow-x: hidden;

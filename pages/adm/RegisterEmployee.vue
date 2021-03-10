@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <h1>hello its me</h1>
-    <Form />
+  <div class="register--main">
+    <div class="register--form">
+      <Form />
+    </div>
   </div>
 </template>
 
@@ -14,5 +15,22 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.register--main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register--form {
+  height: 60%;
+  width: 80%;
+}
+
+@media screen and (min-width: 700px) {
+  .register--form {
+    height: 60%;
+    width: 70%;
+  }
+}
 </style>

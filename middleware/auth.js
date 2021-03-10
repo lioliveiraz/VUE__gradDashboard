@@ -2,8 +2,10 @@
 export default function (context) {
     const { store, redirect, route } = context;
     const isLoggedIn = store.getters['auth/isLoggedIn'];
-    let isAdm = store.getters['auth/adm'];
-    isAdm = isAdm == "ADM" ? true : false;
+    let isAdm = store.getters['auth/getAdm'];
+
+
+
     if (isLoggedIn && route.name === "index" && !isAdm) {
 
         return redirect('graduate/dashboard');

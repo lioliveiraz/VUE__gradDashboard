@@ -1,14 +1,14 @@
-import { getCourses, getScores } from '../../api/requests';
+import { getCourses, getScores } from '../../api/requests/get';
 
 const state = {
-    coursesArr: [],
-    assessmentsArr: [],
+    courses: [],
+    assessments: [],
     scores: {}
 };
 const getters = {
-    courses: state => state.coursesArr,
-    assessmentsArr: state => state.assessmentsArr,
-    scores: state => state.scores
+    getCourses: state => state.courses,
+    getAssessments: state => state.assessments,
+    getScores: state => state.scores
 
 };
 const actions = {
@@ -16,12 +16,12 @@ const actions = {
         if (token) {
             try {
                 const res = await getCourses(token);
-                const coursesArr = res.filter((course) => course.assessment === false);
-                const assessmentsArr = res.filter(
+                const courses = res.filter((course) => course.assessment === false);
+                const assessments = res.filter(
                     (course) => course.assessment === true
                 );
-                commit('setCourses', coursesArr);
-                commit('setAssessments', assessmentsArr);
+                commit('setCourses', courses);
+                commit('setAssessments', assessments);
 
             } catch (error) {
                 console.log(error);
@@ -42,13 +42,15 @@ const actions = {
     },
 
 
+
+
 };
 const mutations = {
     setCourses: (state, courses) => {
-        state.coursesArr = courses;
+        state.courses = courses;
     },
     setAssessments: (state, assessments) => {
-        state.assessmentsArr = assessments;
+        state.assessments = assessments;
     },
     setScores: (state, scores) => {
         state.scores = scores;
