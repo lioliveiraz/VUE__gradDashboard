@@ -9,9 +9,7 @@ jest.mock("axios");
 
 
 describe('vuex store course module', () => {
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
+
     let state = {
         courses: null,
         assessments: null,
@@ -95,5 +93,7 @@ describe('vuex store course module', () => {
     
         });
      */
-
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 });

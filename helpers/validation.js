@@ -1,3 +1,10 @@
+
+
+/**
+ * @function userValidation
+ * @param {object} userInputObj 
+ * @returns {object}
+ */
 export const userValidation = (userInputObj) => {
     let errorObj = {};
     let empId = userInputObj.empId;
@@ -22,7 +29,11 @@ export const userValidation = (userInputObj) => {
     return errorObj;
 
 };
-
+/**
+ * @function courseValidation
+ * @param {object} userInputObj 
+ * @returns {object}
+ */
 export const courseValidation = (userInputObj) => {
     let errorObj = {};
     let week = userInputObj.week;
