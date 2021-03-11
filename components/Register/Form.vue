@@ -64,6 +64,8 @@ export default {
       } else {
         try {
           const res = await registerEmployee(this.employeeObj, this.getToken);
+          this.errors = {};
+
           this.$toast(res.data.message, { type: "success" });
           this.key++;
         } catch (err) {

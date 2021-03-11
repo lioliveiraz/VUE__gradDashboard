@@ -46,10 +46,10 @@ Vue.use(Toast, {
 });
 export default {
   methods: {
-    ...mapActions("auth", ["actionLogout"]),
+    ...mapActions("auth", ["logout"]),
 
     handleLogout() {
-      this.actionLogout();
+      this.logout();
       this.$router.push("/");
     },
   },

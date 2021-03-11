@@ -98,6 +98,7 @@ export default {
         addCourse(this.courseData, this.getToken)
           .then((res) => {
             console.log("before calling fetch");
+            this.errors = {};
             this.fetchCourses({ token: this.getToken });
             this.toggleComponent();
             this.$toast(res.data.message, { type: "success" });

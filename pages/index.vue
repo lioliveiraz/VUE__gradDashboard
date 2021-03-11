@@ -52,7 +52,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["getAdm"]),
+    ...mapGetters("auth", ["isAdm"]),
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -69,7 +69,7 @@ export default {
         handleLogin(this.loginUserData)
           .then((res) => {
             this.login(res.data);
-            this.getAdm
+            this.isAdm
               ? this.$router.push({ query: "adm_dashboard" })
               : this.$router.push({ query: "dashboard" });
           })
