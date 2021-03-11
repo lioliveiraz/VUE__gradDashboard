@@ -47,8 +47,15 @@
       @getUserInput="getUserInput"
       :attributeObj="{ type: 'checkbox', name: 'assessment' }"
     />
-
-    <input type="submit" class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1" />
+    <div class="flex">
+      <input type="submit" class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1" />
+      <button
+        @click="toggleComponent"
+        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+      >
+        Close
+      </button>
+    </div>
   </form>
 </template>
 
