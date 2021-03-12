@@ -1,7 +1,7 @@
 <template>
   <div class="adm--dashboard">
     <h1 class="text-4xl text-teal-500 font-extrabold m-6 md:text-6xl">
-      Welcome {{ getName }}
+      {{ getName }}
     </h1>
     <section class="w-full dashboard--cards">
       <div
@@ -31,12 +31,15 @@ export default {
       grads: [],
     };
   },
+
   async created() {
     try {
       const res = await getUsers(this.getToken);
       this.grads = res;
     } catch (err) {
-      console.log(err);
+      this.$toast("Something went wrong, try again latter!", {
+        type: this.TOAST_ERROR,
+      });
     }
   },
   computed: {
