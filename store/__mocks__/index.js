@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
     login: jest.fn(),
-    logout: jest.fn()
+    LOGO_IMAGEut: jest.fn()
 };
 
 export const state = {

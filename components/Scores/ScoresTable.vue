@@ -4,10 +4,16 @@
       <tr class="border-4">
         <th class="border border-teal-600 p-2">N</th>
 
-        <th class="border border-teal-600 p-2">Assesment Code</th>
+        <th class="border border-teal-600 p-2">
+          {{ this.TABLE_HEAD_ASSCODE_ENGLISH }}
+        </th>
 
-        <th class="border border-teal-600 p-2">Score</th>
-        <th class="border border-teal-600 p-2">Passed</th>
+        <th class="border border-teal-600 p-2">
+          {{ this.TABLE_HEAD_SCORES_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-2">
+          {{ this.TABLE_HEAD_PASSED_ENGLISH }}
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -45,9 +51,7 @@ export default {
   layout: "admLayout",
   middleware: "courses",
 
-  created() {
-    console.log("here");
-  },
+  created() {},
 };
 </script>
 

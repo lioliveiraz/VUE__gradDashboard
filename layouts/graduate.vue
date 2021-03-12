@@ -6,21 +6,29 @@
           <div
             class="bg-gray-800 rounded-full md:w-40 md:h-40 imageCenter border-teal-600 border-4 object-cover"
           >
-            <img src="../assets/logo.svg" alt="logo" id="logo" />
+            <img
+              src="../assets/logo.svg"
+              :alt="this.LOGO_IMAGE"
+              :id="this.LOGO_IMAGE"
+            />
           </div>
         </li>
         <li class="m-1">
-          <nuxt-link to="dashboard">home</nuxt-link>
+          <nuxt-link to="dashboard">{{ this.LINK_HOME_ENGLISH }}</nuxt-link>
         </li>
         <li class="m-1">
-          <nuxt-link to="learningpath">courses</nuxt-link>
+          <nuxt-link to="learningpath">{{
+            this.LINK_COURSES_ENGLISH
+          }}</nuxt-link>
         </li>
-        <li class="m-1"><nuxt-link to="scores">scores</nuxt-link></li>
+        <li class="m-1">
+          <nuxt-link to="scores">{{ this.LINK_SCORES_ENGLISH }}</nuxt-link>
+        </li>
         <button
           class="md:border-orange-500 md:shadow-outline logout md:text-2xl p-2"
-          @click="handleLogout"
+          @click="handlelogout"
         >
-          Logout
+          {{ this.LOGOUT_BUTTON }}
         </button>
       </ul>
     </nav>
@@ -34,6 +42,9 @@
 import { mapActions } from "vuex";
 import Vue from "vue";
 import Toast from "vue-toastification";
+import global from "../mixin/global";
+
+Vue.mixin(global);
 
 Vue.use(Toast, {
   position: "top-right",
@@ -45,7 +56,7 @@ export default {
   middleware: "courses",
   methods: {
     ...mapActions("auth", ["logout"]),
-    handleLogout() {
+    handlelogout() {
       this.logout();
       this.$router.push("/");
     },
@@ -98,5 +109,8 @@ li {
 a.nuxt-link-exact-active,
 a:hover {
   color: rgb(74, 255, 255);
+}
+button {
+  text-transform: uppercase;
 }
 </style>

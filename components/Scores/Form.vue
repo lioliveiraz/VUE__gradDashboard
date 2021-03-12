@@ -1,5 +1,5 @@
 <template>
-  <form @submit="handleSubmit" class="w-full">
+  <form @submit="handleSubmit" class="w-full" :key="key">
     <select
       name="code"
       v-model="userInput.code"
@@ -15,22 +15,30 @@
     </select>
     <Input
       @getUserInput="getUserInput"
-      :attributeObj="{ type: 'number', name: 'score', required: true }"
+      :attributeObj="{
+        type: this.NUMBER_INPUT,
+        name: this.SCORE_INPUT,
+        required: true,
+      }"
     />
 
-    <input type="submit" class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1" />
+    <input
+      :type="this.BUTTON_SUBMIT"
+      class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+    />
   </form>
 </template>
 
 <script>
 import { addScore } from "../../api/requests/post";
 import Input from "../Input";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
     return {
       userInput: {},
+      key: 0,
     };
   },
   components: { Input },
@@ -39,6 +47,8 @@ export default {
     ...mapState("auth", ["user_id", "token"]),
   },
   methods: {
+    ...mapActions("courses", ["handleAddScore"]),
+
     getUserInput(inputValue, inputName) {
       this.userInput[inputName] = inputValue;
     },
@@ -47,12 +57,13 @@ export default {
       e.preventDefault();
       try {
         const res = await addScore(this.userInput, this.user_id, this.token);
-        this.$toast(res.data.message, { type: "success" });
-
+        this.handleAddScore(this.userInput);
+        this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
+        this.key++;
         this.handleKey();
       } catch (err) {
         this.$toast("Something went wrong! Try again latter", {
-          type: "error",
+          type: this.TOAST_ERROR,
         });
       }
     },

@@ -3,7 +3,7 @@ import { getCourses, getScores } from '../../api/requests/get';
 const state = {
     courses: [],
     assessments: [],
-    scores: {}
+    scores: []
 };
 const getters = {
     getCourses: state => state.courses,
@@ -41,6 +41,21 @@ const actions = {
         }
     },
 
+    handleAddCourse({ commit }, course) {
+        if (course['assessment'] === true) {
+            commit('ADD_ASSESSMENT', course);
+
+        } else {
+            commit('ADD_COURSE', course);
+
+        }
+
+    },
+
+    handleAddScore({ commit }, score) {
+        commit('ADD_SCORE', score);
+
+    }
 
 
 
@@ -54,7 +69,21 @@ const mutations = {
     },
     SET_SCORES: (state, scores) => {
         state.scores = scores;
+    },
+    ADD_COURSE: (state, course) => {
+        state.courses = [...state.courses, { ...course }];
+
+    },
+    ADD_ASSESSMENT: (state, course) => {
+        state.assessments = [...state.assessments, { ...course }];
+
+    },
+    ADD_SCORE: (state, score) => {
+        state.scores = [...state.scores, { ...score }];
+
     }
+
+
 };
 
 

@@ -10,8 +10,8 @@
       <div class="h-24">
         <img
           src="../assets/logo.svg"
-          alt="logo"
-          id="logo"
+          :alt="this.LOGO_IMAGE"
+          :id="this.LOGO_IMAGE"
           data-testId="login_img"
         />
       </div>
@@ -19,7 +19,7 @@
       <Input
         @getUserInput="getUserInput"
         :attributeObj="{
-          type: 'text',
+          type: this.TEXT_INPUT,
           name: 'empId',
           placeholder: '875463',
           required: true,
@@ -27,13 +27,17 @@
       />
       <Input
         @getUserInput="getUserInput"
-        :attributeObj="{ type: 'password', name: 'password', required: true }"
+        :attributeObj="{
+          type: this.PASSWORD_INPUT,
+          name: this.PASSWORD_INPUT,
+          required: true,
+        }"
       />
 
       <input
-        type="submit"
+        :type="this.BUTTON_SUBMIT"
         class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
-        value="LOGIN"
+        :value="this.LOGIN_VALUE"
         data-testId="login_button"
       />
     </form>
@@ -45,12 +49,14 @@ import Input from "../components/Input";
 import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
+import global from "../mixin/global";
 
 export default {
   name: "HomePage",
   components: {
     Input,
   },
+  mixins: [global],
 
   head() {
     return { title: "Welcome" };
@@ -118,5 +124,9 @@ export default {
 }
 input[type="submit"] {
   cursor: pointer;
+  text-transform: uppercase;
+}
+button {
+  text-transform: uppercase;
 }
 </style>

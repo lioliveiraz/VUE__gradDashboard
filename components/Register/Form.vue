@@ -3,8 +3,8 @@
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'text',
-        name: 'empId',
+        type: this.TEXT_INPUT,
+        name: this.EMPID_INPUT,
         placeholder: 'employer ID',
         required: true,
       }"
@@ -13,8 +13,8 @@
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'password',
-        name: 'password',
+        type: this.PASSWORD_INPUT,
+        name: this.PASSWORD_INPUT,
 
         required: true,
       }"
@@ -24,15 +24,18 @@
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'text',
-        name: 'name',
+        type: this.TEXT_INPUT,
+        name: this.EMP_NAME_INPUT,
         placeholder: 'employer name',
         required: true,
       }"
     />
     {{ errors.name && errors.name }}
 
-    <input type="submit" class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1" />
+    <input
+      :type="this.BUTTON_SUBMIT"
+      class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+    />
   </form>
 </template>
 
@@ -66,10 +69,10 @@ export default {
           const res = await registerEmployee(this.employeeObj, this.getToken);
           this.errors = {};
 
-          this.$toast(res.data.message, { type: "success" });
+          this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
           this.key++;
         } catch (err) {
-          this.$toast(err.response.data.message, { type: "error" });
+          this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
         }
       }
     },

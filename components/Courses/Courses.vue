@@ -6,7 +6,12 @@
     >
       {{ !isCourse ? "courses" : "assesmentes" }}
     </button>
+
     <div>
+      <h3 class="text-gray-600 m-2 text-2xl">
+        {{ isCourse ? "Courses" : "Assessments" }}
+      </h3>
+
       <div v-if="isCourse">
         <Table :courses="coursesArr" />
       </div>
@@ -23,7 +28,7 @@ import Table from "./Table";
 export default {
   data() {
     return {
-      isCourse: false,
+      isCourse: true,
     };
   },
   components: {

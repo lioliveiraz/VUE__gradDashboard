@@ -2,13 +2,27 @@
   <table class="table-auto border-separate" data-testId="course_table">
     <thead>
       <tr>
-        <th class="border border-teal-600 p-1 md:p-4">Week</th>
-        <th class="border border-teal-600 p-1 md:p-4">Course Code</th>
-        <th class="border border-teal-600 p-1 md:p-4">Course Name</th>
-        <th class="border border-teal-600 p-1 md:p-4">Mode</th>
-        <th class="border border-teal-600 p-1 md:p-4">Source</th>
-        <th class="border border-teal-600 p-1 md:p-4">Duration</th>
-        <th class="border border-teal-600 p-1 md:p-4">Link</th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_WEEK_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_COURSECODE_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_COURSENAME_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_MODE_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_SOURCE_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_DURATION_ENGLISH }}
+        </th>
+        <th class="border border-teal-600 p-1 md:p-4">
+          {{ this.TABLE_HEAD_LINK_ENGLISH }}
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -67,4 +81,7 @@ export default {
 </script>
 
 <style>
+th {
+  text-transform: uppercase;
+}
 </style>

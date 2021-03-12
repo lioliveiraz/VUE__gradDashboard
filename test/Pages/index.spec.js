@@ -1,31 +1,28 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { _createMocks as createStoreMocks } from '../../store';
+import { __createMocks as createStoreMocks, store } from '../../store/__mocks__';
 import Index from '../../pages';
 
 
-jest.mock('../../store');
+jest.mock('../../store/__mocks__');
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
 describe('<Index/>', () => {
-    let storeMocks, wrapper;
-
+    let wrapper;
     beforeEach(async () => {
-        storeMocks = createStoreMocks();
         wrapper = await shallowMount(Index, {
-            store: storeMocks.store,
+            store: store,
             localVue
         });
     });
 
     it('should render correctly', () => {
-        /*  const idArr = ["login_form", "login_img", "login_button"];
-         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy()); */
+        const idArr = ["login_form", "login_img", "login_button"];
+        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
 
-        expect(wrapper).toEqual();
     });
 });

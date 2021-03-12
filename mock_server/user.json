@@ -1,86 +1,29 @@
 {
     "users": [
         {
-            "id": 3,
-            "empId": "548213",
+            "id": 1,
+            "empId": "333333",
             "password": "$2b$10$roCmnDswsUWcPGkt3H1FEO/x5GtWYxNknGOXN4jGcmyHHJ2if6fyO",
             "name": "Maria",
             "role": [
                 "GRAD"
             ],
-            "assessments_score": [
-                {
-                    "code": "BBBB2",
-                    "score": "55"
-                },
-                {
-                    "code": "54584645",
-                    "score": "55"
-                },
-                {
-                    "code": "CCCC2",
-                    "score": "55"
-                },
-                {
-                    "code": "AAAA2",
-                    "score": "33"
-                },
-                {
-                    "code": "BBBB2",
-                    "score": "33"
-                },
-                {
-                    "code": "AAAA2",
-                    "score": "11"
-                },
-                {
-                    "code": "BBBB2",
-                    "score": "88"
-                },
-                {
-                    "code": "BBBB2",
-                    "score": "88"
-                },
-                {
-                    "code": "BBBB2",
-                    "score": "555"
-                }
-            ]
+            "assessments_score": []
         },
         {
-            "id": 4,
+            "id": 2,
             "empId": "111111",
             "password": "$2b$10$ERaF.TLKXHhKVa4900Agp.8wH5Z8O1buuRxot45eLs3dpPH/8WggK",
-            "name": "jose",
+            "name": "Jose",
             "role": [
                 "ADM"
             ]
         },
         {
-            "id": 5,
-            "empId": "222222",
+            "id": 3,
+            "empId": "548213",
             "password": "$2b$10$2dWAOxpcPfdja38/UusTVu3teYFSD8ZZqUGKmZQxk0c/lDzmSUBP.",
-            "name": "ligia",
-            "role": [
-                "GRAD"
-            ],
-            "assessments_score": []
-        },
-        {
-            "id": 6,
-            "empId": "654321",
-            "password": "$2b$10$ZLrIXXZloCqvgMFfSXBq8.2YNT6s.fIHXMkt2pz712dfpGoBD5pnq",
-            "name": "ThisName",
-            "role": [
-                "GRAD"
-            ],
-            "assessments_score": []
-        },
-        {
-            "id": 7,
-            "empId": "444444",
-            "password": "$2b$10$34g9ygtvEm0r8.cFj29pFOwqPrLLg4iS4P4nrSHmVtGSxNqx3rNzu",
-            "name": "The name",
+            "name": "Ligia",
             "role": [
                 "GRAD"
             ],

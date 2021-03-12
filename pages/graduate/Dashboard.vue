@@ -11,7 +11,6 @@
       </div>
       <div class="w-5/6 m-3 md:h-64">
         <h2 class="text-gray-600 m-2 text-2xl">Your course time</h2>
-
         <ProgressBar :circle="circle" />
       </div>
     </section>
@@ -58,7 +57,7 @@ export default {
   methods: {
     calculateCourseHours() {
       this.circle.text = this.getCourses.reduce((acc, cur) => {
-        return acc + cur.duration;
+        return acc + +cur.duration;
       }, 0);
     },
   },

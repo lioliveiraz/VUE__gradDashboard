@@ -1,10 +1,10 @@
 <template>
-  <form @submit="handleSubmit" data-testId="course_form">
+  <form @submit="handleSubmit" data-testId="course_form" :key="key">
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'number',
-        name: 'week',
+        type: this.NUMBER_INPUT,
+        name: this.TABLE_HEAD_WEEK_ENGLISH,
         placeholder: 'week number',
         required: true,
       }"
@@ -13,21 +13,29 @@
 
     <Input
       @getUserInput="getUserInput"
-      :attributeObj="{ type: 'text', name: 'course_code', required: true }"
+      :attributeObj="{
+        type: this.TEXT_INPUT,
+        name: this.TABLE_HEAD_COURSECODE_ENGLISH,
+        required: true,
+      }"
     />
     {{ errors.course_code && errors.course_code }}
 
     <Input
       @getUserInput="getUserInput"
-      :attributeObj="{ type: 'text', name: 'course_name', required: true }"
+      :attributeObj="{
+        type: this.TEXT_INPUT,
+        name: this.TABLE_HEAD_COURSENAME_ENGLISH,
+        required: true,
+      }"
     />
     {{ errors.course_name && errors.course_name }}
 
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'text',
-        name: 'source',
+        type: this.TEXT_INPUT,
+        name: this.TABLE_HEAD_SOURCE_ENGLISH,
         placeholder: 'Udemy',
         required: true,
       }"
@@ -37,18 +45,21 @@
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
-        type: 'number',
-        name: 'duration',
+        type: this.NUMBER_INPUT,
+        name: this.TABLE_HEAD_DURATION_ENGLISH,
         placeholder: '875463',
         required: true,
       }"
     />
     <Input
       @getUserInput="getUserInput"
-      :attributeObj="{ type: 'checkbox', name: 'assessment' }"
+      :attributeObj="{ type: this.CHECKBOX_INPUT, name: this.ASSESSMENT_INPUT }"
     />
     <div class="flex">
-      <input type="submit" class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1" />
+      <input
+        :type="this.BUTTON_SUBMIT"
+        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+      />
       <button
         @click="toggleComponent"
         class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
@@ -71,40 +82,43 @@ export default {
 
   data() {
     return {
-      props: ["c"],
       courseData: {
         assessment: false,
         link:
           "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
       },
       errors: {},
+      key: 0,
     };
   },
   computed: {
     ...mapGetters("auth", ["getToken"]),
   },
   methods: {
-    ...mapActions("courses", ["fetchCourses"]),
+    ...mapActions("courses", ["fetchCourses", "handleAddCourse"]),
 
     getUserInput(inputValue, inputName) {
       this.courseData[inputName] = inputValue;
     },
     async handleSubmit(e) {
       e.preventDefault();
+      this.courseData[this.DURATION_INPUT] = +this.courseData[
+        this.DURATION_INPUT
+      ];
       const errors = courseValidation(this.courseData);
       if (Object.entries(errors).length !== 0) {
         this.errors = errors;
       } else {
         addCourse(this.courseData, this.getToken)
           .then((res) => {
-            console.log("before calling fetch");
             this.errors = {};
-            this.fetchCourses({ token: this.getToken });
             this.toggleComponent();
-            this.$toast(res.data.message, { type: "success" });
+            this.key++;
+            this.handleAddCourse(this.courseData);
+            this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
           })
           .catch((err) =>
-            this.$toast(err.response.data.message, { type: "error" })
+            this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
           );
       }
     },

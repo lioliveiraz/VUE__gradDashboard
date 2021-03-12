@@ -9,6 +9,9 @@
 import "vue-toastification/dist/index.css";
 import Vue from "vue";
 import Toast from "vue-toastification";
+import global from "../mixin/global";
+
+Vue.mixin(global);
 
 Vue.use(Toast, {
   position: "top-right",
