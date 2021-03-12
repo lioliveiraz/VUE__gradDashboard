@@ -2,9 +2,18 @@
   <div
     class="home--main border-gray-800 bg-purple-100 rounded shadow-2xl w-8/12 md:w-3/5 lg:w-2/4 xl:w-1/4"
   >
-    <form @submit="handleSubmit" class="home--form w-full h-full">
+    <form
+      @submit="handleSubmit"
+      class="home--form w-full h-full"
+      data-testId="login_form"
+    >
       <div class="h-24">
-        <img src="../assets/logo.svg" alt="logo" id="logo" />
+        <img
+          src="../assets/logo.svg"
+          alt="logo"
+          id="logo"
+          data-testId="login_img"
+        />
       </div>
 
       <Input
@@ -25,6 +34,7 @@
         type="submit"
         class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
         value="LOGIN"
+        data-testId="login_button"
       />
     </form>
   </div>
@@ -52,7 +62,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["getAdm"]),
+    ...mapGetters("auth", ["isAdm"]),
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -69,7 +79,7 @@ export default {
         handleLogin(this.loginUserData)
           .then((res) => {
             this.login(res.data);
-            this.getAdm
+            this.isAdm
               ? this.$router.push({ query: "adm_dashboard" })
               : this.$router.push({ query: "dashboard" });
           })

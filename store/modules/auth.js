@@ -8,7 +8,7 @@ const state = {
 const getters = {
     isLoggedIn: state => !!state.token,
     getToken: state => state.token,
-    getAdm: state => !!state.user_isAdm,
+    isAdm: state => !!state.user_isAdm,
     getName: state => state.user_name
 
 };
@@ -19,28 +19,28 @@ const actions = {
         const role = data['user']['role'];
         const name = data['user']['name'];
 
-        commit('setToken', token);
-        commit('setId', id);
-        commit('setName', name);
+        commit('SET_TOKEN', token);
+        commit('SET_ID', id);
+        commit('SET_NAME', name);
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user_id', id);
         window.localStorage.setItem('user_name', name);
 
         if (role[0] === "ADM") {
-            commit('setAdm', role[0]);
+            commit('SET_ADM', role[0]);
             window.localStorage.setItem('user_isAdm', role[0]);
         } else {
 
-            commit('setAdm', null);
+            commit('SET_ADM', null);
         }
 
     },
 
-    actionLogout: ({ commit }) => {
-        commit('setToken', null);
-        commit('setId', null);
-        commit('setAdm', null);
-        commit('setName', null);
+    logout: ({ commit }) => {
+        commit('SET_TOKEN', null);
+        commit('SET_ID', null);
+        commit('SET_ADM', null);
+        commit('SET_NAME', null);
 
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('user_id');
@@ -52,16 +52,16 @@ const actions = {
 
 };
 const mutations = {
-    setToken: (state, token) => {
+    SET_TOKEN: (state, token) => {
         state.token = token;
     },
-    setId: (state, id) => {
+    SET_ID: (state, id) => {
         state.user_id = id;
     },
-    setAdm: (state, isAdm) => {
+    SET_ADM: (state, isAdm) => {
         state.user_isAdm = isAdm;
     },
-    setName: (state, name) => {
+    SET_NAME: (state, name) => {
         state.user_name = name;
     }
 };

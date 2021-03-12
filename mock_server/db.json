@@ -59,6 +59,16 @@
             "source": "plural sight",
             "duration": 1,
             "link": "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile"
+        },
+        {
+            "id": 7,
+            "assessment": false,
+            "link": "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
+            "week": "8",
+            "course_code": "444444",
+            "course_name": "name",
+            "source": "NEW",
+            "duration": "2"
         }
     ]
 }

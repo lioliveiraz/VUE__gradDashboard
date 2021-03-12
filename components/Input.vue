@@ -1,7 +1,8 @@
 <template>
   <div class="form--input flex flex-col m-3 w-5/6">
-    <label>{{ attributeObj.name.toUpperCase() }}</label>
+    <label data-testId="label">{{ attributeObj.name.toUpperCase() }}</label>
     <input
+      data-testId="input"
       class="h-12 bg-gray-300 border-yellow-200 text-black"
       :type="attributeObj.type"
       :name="attributeObj.name"

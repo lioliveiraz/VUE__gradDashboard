@@ -44,9 +44,9 @@ Vue.use(Toast, {
 export default {
   middleware: "courses",
   methods: {
-    ...mapActions("auth", ["actionLogout"]),
+    ...mapActions("auth", ["logout"]),
     handleLogout() {
-      this.actionLogout();
+      this.logout();
       this.$router.push("/");
     },
   },

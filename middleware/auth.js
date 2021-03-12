@@ -2,7 +2,7 @@
 export default function (context) {
     const { store, redirect, route } = context;
     const isLoggedIn = store.getters['auth/isLoggedIn'];
-    let isAdm = store.getters['auth/getAdm'];
+    let isAdm = store.getters['auth/isAdm'];
 
 
 

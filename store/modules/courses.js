@@ -20,8 +20,8 @@ const actions = {
                 const assessments = res.filter(
                     (course) => course.assessment === true
                 );
-                commit('setCourses', courses);
-                commit('setAssessments', assessments);
+                commit('SET_COURSES', courses);
+                commit('SET_ASSESSMENTS', assessments);
 
             } catch (error) {
                 console.log(error);
@@ -33,7 +33,7 @@ const actions = {
         if (token) {
             try {
                 const res = await getScores(id, token);
-                commit('setScores', res.scores);
+                commit('SET_SCORES', res.scores);
 
             } catch (error) {
                 console.log(error);
@@ -46,13 +46,13 @@ const actions = {
 
 };
 const mutations = {
-    setCourses: (state, courses) => {
+    SET_COURSES: (state, courses) => {
         state.courses = courses;
     },
-    setAssessments: (state, assessments) => {
+    SET_ASSESSMENTS: (state, assessments) => {
         state.assessments = assessments;
     },
-    setScores: (state, scores) => {
+    SET_SCORES: (state, scores) => {
         state.scores = scores;
     }
 };

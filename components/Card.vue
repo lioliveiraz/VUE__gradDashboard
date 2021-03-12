@@ -2,9 +2,13 @@
 <template>
   <div class="w-full card--main">
     <div>
-      <h4 class="text-orange-100 text-6xl">{{ graduated.name }}</h4>
+      <h4 data-testId="graduate_name" class="text-orange-100 text-6xl">
+        {{ graduated.name }}
+      </h4>
 
-      <p class="text-gray-100">Employeer id: {{ graduated.empId }}</p>
+      <p class="text-gray-100" data-testId="graduate_empID">
+        Employeer id: {{ graduated.empId }}
+      </p>
     </div>
   </div>
 </template>

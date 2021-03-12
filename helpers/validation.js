@@ -1,10 +1,18 @@
+
+
+/**
+ * @function userValidation
+ * @param {object} userInputObj 
+ * @returns {object}
+ */
 export const userValidation = (userInputObj) => {
     let errorObj = {};
     let empId = userInputObj.empId;
     let password = userInputObj.password;
     let name = userInputObj.name;
 
-    const validateName = name ? name.match(/^[a-z]{3,10}$/gi) : true;
+
+    const validateName = name ? name.match(/^[a-zA-Z_ ]+$/g) : true;
     const validateEmpId = empId ? empId.match(/^[0-9]{6}$/g) : true;
     /*     const validatePassword = password ? password.match(/^[a-zA-Z[:punct:]]{8,10}$/g) : true;
      */
@@ -18,11 +26,14 @@ export const userValidation = (userInputObj) => {
     } */
 
 
-
     return errorObj;
 
 };
-
+/**
+ * @function courseValidation
+ * @param {object} userInputObj 
+ * @returns {object}
+ */
 export const courseValidation = (userInputObj) => {
     let errorObj = {};
     let week = userInputObj.week;
@@ -30,11 +41,10 @@ export const courseValidation = (userInputObj) => {
     let courseName = userInputObj.course_name;
     let source = userInputObj.source;
 
-    const validateCourseName = courseName ? courseName.match(/^\w+( \w+)*$/gi) : true;
+    const validateCourseName = courseName ? courseName.match(/^[a-zA-Z_ ]+$/g) : true;
     const validateSource = source ? source.match(/^[a-z]{3,30}$/gi) : true;
     const validateWeek = week ? week > 0 && week < 53 : true;
     const validateCourseCode = courseCode ? courseCode.match(/^[0-9]{6}$/g) : true;
-
     if (!validateCourseName) {
         errorObj["course_name"] = " The name field has to contain only letters and minimum 3 characters ";
     }

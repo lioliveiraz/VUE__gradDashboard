@@ -1,5 +1,5 @@
 <template>
-  <table class="table-auto border-separate">
+  <table class="table-auto border-separate" data-testId="score_table">
     <thead>
       <tr class="border-4">
         <th class="border border-teal-600 p-2">N</th>
@@ -16,9 +16,15 @@
         v-for="({ code, score }, i) in scores"
         :key="i"
       >
-        <td class="border border-teal-600 p-2">{{ i + 1 }}</td>
-        <td class="border border-teal-600 p-2">{{ code }}</td>
-        <td class="border border-teal-600 p-2">{{ score }}</td>
+        <td class="border border-teal-600 p-2" data-testId="score_table--index">
+          {{ i + 1 }}
+        </td>
+        <td class="border border-teal-600 p-2" data-testId="score_table--code">
+          {{ code }}
+        </td>
+        <td class="border border-teal-600 p-2" data-testId="score_table--score">
+          {{ score }}
+        </td>
         <td
           :class="
             score > 140
