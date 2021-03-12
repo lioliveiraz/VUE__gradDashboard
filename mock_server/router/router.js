@@ -50,10 +50,10 @@ module.exports = {
     },
     addScore: (req, res) => {
         const data = req.body.data;
-        const { userId, userInputData } = data;
+        const { userId, userData } = data;
         let user = userDb.users.filter(user => userId == user.id);
         user = user[0];
-        user['assessments_score'] = [...user['assessments_score'], { code: userInputData.code, score: userInputData.score }];
+        user['assessments_score'] = [...user['assessments_score'], { code: userData.code, score: userData.score }];
 
         fs.writeFile("./mock_server/user.json", JSON.stringify(userDb), (err, result) => {
             err && res.status(401).json({ message: err });

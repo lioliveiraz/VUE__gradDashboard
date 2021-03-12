@@ -1,6 +1,6 @@
 <template>
   <main>
-    <svg :height="circle.size" :width="circle.size">
+    <svg :height="circle.size" :width="circle.size" data-testId="svg">
       <circle
         :cx="circle.size / 2"
         :cy="circle.size / 2"
@@ -12,7 +12,12 @@
         "
         fill="#e2e8f0"
       />
-      <text class="svg--text" :x="circle.size / 2" :y="circle.size / 2">
+      <text
+        class="svg--text"
+        :x="circle.size / 2"
+        :y="circle.size / 2"
+        data-testId="svg--text"
+      >
         {{ circle.text }}h
       </text>
     </svg>

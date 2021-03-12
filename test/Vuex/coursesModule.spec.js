@@ -57,42 +57,7 @@ describe('vuex store course module', () => {
         });
 
     });
-    /*     describe('test action', () => {
-            const commit = jest.fn();
-            const token = 'token';
-            let url = '';
-            let body = {};
-    
-            jest.mock("axios", () => ({
-                defaults: {
-                    baseUrl: "http://localhost:4020/",
-    
-                },
-                interceptors: {
-                    request: {
-                        use: jest.fn(),
-                    },
-                    response: {
-                        use: jest.fn()
-                    }
-                },
-                get: (_url, _body) => {
-                    return new Promise((resolve) => {
-                        url = _url;
-                        body = _body;
-                        resolve(true);
-                    });
-                }
-    
-            }));
-    
-    
-            it('should call commit ', async () => {
-                await fetchCourses({ commit }, token);
-            });
-    
-        });
-     */
+
     afterEach(() => {
         jest.clearAllMocks();
     });

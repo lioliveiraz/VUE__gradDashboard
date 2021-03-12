@@ -1,5 +1,5 @@
 <template>
-  <form @submit="handleSubmit">
+  <form @submit="handleSubmit" data-testId="course_form">
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{

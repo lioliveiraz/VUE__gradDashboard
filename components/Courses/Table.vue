@@ -1,5 +1,5 @@
 <template>
-  <table class="table-auto border-separate">
+  <table class="table-auto border-separate" data-testId="course_table">
     <thead>
       <tr>
         <th class="border border-teal-600 p-1 md:p-4">Week</th>
@@ -13,21 +13,46 @@
     </thead>
     <tbody>
       <tr class="bg-emerald-200" v-for="course in courses" :key="course.id">
-        <td class="border border-teal-600 p-1 md:p-4">{{ course.week }}</td>
-        <td class="border border-teal-600 p-1 md:p-4">
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-week"
+        >
+          {{ course.week }}
+        </td>
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-code"
+        >
           {{ course.course_code }}
         </td>
-        <td class="border border-teal-600 p-1 md:p-4">
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-name"
+        >
           {{ course.course_name }}
         </td>
-        <td class="border border-teal-600 p-1 md:p-4">
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-assessment"
+        >
           {{ course.assessment ? "assessment" : "self-paced" }}
         </td>
-        <td class="border border-teal-600 p-1 md:p-4">{{ course.source }}</td>
-        <td class="border border-teal-600 p-1 md:p-4">
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-source"
+        >
+          {{ course.source }}
+        </td>
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-duration"
+        >
           {{ course.duration }}h
         </td>
-        <td class="border border-teal-600 p-1 md:p-4">
+        <td
+          class="border border-teal-600 p-1 md:p-4"
+          data-testId="course_table-link"
+        >
           <a :href="course.link">link</a>
         </td>
       </tr>
@@ -38,7 +63,6 @@
 <script>
 export default {
   props: ["courses"],
-  mounted() {},
 };
 </script>
 
