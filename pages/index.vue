@@ -1,6 +1,6 @@
 <template>
   <div
-    class="home--main border-gray-800 bg-purple-100 rounded shadow-2xl w-8/12 md:w-3/5 lg:w-2/4 xl:w-1/4"
+    class="home--main border-gray-800 bg-purple-100 rounded shadow-2xl w-11/12 md:w-3/5 lg:w-2/4 xl:w-1/4"
   >
     <form
       @submit="handleSubmit"
@@ -8,12 +8,7 @@
       data-testId="login_form"
     >
       <div class="h-24">
-        <img
-          src="../assets/logo.svg"
-          :alt="this.LOGO_IMAGE"
-          :id="this.LOGO_IMAGE"
-          data-testId="login_img"
-        />
+        <Locker />
       </div>
 
       <Input
@@ -36,7 +31,7 @@
 
       <input
         :type="this.BUTTON_SUBMIT"
-        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+        class="text-gray-100 w-2/4 h-12 m-2 p-2"
         :value="this.LOGIN_VALUE"
         data-testId="login_button"
       />
@@ -50,11 +45,13 @@ import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
+import Locker from "../components/Style/Locker";
 
 export default {
   name: "HomePage",
   components: {
     Input,
+    Locker,
   },
   mixins: [global],
 
@@ -120,13 +117,21 @@ export default {
 }
 #logo {
   width: 100%;
-  height: 100%;
 }
 input[type="submit"] {
   cursor: pointer;
   text-transform: uppercase;
+  background: #00aaff;
+  font-weight: 700;
 }
 button {
   text-transform: uppercase;
+}
+
+@media only screen and (max-height: 414px) {
+  .home--main {
+    height: 100%;
+    width: 70%;
+  }
 }
 </style>

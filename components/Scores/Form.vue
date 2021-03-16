@@ -3,7 +3,7 @@
     <select
       name="code"
       v-model="userInput.code"
-      class="h-12 bg-gray-300 border-yellow-200 w-5/6 m-2"
+      class="h-12 bg-gray-300 border-yellow-200 w-5/6 m-3"
     >
       <option
         :value="assessment.course_code"
@@ -22,10 +22,7 @@
       }"
     />
 
-    <input
-      :type="this.BUTTON_SUBMIT"
-      class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
-    />
+    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
   </form>
 </template>
 
@@ -72,4 +69,7 @@ export default {
 </script>
 
 <style scoped>
+input[type="submit"] {
+  background: #00aaff;
+}
 </style>

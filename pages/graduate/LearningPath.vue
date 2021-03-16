@@ -32,7 +32,6 @@ export default {
   display: none;
 }
 .courses--main {
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;

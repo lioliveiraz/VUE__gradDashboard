@@ -1,20 +1,15 @@
 <template>
   <div class="update--main w-8/12">
-    <div>
+    <div v-if="getCourses && getAssessments">
+      <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
       <button
         @click="toggleComponent"
-        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
+        class="text-gray-100 m-1 h-12 p-2 font-bold add_new"
       >
-        Add New Course/Assessment
+        Add New
       </button>
-      <div v-if="getCourses && getAssessments">
-        <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
-      </div>
     </div>
-    <div
-      v-if="isFormOpen"
-      class="form bg-teal-900 p-3 rounded border-2 border-blue-300 text-blue-100"
-    >
+    <div v-if="isFormOpen" class="form p-3 rounded text-gray-800">
       <CourseForm :toggleComponent="toggleComponent" />
     </div>
   </div>
@@ -46,7 +41,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 ::-webkit-scrollbar {
   display: none;
 }
@@ -60,15 +55,34 @@ export default {
   justify-content: center;
   align-items: center;
   overflow-x: scroll;
-}
-.update--main div:first-child {
-  height: 60%;
+  flex-direction: column;
 }
 
 .form {
-  width: 50%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   position: absolute;
   overflow-y: scroll;
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+.add_new {
+  background: #00aaff;
+  position: relative;
+  top: 20%;
+  left: 85%;
+}
+@media screen and (min-width: 700px) {
+  .form {
+    width: 70%;
+    height: 70%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .form {
+    width: 40%;
+    height: 90%;
+  }
 }
 </style>

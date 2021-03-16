@@ -1,17 +1,35 @@
 <template>
-  <div class="graduate--dashboard">
-    <h1 class="text-4xl text-teal-500 font-extrabold m-6 md:text-6xl">
-      Welcome {{ getName }}
-    </h1>
-
-    <section class="w-full h-full">
-      <div class="w-full md:h-64 md:w-5/6 score--table">
-        <h2 class="text-gray-600 m-2 text-2xl">Your Score</h2>
-        <ScoresTable :scores="getScores" />
+  <div class="graduate--dashboard mt-16 xl:mt-10 xl:p-3">
+    <section class="font-extrabold graduate--dashboard_top p-2">
+      <div>
+        <h1 class="text-3xl text-green-400 md:text-6xl">
+          Welcome {{ getName }}
+        </h1>
       </div>
-      <div class="w-5/6 m-3 md:h-64">
-        <h2 class="text-gray-600 m-2 text-2xl">Your course time</h2>
-        <ProgressBar :circle="circle" />
+
+      <img src="../../assets/hi.svg" alt="hi" />
+    </section>
+
+    <section class="graduate--dashboard_middle">
+      <DashCard name="Articles" /> <DashCard name="Information" />
+    </section>
+
+    <section class="graduate--dashboard_bottom">
+      <div>
+        <h3 class="text-teal-500 text-sm xl:text-4xl">Your study time</h3>
+        <div
+          class="font-bold rounded-full bg-white flex items-center justify-center font-mono percentage"
+        >
+          {{ circle.text }}h
+        </div>
+      </div>
+      <div>
+        <h3 class="text-sm text-teal-500 xl:text-4xl">You acomplished</h3>
+        <div
+          class="font-bold rounded-full bg-white flex items-center justify-center font-mono percentage"
+        >
+          {{ circle.text }}h
+        </div>
       </div>
     </section>
   </div>
@@ -20,6 +38,7 @@
 <script>
 import ScoresTable from "../../components/Scores/ScoresTable";
 import ProgressBar from "../../components/ProgressBar";
+import DashCard from "../../components/DashCard";
 
 import { mapGetters } from "vuex";
 export default {
@@ -33,13 +52,11 @@ export default {
   components: {
     ScoresTable,
     ProgressBar,
+    DashCard,
   },
   data() {
     return {
       circle: {
-        strokeColor: "#38b2ac",
-        strokeWidth: "7",
-        size: "150",
         text: 0,
       },
       courses: [],
@@ -65,6 +82,12 @@ export default {
 </script>
 
 <style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
 .graduate--dashboard {
   height: 100vh;
   overflow: scroll;
@@ -72,19 +95,60 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.graduate--dashboard h1 {
-  width: 65%;
-  text-align: center;
-}
-.graduate--dashboard section {
+
+.graduate--dashboard_top {
   display: flex;
-  flex-direction: column;
+  min-height: 50vh;
+  overflow: hidden;
+}
+.graduate--dashboard_top img {
+  width: 50%;
+}
+
+.graduate--dashboard_top div:first-child {
+  height: 70%;
+  text-align: center;
+  color: #00c300;
+  align-self: center;
+}
+.graduate--dashboard_middle {
+  background: whitesmoke;
+  min-height: 50vh;
+  width: 100%;
+  color: antiquewhite;
+  display: flex;
+}
+.graduate--dashboard_bottom {
+  min-height: 50vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 }
-.graduate--dashboard section div:first-child {
-  background: rgb(219, 219, 219);
 
-  padding: 10px;
-  overflow-y: scroll;
+.graduate--dashboard_bottom div {
+  margin: 5%;
+}
+.percentage {
+  height: 150px;
+  width: 150px;
+  margin: 2%;
+  background: white;
+  border: 5px solid #00c300;
+  font-size: 2rem;
+  color: #00aaff;
+}
+
+@media screen and (min-width: 1200px) {
+  .graduate--dashboard_top img {
+    width: 60%;
+  }
+  .graduate--dashboard_middle {
+    min-height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>

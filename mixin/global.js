@@ -25,8 +25,8 @@ export default {
             TOAST_ERROR: 'error',
 
             LINK_HOME_ENGLISH: "home",
-            LINK_REGISTER_EMPLOYEE_ENGLISH: "register employee",
-            LINK_REGISTER_COURSE_ENGLISH: "register course",
+            LINK_REGISTER_EMPLOYEE_ENGLISH: "new employee",
+            LINK_REGISTER_COURSE_ENGLISH: "new course",
 
             LINK_COURSES_ENGLISH: "courses",
             LINK_SCORES_ENGLISH: "scores",

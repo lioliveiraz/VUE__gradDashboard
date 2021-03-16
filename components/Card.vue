@@ -33,6 +33,6 @@ export default {
   cursor: pointer;
 }
 .card--main:hover {
-  background: teal;
+  box-shadow: inset 1px 1px 100px #00c300;
 }
 </style>

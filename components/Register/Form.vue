@@ -32,10 +32,7 @@
     />
     {{ errors.name && errors.name }}
 
-    <input
-      :type="this.BUTTON_SUBMIT"
-      class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
-    />
+    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
   </form>
 </template>
 
@@ -80,5 +77,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+input[type="submit"] {
+  background: #00aaff;
+}
+form {
+  width: 100%;
+}
 </style>

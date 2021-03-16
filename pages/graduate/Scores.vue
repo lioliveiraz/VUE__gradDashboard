@@ -1,7 +1,7 @@
 <template>
-  <div class="scores--main">
+  <div class="scores--main mt-10">
     <div class="scores--container">
-      <div class="w-full">
+      <div class="w-full scores_form">
         <h3 class="text-gray-600 m-2 text-2xl">Add new Score</h3>
         <Form
           :scores="scores"

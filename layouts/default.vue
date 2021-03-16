@@ -71,8 +71,8 @@ html {
   background-color: #35495e;
 }
 nav {
-  background: green;
   height: 10%;
+  background: #f3f3f3;
 }
 footer {
   background: rgb(1, 1, 53);

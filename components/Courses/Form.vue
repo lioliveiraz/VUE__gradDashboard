@@ -1,5 +1,8 @@
 <template>
-  <form @submit="handleSubmit" data-testId="course_form" :key="key">
+  <form @submit="handleSubmit" data-testId="course_form p-2" :key="key">
+    <h3 class="text-green-900 font-bold text-2xl">
+      Add new Course or Assessment
+    </h3>
     <Input
       @getUserInput="getUserInput"
       :attributeObj="{
@@ -15,7 +18,7 @@
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
-        name: this.TABLE_HEAD_COURSECODE_ENGLISH,
+        name: this.COURSE_CODE_INPUT,
         required: true,
       }"
     />
@@ -25,7 +28,7 @@
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
-        name: this.TABLE_HEAD_COURSENAME_ENGLISH,
+        name: this.COURSE_NAME_INPUT,
         required: true,
       }"
     />
@@ -56,14 +59,8 @@
       :attributeObj="{ type: this.CHECKBOX_INPUT, name: this.ASSESSMENT_INPUT }"
     />
     <div class="flex">
-      <input
-        :type="this.BUTTON_SUBMIT"
-        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
-      />
-      <button
-        @click="toggleComponent"
-        class="bg-teal-500 text-gray-100 w-2/4 h-12 m-1"
-      >
+      <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-48 h-12 m-1" />
+      <button @click="toggleComponent" class="text-gray-100 w-48 h-12 m-1">
         Close
       </button>
     </div>
@@ -126,5 +123,25 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+input[type="submit"] {
+  background: #00c300;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form h3 {
+  text-align: center;
+}
+button {
+  background: #00c300;
+}
+@media screen and (min-width: 700px) {
+  form {
+    width: 70%;
+  }
+}
 </style>
