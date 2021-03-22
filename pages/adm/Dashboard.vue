@@ -26,7 +26,7 @@ import Card from "../../components/Card";
 
 export default {
   watchQuery: ["adm_dashboard"],
-  layout: "admLayout",
+  layout: "graduate",
   component: { Card },
   data() {
     return {

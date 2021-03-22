@@ -62,14 +62,14 @@ export default {};
 <style>
 .frame {
   position: relative;
-  bottom: 60px;
+  bottom: 100px;
   width: 150px;
-  height: 150px;
+  height: 200px;
   color: #333;
   overflow: hidden;
 }
 .center {
-  transform: translate(35%, -10%);
+  transform: translate(35%, 5%);
 }
 .padlock {
   width: 100%;

@@ -3,7 +3,7 @@
     <label data-testId="label">{{ attributeObj.name.toUpperCase() }}</label>
     <input
       data-testId="input"
-      class="h-12 bg-gray-300 border-yellow-200 text-black"
+      class="custom-input"
       :type="attributeObj.type"
       :name="attributeObj.name"
       :placeholder="attributeObj.placeholder"
@@ -31,5 +31,8 @@ export default {
 <style>
 .form--input label {
   font-weight: 700;
+}
+.custom-input {
+  @apply h-12 bg-gray-300 border-yellow-200 text-black p-3;
 }
 </style>

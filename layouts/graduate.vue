@@ -1,64 +1,23 @@
 <template>
-  <div class="main--graduate flex">
-    <div
-      @click="isMenu = !isMenu"
-      :class="isMenu ? 'menu close m-1 md:m-5' : 'menu open m-1 md:m-5'"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
+  <div>
+    <div class="main--graduate flex">
+      <Nav :links="isAdm ? links_adm : links_grad" />
+
+      <div class="bg-gray-200 graduate--content w-full h-full">
+        <Nuxt />
+      </div>
     </div>
-    <nav
-      :class="
-        +isMenu
-          ? ' nav_open w-8/12 md:w-1/3 h-full text-black p-1 lg:p-3 xl:w-3/12'
-          : ' nav_close w-0 h-full text-black'
-      "
-    >
-      <ul class="text-2xl w-4/5 md:text-4xl lg:text-5xl xl:text-3xl m-1">
-        <li class="p-1">
-          <div
-            class="bg-gray-800 rounded-full w-40 h-40 lg:w-64 lg:h-64 xl:w-48 xl:h-48 imageCenter border-4 object-cover"
-          >
-            <img
-              src="../assets/profile.jpg"
-              :alt="this.LOGO_IMAGE"
-              :id="this.LOGO_IMAGE"
-            />
-          </div>
-        </li>
-        <li class="p-1">
-          <nuxt-link to="dashboard">{{ this.LINK_HOME_ENGLISH }}</nuxt-link>
-        </li>
-        <li class="p-1">
-          <nuxt-link to="learningpath">{{
-            this.LINK_COURSES_ENGLISH
-          }}</nuxt-link>
-        </li>
-        <li class="p-1">
-          <nuxt-link to="scores">{{ this.LINK_SCORES_ENGLISH }}</nuxt-link>
-        </li>
-        <li class="p-1 mt-12">
-          <button
-            class="logout text-base md:text-2xl p-2 rounded-lg xl:text-2xl"
-            @click="handlelogout"
-          >
-            {{ this.LOGOUT_BUTTON }}
-          </button>
-        </li>
-      </ul>
-    </nav>
-    <div class="bg-gray-200 graduate--content w-full h-full">
-      <Nuxt />
-    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
 import Vue from "vue";
 import Toast from "vue-toastification";
 import global from "../mixin/global";
+import Nav from "../components/Nav/Nav";
+import Footer from "../components/Footer/Footer";
+import { mapGetters } from "vuex";
 
 Vue.mixin(global);
 
@@ -69,18 +28,42 @@ Vue.use(Toast, {
   pauseOnHover: true,
 });
 export default {
+  components: { Nav, Footer },
   middleware: "courses",
   data() {
     return {
-      isMenu: false,
+      links_grad: [
+        {
+          path: "dashboard",
+          name: "home",
+        },
+        {
+          path: "learningpath",
+          name: "courses",
+        },
+        {
+          path: "scores",
+          name: "scores",
+        },
+      ],
+      links_adm: [
+        {
+          path: "/adm/dashboard",
+          name: "home",
+        },
+        {
+          path: "/adm/registeremployee",
+          name: "new employee",
+        },
+        {
+          path: "/adm/updatepath",
+          name: "new course",
+        },
+      ],
     };
   },
   methods: {
-    ...mapActions("auth", ["logout"]),
-    handlelogout() {
-      this.logout();
-      this.$router.push("/");
-    },
+    ...mapGetters("auth", ["isAdm"]),
   },
 };
 </script>

@@ -59,8 +59,14 @@
       :attributeObj="{ type: this.CHECKBOX_INPUT, name: this.ASSESSMENT_INPUT }"
     />
     <div class="flex">
-      <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-48 h-12 m-1" />
-      <button @click="toggleComponent" class="text-gray-100 w-48 h-12 m-1">
+      <input
+        :type="this.BUTTON_SUBMIT"
+        class="text-gray-100 w-48 h-12 m-1 mb-10"
+      />
+      <button
+        @click="toggleComponent"
+        class="text-gray-100 w-48 h-12 m-1 mb-10"
+      >
         Close
       </button>
     </div>

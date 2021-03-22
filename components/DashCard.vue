@@ -1,14 +1,16 @@
 <template>
-  <div class="w-3/6 m-2 p-2 card border-gray-200 border-2">
+  <div class="w-3/6 m-2 p-2 card border-gray-200 border-2 shadow-lg">
     <img src="../assets/graph.svg" alt="graph " class="md:m-4" />
     <p class="name xl:text-3xl">{{ name }}</p>
 
-    <div class="card-content m-2 text-xs md:text-2xl w-10/12">
-      <p class="m-2 md:mt-4">Dolor sit amet elit.</p>
-      <p class="m-2 md:mt-4">Dit amet doloripsum.</p>
-      <p class="m-2 md:mt-4">Dit amet doloripsum.</p>
+    <div class="card-content text-xs md:text-2xl p-3 align-center">
+      <p class="md:mt-4">Dolor sit amet elit.</p>
+      <p class="md:mt-4">Dit amet doloripsum.</p>
+      <p class="md:mt-4">Dit amet doloripsum.</p>
 
-      <button class="text-gray-100 min-h-8 mt-2 p-1 md:mt-4">More</button>
+      <button class="text-gray-100 min-h-8 mt-2 p-1 md:mt-4 align-center">
+        More
+      </button>
     </div>
   </div>
 </template>
@@ -39,7 +41,6 @@ export default {
   height: 100%;
 }
 .card-content p {
-  margin: 2%;
   width: 100%;
   min-height: 50px;
   color: black;
@@ -65,7 +66,7 @@ export default {
   }
   .card-content {
     height: 100%;
-    width: 80%;
+
     display: flex;
     flex-direction: column;
   }

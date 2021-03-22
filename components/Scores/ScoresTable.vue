@@ -57,7 +57,7 @@
 <script>
 export default {
   props: ["scores"],
-  layout: "admLayout",
+  layout: "graduate",
   middleware: "courses",
 
   created() {},

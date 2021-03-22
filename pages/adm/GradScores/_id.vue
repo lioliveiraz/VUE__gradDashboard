@@ -18,7 +18,7 @@ export default {
   components: {
     ScoresTable,
   },
-  layout: "admLayout",
+  layout: "graduate",
   data() {
     return {
       empId: this.$route.params.id,

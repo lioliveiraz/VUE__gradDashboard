@@ -9,7 +9,7 @@
         Add New
       </button>
     </div>
-    <div v-if="isFormOpen" class="form p-3 rounded text-gray-800">
+    <div v-if="isFormOpen" class="form p-3 rounded text-gray-800 shadow-lg">
       <CourseForm :toggleComponent="toggleComponent" />
     </div>
   </div>
@@ -23,7 +23,7 @@ import CourseForm from "../../components/Courses/Form";
 export default {
   middleware: "courses",
   components: { Courses, CourseForm },
-  layout: "admLayout",
+  layout: "graduate",
   data() {
     return {
       isFormOpen: false,

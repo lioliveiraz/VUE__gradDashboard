@@ -12,7 +12,7 @@ import Form from "../../components/Register/Form";
 
 export default {
   components: { Form },
-  layout: "admLayout",
+  layout: "graduate",
 };
 </script>
 

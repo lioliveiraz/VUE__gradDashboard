@@ -1,5 +1,5 @@
 <template>
-  <div class="main--graduate flex">
+  <header>
     <div
       @click="isMenu = !isMenu"
       :class="isMenu ? 'menu close m-1 md:m-5' : 'menu open m-1 md:m-5'"
@@ -21,27 +21,17 @@
             class="bg-gray-800 rounded-full w-40 h-40 lg:w-64 lg:h-64 xl:w-48 xl:h-48 imageCenter border-4 object-cover"
           >
             <img
-              src="../assets/profile.jpg"
+              src="../../assets/profile.jpg"
               :alt="this.LOGO_IMAGE"
               :id="this.LOGO_IMAGE"
             />
           </div>
         </li>
-        <li class="p-1">
-          <nuxt-link to="/adm/dashboard">
-            {{ this.LINK_HOME_ENGLISH }}</nuxt-link
-          >
-        </li>
-        <li class="p-1">
-          <nuxt-link to="/adm/registeremployee">{{
-            this.LINK_REGISTER_EMPLOYEE_ENGLISH
-          }}</nuxt-link>
-        </li>
-        <li class="p-1">
-          <nuxt-link to="/adm/updatepath">{{
-            this.LINK_REGISTER_COURSE_ENGLISH
-          }}</nuxt-link>
-        </li>
+        <div v-for="(link, index) of links" :key="index">
+          <li class="p-1">
+            <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
+          </li>
+        </div>
         <li class="p-1 mt-12">
           <button
             class="logout text-base md:text-2xl p-2 rounded-lg xl:text-2xl"
@@ -52,33 +42,19 @@
         </li>
       </ul>
     </nav>
-
-    <div class="bg-gray-200 w-full graduate--content h-full">
-      <Nuxt />
-    </div>
-  </div>
+  </header>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import Vue from "vue";
-import Toast from "vue-toastification";
-import global from "../mixin/global";
-
-Vue.mixin(global);
-
-Vue.use(Toast, {
-  position: "top-right",
-  newestOnTop: true,
-  maxToasts: 3,
-  pauseOnHover: true,
-});
 export default {
+  props: ["links"],
   data() {
     return {
       isMenu: false,
     };
   },
+
   methods: {
     ...mapActions("auth", ["logout"]),
 
@@ -89,5 +65,6 @@ export default {
   },
 };
 </script>
-<style scoped>
+
+<style>
 </style>
