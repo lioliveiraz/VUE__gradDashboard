@@ -79,7 +79,7 @@
 
 <script>
 export default {
-  props: ["courses"],
+  props: { courses: Array },
 };
 </script>
 

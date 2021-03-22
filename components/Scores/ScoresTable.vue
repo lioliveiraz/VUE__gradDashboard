@@ -56,7 +56,7 @@
 
 <script>
 export default {
-  props: ["scores"],
+  props: { scores: Array },
   layout: "graduate",
   middleware: "courses",
 

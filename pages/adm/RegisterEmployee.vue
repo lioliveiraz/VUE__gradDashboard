@@ -1,17 +1,22 @@
 <template>
   <div class="register--main">
     <div class="register--form">
-      <Form />
+      <RegisterEmployeeForm />
     </div>
     <img src="../../assets/sittingMan.svg" alt="man sitting" />
   </div>
 </template>
 
 <script>
-import Form from "../../components/Register/Form";
+import RegisterEmployeeForm from "../../components/Register/RegisterEmployeeForm";
 
 export default {
-  components: { Form },
+  head() {
+    return {
+      title: "Register employee",
+    };
+  },
+  components: { RegisterEmployeeForm },
   layout: "graduate",
 };
 </script>

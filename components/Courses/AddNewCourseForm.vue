@@ -3,7 +3,7 @@
     <h3 class="text-green-900 font-bold text-2xl">
       Add new Course or Assessment
     </h3>
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.NUMBER_INPUT,
@@ -14,7 +14,7 @@
     />
     {{ errors.week && errors.week }}
 
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
@@ -24,7 +24,7 @@
     />
     {{ errors.course_code && errors.course_code }}
 
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
@@ -34,7 +34,7 @@
     />
     {{ errors.course_name && errors.course_name }}
 
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
@@ -45,7 +45,7 @@
     />
     {{ errors.source && errors.source }}
 
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.NUMBER_INPUT,
@@ -54,7 +54,7 @@
         required: true,
       }"
     />
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{ type: this.CHECKBOX_INPUT, name: this.ASSESSMENT_INPUT }"
     />
@@ -63,25 +63,22 @@
         :type="this.BUTTON_SUBMIT"
         class="text-gray-100 w-48 h-12 m-1 mb-10"
       />
-      <button
-        @click="toggleComponent"
-        class="text-gray-100 w-48 h-12 m-1 mb-10"
-      >
-        Close
-      </button>
+
+      <BaseButton :handleClick="toggleComponent" value="close" />
     </div>
   </form>
 </template>
 
 <script>
-import Input from "../Input";
+import BaseInput from "../BaseInput";
 import { addCourse } from "../../api/requests/post";
 import { mapGetters, mapActions } from "vuex";
 import { courseValidation } from "../../helpers/validation";
+import BaseButton from "../../components/Style/BaseButton";
 
 export default {
-  components: { Input },
-  props: ["toggleComponent"],
+  components: { BaseInput, BaseButton },
+  props: { toggleComponent: Function },
 
   data() {
     return {

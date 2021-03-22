@@ -3,14 +3,9 @@
     <div class="scores--container">
       <div class="w-full scores_form">
         <h3 class="text-gray-600 m-2 text-2xl">Add new Score</h3>
-        <Form
-          :scores="scores"
-          :courses="courses"
-          :assessments="assessments"
-          :handleKey="handleKey"
-        />
+        <AddNewScoreForm />
       </div>
-      <div class="w-full" :key="key">
+      <div class="w-full">
         <h3 class="text-gray-600 m-2 text-2xl">Your scores</h3>
         <ScoresTable :scores="scores" />
       </div>
@@ -20,25 +15,21 @@
 
 <script>
 import ScoresTable from "../../components/Scores/ScoresTable";
-import Form from "../../components/Scores/Form";
+import AddNewScoreForm from "../../components/Scores/AddNewScoreForm";
 import { mapState } from "vuex";
 
 export default {
-  name: "gaduateScores",
-  layout: "graduate",
-  components: { ScoresTable, Form },
-  data() {
+  head() {
     return {
-      key: 0,
+      title: "Scores",
     };
   },
+  name: "gaduateScores",
+  layout: "graduate",
+  components: { ScoresTable, AddNewScoreForm },
+
   computed: {
-    ...mapState("courses", ["courses", "assessments", "scores"]),
-  },
-  methods: {
-    handleKey() {
-      this.key++;
-    },
+    ...mapState("courses", ["scores"]),
   },
 };
 </script>

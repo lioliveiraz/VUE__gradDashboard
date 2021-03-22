@@ -12,7 +12,7 @@
         class="m-3 md:m-1 w-3/4 md:w-5/12 xl:w-3/12 border-green-400 border-4 rounded shadow-lg lg:m-2"
       >
         <nuxt-link :to="'gradscores/' + grad.empId">
-          <Card :graduated="grad" />
+          <BaseCard :graduated="grad" />
         </nuxt-link>
       </div>
     </section>
@@ -22,12 +22,17 @@
 <script>
 import { mapGetters } from "vuex";
 import { getUsers } from "../../api/requests/get";
-import Card from "../../components/Card";
+import BaseCard from "../../components/BaseCard";
 
 export default {
+  head() {
+    return {
+      title: "Welcome",
+    };
+  },
   watchQuery: ["adm_dashboard"],
   layout: "graduate",
-  component: { Card },
+  component: { BaseCard },
   data() {
     return {
       grads: [],
@@ -41,6 +46,7 @@ export default {
       console.log(err);
     }
   },
+
   computed: {
     ...mapGetters("auth", ["getToken", "getName"]),
   },

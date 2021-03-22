@@ -13,7 +13,7 @@
         {{ assessment.course_name }}({{ assessment.course_code }})
       </option>
     </select>
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.NUMBER_INPUT,
@@ -28,7 +28,7 @@
 
 <script>
 import { addScore } from "../../api/requests/post";
-import Input from "../Input";
+import BaseInput from "../BaseInput";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -38,10 +38,10 @@ export default {
       key: 0,
     };
   },
-  components: { Input },
-  props: ["scores", "courses", "assessments", "handleKey"],
+  components: { BaseInput },
   computed: {
     ...mapState("auth", ["user_id", "token"]),
+    ...mapState("courses", ["courses", "assessments"]),
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),
@@ -57,7 +57,6 @@ export default {
         this.handleAddScore(this.userInput);
         this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
         this.key++;
-        this.handleKey();
       } catch (err) {
         this.$toast("Something went wrong! Try again latter", {
           type: this.TOAST_ERROR,

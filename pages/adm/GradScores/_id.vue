@@ -15,6 +15,11 @@ import { mapGetters } from "vuex";
 import ScoresTable from "../../../components/Scores/ScoresTable";
 
 export default {
+  head() {
+    return {
+      title: `Employee: ${this.empId}`,
+    };
+  },
   components: {
     ScoresTable,
   },

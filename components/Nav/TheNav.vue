@@ -48,7 +48,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props: ["links"],
+  props: { links: Array },
   data() {
     return {
       isMenu: false,

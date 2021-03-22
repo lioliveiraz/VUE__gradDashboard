@@ -11,7 +11,7 @@
     </section>
 
     <section class="graduate--dashboard_middle">
-      <DashCard name="Articles" /> <DashCard name="Information" />
+      <BaseDashCard name="Articles" /> <BaseDashCard name="Information" />
     </section>
 
     <section class="graduate--dashboard_bottom">
@@ -36,9 +36,7 @@
 </template>
 
 <script>
-import ScoresTable from "../../components/Scores/ScoresTable";
-import ProgressBar from "../../components/ProgressBar";
-import DashCard from "../../components/DashCard";
+import BaseDashCard from "../../components/BaseDashCard";
 
 import { mapGetters } from "vuex";
 export default {
@@ -50,9 +48,7 @@ export default {
     };
   },
   components: {
-    ScoresTable,
-    ProgressBar,
-    DashCard,
+    BaseDashCard,
   },
   data() {
     return {

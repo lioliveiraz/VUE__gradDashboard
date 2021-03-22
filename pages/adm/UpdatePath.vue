@@ -2,15 +2,10 @@
   <div class="update--main w-8/12">
     <div v-if="getCourses && getAssessments">
       <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
-      <button
-        @click="toggleComponent"
-        class="text-gray-100 m-1 h-12 p-2 font-bold add_new"
-      >
-        Add New
-      </button>
+      <BaseButton :handleClick="toggleComponent" value="add new" />
     </div>
     <div v-if="isFormOpen" class="form p-3 rounded text-gray-800 shadow-lg">
-      <CourseForm :toggleComponent="toggleComponent" />
+      <AddNewCourseForm :toggleComponent="toggleComponent" />
     </div>
   </div>
 </template>
@@ -18,11 +13,17 @@
 <script>
 import { mapGetters } from "vuex";
 import Courses from "../../components/Courses/Courses";
-import CourseForm from "../../components/Courses/Form";
+import AddNewCourseForm from "../../components/Courses/AddNewCourseForm";
+import BaseButton from "../../components/Style/BaseButton";
 
 export default {
+  head() {
+    return {
+      title: "Update Path",
+    };
+  },
   middleware: "courses",
-  components: { Courses, CourseForm },
+  components: { Courses, AddNewCourseForm, BaseButton },
   layout: "graduate",
   data() {
     return {

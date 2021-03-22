@@ -25,7 +25,7 @@ describe('vuex store course module', () => {
         it('should initial state be empty', () => {
             expect(courses).toEqual([]);
             expect(assessments).toEqual([]);
-            expect(scores).toEqual({});
+            expect(scores).toEqual([]);
         });
     });
     describe('test mutation', () => {

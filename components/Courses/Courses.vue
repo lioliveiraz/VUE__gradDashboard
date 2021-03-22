@@ -1,26 +1,25 @@
 <template>
   <div class="courses--main">
-    <button
-      @click="toggleCourses"
-      class="text-gray-100 h-12 md:m-4 font-bold p-2"
-    >
-      {{ !isCourse ? "courses" : "assesmentes" }}
-    </button>
+    <BaseButton
+      :handleClick="toggleCourses"
+      :value="!isCourse ? 'courses' : 'assesmentes'"
+    />
 
     <div class="tables">
       <h3 class="text-gray-600 m-2 text-2xl">
         {{ isCourse ? "Courses" : "Assessments" }}
       </h3>
 
-      <Table v-if="isCourse" :courses="coursesArr" />
+      <CoursesTable v-if="isCourse" :courses="coursesArr" />
 
-      <Table v-if="!isCourse" :courses="assessmentsArr" />
+      <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
     </div>
   </div>
 </template>
 
 <script>
-import Table from "./Table";
+import CoursesTable from "./CoursesTable";
+import BaseButton from "../../components/Style/BaseButton";
 
 export default {
   data() {
@@ -29,9 +28,13 @@ export default {
     };
   },
   components: {
-    Table,
+    CoursesTable,
+    BaseButton,
   },
-  props: ["coursesArr", "assessmentsArr"],
+  props: {
+    coursesArr: Array,
+    assessmentsArr: Array,
+  },
   methods: {
     toggleCourses() {
       this.isCourse = !this.isCourse;

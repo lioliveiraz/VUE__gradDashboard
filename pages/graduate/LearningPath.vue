@@ -9,6 +9,11 @@ import Courses from "../../components/Courses/Courses";
 import { mapState } from "vuex";
 
 export default {
+  head() {
+    return {
+      title: "Courses",
+    };
+  },
   layout: "graduate",
   components: { Courses },
   middleware: "courses",

@@ -1,14 +1,14 @@
-import ScoreTable from '../../components/Scores/ScoresTable.vue';
+import ScoresTable from '../../components/Scores/ScoresTable.vue';
 import { shallowMount } from '@vue/test-utils';
 
-describe("<ScoreTable>", () => {
+describe("<ScoresTable>", () => {
     let scores, wrapper;
     beforeEach(async () => {
         scores = [{
             code: "847843",
             score: "3"
         }];
-        wrapper = await shallowMount(ScoreTable, { propsData: { scores } });
+        wrapper = await shallowMount(ScoresTable, { propsData: { scores } });
     });
 
     it('should render correctly', () => {

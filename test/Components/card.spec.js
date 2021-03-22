@@ -1,15 +1,15 @@
-import Card from '../../components/Card.vue';
+import BaseCard from '../../components/BaseCard.vue';
 import { shallowMount, mount } from '@vue/test-utils';
 
 
-describe('<Card/>', () => {
+describe('<BaseCard/>', () => {
     let graduated, wrapper;
     beforeEach(async () => {
         graduated = {
             name: "name",
             empId: "123456"
         };
-        wrapper = await shallowMount(Card, { propsData: { graduated } });
+        wrapper = await shallowMount(BaseCard, { propsData: { graduated } });
     });
 
     it('should render correctly', () => {

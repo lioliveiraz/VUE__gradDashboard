@@ -1,4 +1,4 @@
-import Input from '../../components/Input.vue';
+import BaseInput from '../../components/BaseInput.vue';
 import { shallowMount } from '@vue/test-utils';
 
 
@@ -13,7 +13,7 @@ describe('<Input>', () => {
             required: true
         };
 
-        wrapper = shallowMount(Input, { propsData: { attributeObj } });
+        wrapper = shallowMount(BaseInput, { propsData: { attributeObj } });
 
     });
 
@@ -27,7 +27,7 @@ describe('<Input>', () => {
     });
 
     it('value should initialize as an empty string', () => {
-        expect(Input.data().currentValue).toEqual("");
+        expect(BaseInput.data().currentValue).toEqual("");
     });
     it('data should bind to input', async () => {
         const input = wrapper.find('input');

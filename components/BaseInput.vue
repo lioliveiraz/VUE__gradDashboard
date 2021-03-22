@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["attributeObj"],
+  props: { attributeObj: Object },
   data() {
     return {
       currentValue: "",

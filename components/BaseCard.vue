@@ -15,7 +15,9 @@
 
     <script>
 export default {
-  props: ["graduated"],
+  props: {
+    graduated: Object,
+  },
 };
 </script>
 <style scoped>

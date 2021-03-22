@@ -23,6 +23,7 @@ describe('<Index/>', () => {
     it('should render correctly', () => {
         const idArr = ["login_form", "login_img", "login_button"];
         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        expect(wrapper).toMatchSnapshot();
 
     });
 });

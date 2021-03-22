@@ -1,4 +1,4 @@
-import Table from '../../components/Courses/Table.vue';
+import CoursesTable from '../../components/Courses/CoursesTable.vue';
 import { shallowMount } from '@vue/test-utils';
 
 describe('<Table>', () => {
@@ -13,7 +13,7 @@ describe('<Table>', () => {
         link: "link"
     }];
     beforeEach(() => {
-        wrapper = shallowMount(Table, { propsData: { courses } });
+        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
     });
 
     it('should render correctly', () => {
@@ -29,7 +29,7 @@ describe('<Table>', () => {
     });
     it('should renders according to props', () => {
         courses[0].assessment = true;
-        wrapper = shallowMount(Table, { propsData: { courses } });
+        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
         expect(wrapper.text()).toContain('assessment');
     });
 });

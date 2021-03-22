@@ -8,16 +8,24 @@
       <p class="md:mt-4">Dit amet doloripsum.</p>
       <p class="md:mt-4">Dit amet doloripsum.</p>
 
-      <button class="text-gray-100 min-h-8 mt-2 p-1 md:mt-4 align-center">
-        More
-      </button>
+      <BaseButton value="more" :handleClick="m" />
     </div>
   </div>
 </template>
 
 <script>
+import BaseButton from "../components/Style/BaseButton";
+
 export default {
-  props: ["name"],
+  props: {
+    name: String,
+  },
+  components: {
+    BaseButton,
+  },
+  methods: {
+    m() {},
+  },
 };
 </script>
 

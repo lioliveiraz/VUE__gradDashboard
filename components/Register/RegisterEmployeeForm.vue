@@ -1,6 +1,6 @@
 <template>
   <form @submit="handleSubmit" :key="key">
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
@@ -10,7 +10,7 @@
       }"
     />
     {{ errors.empId && errors.empId }}
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.PASSWORD_INPUT,
@@ -21,7 +21,7 @@
     />
     {{ errors.password && errors.password }}
 
-    <Input
+    <BaseInput
       @getUserInput="getUserInput"
       :attributeObj="{
         type: this.TEXT_INPUT,
@@ -40,8 +40,10 @@
 import { mapGetters } from "vuex";
 import { registerEmployee } from "../../api/requests/post";
 import { userValidation } from "../../helpers/validation";
+import BaseInput from "../BaseInput";
 
 export default {
+  components: { BaseInput },
   data() {
     return {
       employeeObj: {},

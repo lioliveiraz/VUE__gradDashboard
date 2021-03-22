@@ -8,10 +8,10 @@
       data-testId="login_form"
     >
       <div class="h-24">
-        <Locker />
+        <TheLocker />
       </div>
 
-      <Input
+      <BaseInput
         @getUserInput="getUserInput"
         :attributeObj="{
           type: this.TEXT_INPUT,
@@ -20,7 +20,7 @@
           required: true,
         }"
       />
-      <Input
+      <BaseInput
         @getUserInput="getUserInput"
         :attributeObj="{
           type: this.PASSWORD_INPUT,
@@ -40,18 +40,18 @@
 </template>
 
 <script>
-import Input from "../components/Input";
+import BaseInput from "../components/BaseInput";
 import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
-import Locker from "../components/Style/Locker";
+import TheLocker from "../components/Style/TheLocker";
 
 export default {
   name: "HomePage",
   components: {
-    Input,
-    Locker,
+    BaseInput,
+    TheLocker,
   },
   mixins: [global],
 

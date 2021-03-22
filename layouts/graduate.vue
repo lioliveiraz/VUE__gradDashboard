@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="main--graduate flex">
-      <Nav :links="isAdm ? links_adm : links_grad" />
+      <TheNav :links="isAdm ? links_adm : links_grad" />
 
       <div class="bg-gray-200 graduate--content w-full h-full">
         <Nuxt />
       </div>
     </div>
-    <Footer />
+    <TheFooter />
   </div>
 </template>
 
@@ -15,8 +15,8 @@
 import Vue from "vue";
 import Toast from "vue-toastification";
 import global from "../mixin/global";
-import Nav from "../components/Nav/Nav";
-import Footer from "../components/Footer/Footer";
+import TheNav from "../components/Nav/TheNav";
+import TheFooter from "../components/Footer/TheFooter";
 import { mapGetters } from "vuex";
 
 Vue.mixin(global);
@@ -28,7 +28,7 @@ Vue.use(Toast, {
   pauseOnHover: true,
 });
 export default {
-  components: { Nav, Footer },
+  components: { TheNav, TheFooter },
   middleware: "courses",
   data() {
     return {
@@ -60,9 +60,10 @@ export default {
           name: "new course",
         },
       ],
+      displayADMLinks: this.isAdm,
     };
   },
-  methods: {
+  computed: {
     ...mapGetters("auth", ["isAdm"]),
   },
 };
