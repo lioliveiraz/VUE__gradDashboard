@@ -3,26 +3,25 @@
     <img src="../assets/graph.svg" alt="graph " class="md:m-4" />
     <p class="name xl:text-3xl">{{ name }}</p>
 
-    <div class="card-content text-xs md:text-2xl p-3 align-center">
-      <p class="md:mt-4">Dolor sit amet elit.</p>
-      <p class="md:mt-4">Dit amet doloripsum.</p>
-      <p class="md:mt-4">Dit amet doloripsum.</p>
-
-      <BaseButton value="more" :handleClick="m" />
+    <div
+      v-for="article of articles"
+      :key="article.source.id"
+      class="card-content text-xs md:text-2xl p-3 align-center"
+    >
+      <a :href="article.url">
+        <p class="md:mt-4">{{ article.title }}</p></a
+      >
     </div>
   </div>
 </template>
 
 <script>
-import BaseButton from "../components/Style/BaseButton";
-
 export default {
   props: {
     name: String,
+    articles: Array,
   },
-  components: {
-    BaseButton,
-  },
+
   methods: {
     m() {},
   },
@@ -53,6 +52,9 @@ export default {
   min-height: 50px;
   color: black;
   border-bottom: 1px solid black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card-content button {

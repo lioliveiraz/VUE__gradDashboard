@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main--graduate flex">
-      <TheNav :links="isAdm ? links_adm : links_grad" />
+      <TheNav :links="isAdm ? links_adm : links_grad" :username="getName" />
 
       <div class="bg-gray-200 graduate--content w-full h-full">
         <Nuxt />
@@ -64,7 +64,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["isAdm"]),
+    ...mapGetters("auth", ["isAdm", "getName"]),
   },
 };
 </script>

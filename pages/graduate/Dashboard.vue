@@ -11,7 +11,8 @@
     </section>
 
     <section class="graduate--dashboard_middle">
-      <BaseDashCard name="Articles" /> <BaseDashCard name="Information" />
+      <BaseDashCard name="Corgnizant News" :articles="cognizantTopics" />
+      <BaseDashCard name="Tech News" :articles="techTopics" />
     </section>
 
     <section class="graduate--dashboard_bottom">
@@ -37,6 +38,7 @@
 
 <script>
 import BaseDashCard from "../../components/BaseDashCard";
+import { getNewsFromApi } from "../../api/newsApi/request";
 
 import { mapGetters } from "vuex";
 export default {
@@ -56,6 +58,8 @@ export default {
         text: 0,
       },
       courses: [],
+      cognizantTopics: [],
+      techTopics: [],
     };
   },
   layout: "graduate",
@@ -63,8 +67,19 @@ export default {
     ...mapGetters("courses", ["getCourses", "getScores"]),
     ...mapGetters("auth", ["getName"]),
   },
-  mounted() {
+  async mounted() {
     this.calculateCourseHours();
+    try {
+      const cognizant = await getNewsFromApi("Cognizant");
+      const tech = await getNewsFromApi("Technology");
+
+      this.cognizantTopics = cognizant.articles;
+      this.techTopics = tech.articles;
+    } catch (error) {
+      this.$toast("Something is wrong with our server! Try again latter", {
+        type: this.TOAST_ERROR,
+      });
+    }
   },
 
   methods: {

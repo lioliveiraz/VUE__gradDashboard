@@ -31,7 +31,6 @@ describe('<Input>', () => {
     });
     it('data should bind to input', async () => {
         const input = wrapper.find('input');
-
         await wrapper.setData({
             currentValue: "value"
         });

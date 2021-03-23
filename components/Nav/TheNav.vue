@@ -26,6 +26,7 @@
               :id="this.LOGO_IMAGE"
             />
           </div>
+          <p>{{ username }}</p>
         </li>
         <div v-for="(link, index) of links" :key="index">
           <li class="p-1">
@@ -48,7 +49,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  props: { links: Array },
+  props: { links: Array, username: String },
   data() {
     return {
       isMenu: false,
