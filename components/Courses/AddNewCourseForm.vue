@@ -1,6 +1,9 @@
 <template>
-  <form @submit="handleSubmit" data-testId="course_form p-2" :key="key">
-    <h3 class="text-green-900 font-bold text-2xl">
+  <form @submit="handleSubmit" data-testId="course_form" :key="key">
+    <h3
+      class="text-green-900 font-bold text-2xl"
+      data-testId="course_form-title"
+    >
       Add new Course or Assessment
     </h3>
     <BaseInput

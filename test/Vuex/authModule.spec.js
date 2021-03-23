@@ -16,10 +16,11 @@ describe("vuex store auth module", () => {
 
     describe('test state', () => {
         it('should initial state be null', () => {
-            expect(token).toBeFalsy();
-            expect(user_id).toBeFalsy();
-            expect(user_isAdm).toBeFalsy();
-            expect(user_name).toBeFalsy();
+            expect(token).toBeNull();
+            expect(user_id).toBeNull();
+            expect(user_isAdm).toBeNull();
+            expect(user_name).toBeNull();
+
         });
     });
 

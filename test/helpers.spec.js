@@ -62,8 +62,8 @@ describe('helpers', () => {
                 course_name: expect.any(String)
             };
             expect(courseValidation(mockedInputs)).toEqual(expect.objectContaining(error));
-
         });
+
         it("should not display error if prop is not passed", () => {
             mockedInputs = {
                 course_code: "123456",

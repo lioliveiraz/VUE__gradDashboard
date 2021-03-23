@@ -1,12 +1,16 @@
 <template>
-  <div class="scores--main mt-10">
+  <div class="scores--main mt-10" data-testId="score_component">
     <div class="scores--container">
       <div class="w-full scores_form">
-        <h3 class="text-gray-600 m-2 text-2xl">Add new Score</h3>
+        <h3 class="text-gray-600 m-2 text-2xl" data-testId="score_form-title">
+          Add new Score
+        </h3>
         <AddNewScoreForm />
       </div>
       <div class="w-full">
-        <h3 class="text-gray-600 m-2 text-2xl">Your scores</h3>
+        <h3 class="text-gray-600 m-2 text-2xl" data-testId="score_form-table">
+          Your scores
+        </h3>
         <ScoresTable :scores="scores" />
       </div>
     </div>
