@@ -23,12 +23,12 @@ $ npm run start
 $ npm run generate
 ```
 
-### 1.Motivation 
+## 1.Motivation 
 
 This application was built to help new graduates from Cognizant organize themselves better when following the graduate programme's learning path. It is possible to check the courses and the assessments in the system to keep track of the assessment's scores and access Cognizant news. 
 The application also allows an administrator to register the employees to the platform and update the learning path. 
 
-### 2. The basics
+## 2. The basics
 
 <ul>
 <li>The codebase is implemented in **Nuxt.js**. </li>
@@ -52,7 +52,7 @@ The application also allows an administrator to register the employees to the pl
 <li>nodemon: to run the server-side continuously </li>
 </ul>
 
-### 3. Mocked API
+## 3. Mocked API
 
 
 ```bash
@@ -106,7 +106,7 @@ In the helper folder you will find the authentication helpers, there it is used 
 -without an authentication process **npm run start-server**
 -with an authentication process **npm run start-auth**
 
-### 4. Assets
+## 4. Assets
 
 - Logos, svgs and other images are in `/assets`
 - The favicon is in `/static`
@@ -189,7 +189,7 @@ The process is more straightforward. The middleware get the data from the store 
 export default {
    middleware: "courses",}
 ```
-### 7. Layout
+## 7. Layout
 There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator. But, I noticed that only one was needed, so the name has to be changed. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
 **Mixin** 
