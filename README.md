@@ -189,3 +189,70 @@ The process is more straightforward. The middleware get the data from the store 
 export default {
    middleware: "courses",}
 ```
+### 7. Layout
+There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator. But, I noticed that only one was needed, so the name has to be changed. The layout holds not just the shared components (Nav and footer) but also important configuration:
+
+** Mixin** 
+The Mixin holds the global variable, and it is assigned to the layout. 
+
+**Toast** 
+The layout wraps and configures the toats to the application.
+
+**middleware**
+The layout assures that the middleware `course.js` is connected to the router. 
+
+To assign the layout to the page, you need to put this piece of code.
+```bash
+export default {
+   layout: "graduate",}
+```
+
+## 8.VUEX && Localhost
+The store consists of 2 modules, auth and courses. 
+
+####auth module
+The auth module handles the authentication process. 
+`state`
+
+The states hold token, 
+
+-user_id, 
+-user_isAdm, 
+-user_name. 
+
+Those properties are stored in the localStorage to certify that the user will be logged in even if the page is refreshed or closed. 
+
+`getters` 
+
+The getters `isLoggedIn`and `isAdm`checked if there is a property assigned to the token or user_adm state and returns a boolean value. The other keys return the state. 
+
+`actions`
+The actions are login and logout. Both call the mutations and set or delete data from the localStorage. 
+
+The action login does not fetch data from the API; the component fetches the data and passes it to the action. 
+
+
+`courses`
+
+`state`
+
+-courses:Array
+-assessments:Array
+-scores:Array
+
+`getters`
+
+All the getters return the state.
+
+`actions`
+
+`fetchCourses`
+
+This function calls the fetch function from the API/requests and set the data to the state separating courses from assessments with a mutation. 
+
+`fechScores`
+
+This function call the fetch function to API/request and set the score data to the state with a mutation. 
+
+`handleAddCourses`
+This action call the mutations 'ADD_ASSESMENT'/'ADD_COURSE' and according to the assessment property:boolean, it changes the state, adding the new data passed.
