@@ -192,7 +192,7 @@ export default {
 ### 7. Layout
 There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator. But, I noticed that only one was needed, so the name has to be changed. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
-** Mixin** 
+**Mixin** 
 The Mixin holds the global variable, and it is assigned to the layout. 
 
 **Toast** 
@@ -210,15 +210,17 @@ export default {
 ## 8.VUEX && Localhost
 The store consists of 2 modules, auth and courses. 
 
-####auth module
+#### auth module
+
 The auth module handles the authentication process. 
 `state`
 
-The states hold token, 
+The states holds:
 
--user_id, 
--user_isAdm, 
--user_name. 
+-token:String, 
+-user_id:String, 
+-user_isAdm:String, 
+-user_name:String. 
 
 Those properties are stored in the localStorage to certify that the user will be logged in even if the page is refreshed or closed. 
 
