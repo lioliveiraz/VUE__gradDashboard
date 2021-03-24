@@ -11,7 +11,7 @@
     </section>
 
     <section class="graduate--dashboard_middle">
-      <BaseDashCard name="Corgnizant News" :articles="cognizantTopics" />
+      <BaseDashCard name="Cognizant News" :articles="cognizantTopics" />
       <BaseDashCard name="Tech News" :articles="techTopics" />
     </section>
 
@@ -19,15 +19,15 @@
       <div>
         <h3 class="text-teal-500 text-sm xl:text-4xl">Your study time</h3>
         <div
-          class="font-bold rounded-full bg-white flex items-center justify-center font-mono percentage"
+          class="circled-hours percentage"
         >
           {{ circle.text }}h
         </div>
       </div>
       <div>
-        <h3 class="text-sm text-teal-500 xl:text-4xl">You acomplished</h3>
+        <h3 class="text-sm text-teal-500 xl:text-4xl">You accomplished</h3>
         <div
-          class="font-bold rounded-full bg-white flex items-center justify-center font-mono percentage"
+          class="circled-hours percentage"
         >
           {{ circle.text }}h
         </div>
@@ -76,7 +76,7 @@ export default {
       this.cognizantTopics = cognizant.articles;
       this.techTopics = tech.articles;
     } catch (error) {
-      this.$toast("Something is wrong with our server! Try again latter", {
+      this.$toast("Something is wrong with our server! Try again later", {
         type: this.TOAST_ERROR,
       });
     }
@@ -162,4 +162,9 @@ export default {
     justify-content: center;
   }
 }
+
+.circled-hours {
+  @apply font-bold rounded-full bg-white flex items-center justify-center font-mono
+}
+
 </style>

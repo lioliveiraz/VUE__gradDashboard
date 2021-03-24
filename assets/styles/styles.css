@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    text-decoration: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  #__layout {
+    overflow-y:hidden;
+  }
+  .home--main {
+    height: 75%;
+  }
+  .home--form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #logo {
+    width: 100%;
+  }
+  input[type="submit"] {
+    cursor: pointer;
+    text-transform: uppercase;
+    background: #00aaff;
+    font-weight: 700;
+  }
+  button {
+    text-transform: uppercase;
+  }
+  
+
+  /* Button base */
+
+  .g-base-input-wrapper {
+    @apply flex flex-col m-3 w-5/6;
+  }
+
+  .g-base-input-wrapper label {
+    font-weight: 700;
+  }
+  .g-base-input {
+    @apply h-12 bg-gray-300 border-yellow-200 text-black p-3;
+  }
+
+  /* Login */
+
+  .g-login-box {
+      @apply border-gray-800 bg-purple-100 rounded shadow-2xl;
+  }
+
+  .g-login-box__button {
+      @apply text-gray-100 w-2/4 h-12 m-2 p-2 rounded;
+  }
+
+  /* Graduate dashboard */
+
+  
+  

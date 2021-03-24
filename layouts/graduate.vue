@@ -3,7 +3,7 @@
     <div class="main--graduate flex">
       <TheNav :links="isAdm ? links_adm : links_grad" :username="getName" />
 
-      <div class="bg-gray-200 graduate--content w-full h-full">
+      <div class="graduate--content w-full h-full">
         <Nuxt />
       </div>
     </div>
@@ -72,9 +72,10 @@ export default {
 .main--graduate {
   background: white;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .graduate--content {
+  @apply bg-gray-200;
   background-color: white;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(102,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%2300c300'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(46,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%2300aaff'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='10.23'%3E%3Cpath transform='translate(-12.25 2.8) rotate(1.75 1409 581) scale(1.007)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='3.4100000000000006' transform='translate(-7 7) rotate(2.1 800 450) scale(1.004)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(6.3 -21) rotate(21 401 736) scale(1.004)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='3.1'%3E%3Cpath transform='translate(42 -2.8) rotate(0.7 150 345) scale(0.993)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='6.820000000000001' transform='translate(-28 -17.5) rotate(25.2 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='translate(-42 14) rotate(4.2 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-attachment: fixed;

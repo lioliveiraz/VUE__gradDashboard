@@ -1,14 +1,16 @@
 <template>
   <div
-    class="home--main border-gray-800 bg-purple-100 rounded shadow-2xl w-11/12 md:w-3/5 lg:w-2/4 xl:w-1/4"
+    class="g-login-box home--main sm:w-10/12 md:w-4/5 lg:w-2/4 xl:w-2/4"
   >
     <form
       @submit="handleSubmit"
       class="home--form w-full h-full"
       data-testId="login_form"
     >
+    
       <div class="h-24">
         <TheLocker />
+        
       </div>
 
       <BaseInput
@@ -31,7 +33,7 @@
 
       <input
         :type="this.BUTTON_SUBMIT"
-        class="text-gray-100 w-2/4 h-12 m-2 p-2"
+        class="g-login-box__button"
         :value="this.LOGIN_VALUE"
         data-testId="login_button"
       />
@@ -96,42 +98,5 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  text-decoration: none;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-::-webkit-scrollbar-button {
-  display: none;
-}
-.home--main {
-  height: 75%;
-}
-.home--form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#logo {
-  width: 100%;
-}
-input[type="submit"] {
-  cursor: pointer;
-  text-transform: uppercase;
-  background: #00aaff;
-  font-weight: 700;
-}
-button {
-  text-transform: uppercase;
-}
-
-@media only screen and (max-height: 414px) {
-  .home--main {
-    height: 100%;
-    width: 70%;
-  }
-}
+@import '../assets/styles/styles.css';
 </style>
