@@ -31,10 +31,10 @@ The application also allows an administrator to register the employees to the pl
 ## 2. The basics
 
 <ul>
-<li>The codebase is implemented in **Nuxt.js**. </li>
+<li>The codebase is implemented in <b>Nuxt.js</b>. </li>
 <li>The application uses the dependency "json-server" to mock an API</li>
 <li>Unit tests are implemented using Jest and vue-test-utilities. The test folder is separated by  **Pages**, **Components**,**Api**,**Vuex** and helpers</li>
-<li>It uses **nuxtjs/tailwindcss** for the style</li>
+<li>It uses <b>nuxtjs/tailwindcss</b> for the style</li>
   </ul>
 
 **Dependencies**
