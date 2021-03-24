@@ -1,16 +1,12 @@
 <template>
-  <div
-    class="g-login-box home--main sm:w-10/12 md:w-4/5 lg:w-2/4 xl:w-2/4"
-  >
+  <div class="g-login-box">
     <form
       @submit="handleSubmit"
-      class="home--form w-full h-full"
+      class="g-form-wrapper"
       data-testId="login_form"
     >
-    
-      <div class="h-24">
+      <div class="locker">
         <TheLocker />
-        
       </div>
 
       <BaseInput
@@ -33,7 +29,7 @@
 
       <input
         :type="this.BUTTON_SUBMIT"
-        class="g-login-box__button"
+        class="g-base-btn-submit"
         :value="this.LOGIN_VALUE"
         data-testId="login_button"
       />
@@ -98,5 +94,4 @@ export default {
 </script>
 
 <style>
-@import '../assets/styles/styles.css';
 </style>

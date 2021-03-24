@@ -22,7 +22,7 @@
       }"
     />
 
-    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
+    <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
   </form>
 </template>
 
@@ -68,7 +68,4 @@ export default {
 </script>
 
 <style scoped>
-input[type="submit"] {
-  background: #00aaff;
-}
 </style>

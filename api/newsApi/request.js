@@ -5,7 +5,7 @@ export const getNewsFromApi = async (topic) => {
     let url = `https://newsapi.org/v2/`;
     url += 'everything?qInTitle=';
     url += `"${topic}"`;
-    url += "&sortBy=publishedAt&pageSize=3&language=en";
+    url += "&pageSize=3&language=en";
     url += "&from=" + new Date();
     url += '&apiKey=';
     url += apiKey;

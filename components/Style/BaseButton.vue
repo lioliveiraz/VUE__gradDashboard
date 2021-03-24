@@ -1,5 +1,5 @@
 <template>
-  <button class="g-button-base" @click="handleClick">
+  <button class="g-base-btn-blue" @click="handleClick">
     {{ value }}
   </button>
 </template>

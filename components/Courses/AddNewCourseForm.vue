@@ -62,10 +62,7 @@
       :attributeObj="{ type: this.CHECKBOX_INPUT, name: this.ASSESSMENT_INPUT }"
     />
     <div class="flex">
-      <input
-        :type="this.BUTTON_SUBMIT"
-        class="text-gray-100 w-48 h-12 m-1 mb-10"
-      />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
 
       <BaseButton :handleClick="toggleComponent" value="close" />
     </div>
@@ -130,9 +127,6 @@ export default {
 </script>
 
 <style scoped>
-input[type="submit"] {
-  background: #00c300;
-}
 form {
   width: 100%;
   display: flex;
@@ -142,9 +136,7 @@ form {
 form h3 {
   text-align: center;
 }
-button {
-  background: #00c300;
-}
+
 @media screen and (min-width: 700px) {
   form {
     width: 70%;

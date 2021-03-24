@@ -55,12 +55,4 @@ export default {
   width: 100%;
   overflow: scroll;
 }
-
-button {
-  text-transform: uppercase;
-  align-self: flex-start;
-  border-color: none;
-  background: #00aaff;
-  align-self: center;
-}
 </style>

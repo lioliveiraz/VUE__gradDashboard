@@ -1,0 +1,5 @@
+.g-form-wrapper{
+    @apply  g-centralize-items  flex-col  w-4/5 ;
+    height:90%;
+}
+

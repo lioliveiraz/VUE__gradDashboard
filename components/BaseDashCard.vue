@@ -4,8 +4,8 @@
     <p class="name xl:text-3xl">{{ name }}</p>
 
     <div
-      v-for="article of articles"
-      :key="article.source.id"
+      v-for="(article, index) of articles"
+      :key="index"
       class="card-content text-xs md:text-2xl p-3 align-center"
     >
       <a :href="article.url">
