@@ -78,7 +78,7 @@ The API was built using json-server dependency. Using this tool, you can mock an
 
 There is another table that represents the user; you can find this data in user.json
 
-> The properties of courses are: 
+> The properties of users are: 
 <ul>
 <li>id:Number</li>
 <li>empId:Number</li>
