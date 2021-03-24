@@ -258,3 +258,37 @@ This function call the fetch function to API/request and set the score data to t
 
 `handleAddCourses`
 This action call the mutations 'ADD_ASSESMENT'/'ADD_COURSE' and according to the assessment property:boolean, it changes the state, adding the new data passed.
+
+
+##9.API
+
+
+The API requests are made with **axios**. I separated the requests based on both API that this application fetches data. 
+
+`mocked database api/requests`
+
+Those requests are made with  a service http that settle some default configuration to the API request. 
+First, all the requests are made with a default baseURL assign to 'localhost:4020'. So all the requests will have this endpoint + a route.
+Second, there is an interception that reads the status of the response. In case the status is a client error ( status >=400 &&  =< 500), it will throw an error that can be caught. In case it is a server error, the error will log in to the console. This file exports the http request GET,POST and PUT. To have access to other http request it is need to include it to the export default object. 
+
+To use those configuration you neet to import http from '../http.services.js' to your file and use it in your function
+
+example: 
+
+```bash
+import http from '../http.services';
+
+/**
+ * @function getCourses
+ * @param {string} token 
+ * @returns {Promise}
+ */
+export const getCourses = async (token) => {
+    const response = await http.get("courses", {
+        headers: { 'Authorization': `Bearer ${token.token}` }
+    });
+    return response.data;
+};
+```
+
+If you don't intend to use those configuration just import axios in your file and make the request normally.
