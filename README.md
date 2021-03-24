@@ -163,8 +163,8 @@ export default function (context) {
 
 This function shows how it happens. The middleware gets the data from the VUEX store through the context parameter. This context gives us the store, the route and the redirect function. From the store, we have access to the getters, which retrieve two properties, isAdm and isLoggedIn. Both are functions that return a boolean value. 
 
->isAdm()=>!!state.adm<
->isLoggedIn()=!!state.token<
+<dl>isAdm()=>!!state.adm</dl>
+<dl>isLoggedIn()=!!state.token</dl>
 
 With this information, the middleware redirects the user to the right page. This middleware is connected to all the pages in your application.
 
