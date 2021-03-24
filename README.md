@@ -260,7 +260,7 @@ This function call the fetch function to API/request and set the score data to t
 This action call the mutations 'ADD_ASSESMENT'/'ADD_COURSE' and according to the assessment property:boolean, it changes the state, adding the new data passed.
 
 
-##9.API
+## 9.API
 
 
 The API requests are made with **axios**. I separated the requests based on both API that this application fetches data. 
@@ -292,3 +292,56 @@ export const getCourses = async (token) => {
 ```
 
 If you don't intend to use those configuration just import axios in your file and make the request normally.
+
+##10. Test
+
+The application has only unit tests made with `vue-test-utilities` and  `jest`. The test folder is separated in:
+<ul>
+<li>Api</li>
+<li>Pages</li>
+<li>Components</li>
+<li>Vuex</li>
+<li>helpers</li>
+</ul>
+
+To test the pages that have VUEX, it is necessary to mock the store; there is already a store mocked on ./store/__mocks__. To use this store, you will need to import it to your test and create a Local Vue passing VUEX as parameter. 
+
+**example**
+
+```bash
+import Vuex from 'vuex';
+import Vue from 'vue';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { __createMocks as createStoreMocks, store } from '../../store/__mocks__';
+import Index from '../../pages';
+import VueMeta from 'vue-meta';
+
+
+jest.mock('../../store/__mocks__');
+
+const localVue = createLocalVue();
+localVue.use(VueMeta, { keyName: 'head' });
+localVue.use(Vuex);
+
+```
+
+Then you can shallow the component using `vue-test-utils` and pass the mocked store and the new localVue created. 
+
+
+```bash
+   wrapper = await shallowMount(Index, {
+            store: store,
+            localVue
+        });
+```
+
+## 11. Mixin
+
+In the mixin there is the file that store all the global variables. This mixin is connect to the graduate layout and you can connect to your page or layout using this piece of code. 
+
+```bash
+import global from "../mixin/global";
+
+Vue.mixin(global);
+
+```
