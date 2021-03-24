@@ -23,12 +23,12 @@ $ npm run start
 $ npm run generate
 ```
 
-## 1.Motivation 
+### 1.Motivation 
 
 This application was built to help new graduates from Cognizant organize themselves better when following the graduate programme's learning path. It is possible to check the courses and the assessments in the system to keep track of the assessment's scores and access Cognizant news. 
 The application also allows an administrator to register the employees to the platform and update the learning path. 
 
-## 2. The basics
+### 2. The basics
 
 <ul>
 <li>The codebase is implemented in **Nuxt.js**. </li>
@@ -52,7 +52,7 @@ The application also allows an administrator to register the employees to the pl
 <li>nodemon: to run the server-side continuously </li>
 </ul>
 
-## 3. Mocked API
+### 3. Mocked API
 
 
 ```bash
@@ -99,7 +99,41 @@ In the router files, you can find CRUD operations, such as adding a new user, au
         });
 
 ```
+In the helper folder you will find the authentication helpers, there it is used JWT and bycript.  
 
 >There are 2 options to start the server:
 -without an authentication process **npm run start-server**
 -with an authentication process **npm run start-auth**
+
+### 4. Assets
+
+- Logos, svgs and other images are in `/assets`
+
+## 5. Component Hierarchy
+<p>The components are reserved for smaller / less complex functionalities and elements that can or will be reutilized for other components or pages. 
+The pages have a more complex structure; it holds multiple components and serves as endpoints for the routing architecture. 
+The naming follow the guideline from VUE</p>
+<ul>
+<li>The unique components, such as NavBar or Footer, are named with a THE  as a prefix. 
+**TheNav** 
+**TheFooter**</li>
+<li>The components which are base for other components and pages, such as, buttons and inputs are named with  Base as a prefix.
+**BaseButton**
+**BaseInput**</li>
+<li>The forms or components which has a functionality are named with a verb as a prefix. The forms end with the form word.
+**RegisterNewEmployeeForm**
+**AddNewScoreForm**</li>
+<ul>
+  
+  Everything that has to be reutilized has to become a component. The component folder is separated by: 
+<ul>
+<li>Courses: Here, you place the components which are used to administrate the courses. It can be a course table, a course form or a common page to display courses</li>
+<li>Footer</li>
+<li>Nav</li>
+<li>Register: Here, you place the components related to registering new employees(grads). It is related to the page page/adm/RegisterEmployee.vue </li>
+<li>Scores: Here, you place the components which are related to the  assessment's scores. This information is shared between adm and grads.</li>
+<li>Style: Here you place the components which became a component only for style propose. The component must not have any special functionally besides make a common and shared style through other components or pages</li>
+<li>The components which have no folder are shared for different functionalities </li>
+</ul>
+
+The pages folder is separated by administrator and graduate. 
