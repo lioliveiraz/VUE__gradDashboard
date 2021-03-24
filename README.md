@@ -88,7 +88,8 @@ There is another table that represents the user; you can find this data in user.
 <li>assessments_score:Array</li>
 </ul>
 
-The server.js mocks an express node.js server. There is a set of a listener of the server in "localhost/4020". The server runs an authentication process using JWT; it gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. 
+The server.js mocks an express node.js server. It sets a listener on the `4020` portal, and runs an authentication process using JWT. 
+The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. 
 In the router files, you can find CRUD operations, such as adding a new user, authenticating, getting data from the database, etc... Since the data is mocked the assertions to the db are made with fs dependency to read the file and change the content of it. The same thing occurs when you retrieve data from the db.
 
 ```bash
