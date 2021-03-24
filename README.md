@@ -108,6 +108,7 @@ In the helper folder you will find the authentication helpers, there it is used 
 ### 4. Assets
 
 - Logos, svgs and other images are in `/assets`
+- The favicon is in `/static`
 
 ## 5. Component Hierarchy
 <p>The components are reserved for smaller / less complex functionalities and elements that can or will be reutilized for other components or pages. 
@@ -125,7 +126,7 @@ The naming follow the guideline from VUE</p>
 **AddNewScoreForm**</li>
 <ul>
   
-  Everything that has to be reutilized has to become a component. The component folder is separated by: 
+  >Everything that has to be reutilized has to become a component. The component folder is separated by: 
 <ul>
 <li>Courses: Here, you place the components which are used to administrate the courses. It can be a course table, a course form or a common page to display courses</li>
 <li>Footer</li>
@@ -136,4 +137,54 @@ The naming follow the guideline from VUE</p>
 <li>The components which have no folder are shared for different functionalities </li>
 </ul>
 
-The pages folder is separated by administrator and graduate. 
+>The pages folder is separated by administrator and graduate. 
+
+## 6. Middleware
+
+
+
+There are two middlewares in this application. One to handle the authentication and create guards to the page and the other to handle the data that has to be fetched before the component mounts.
+
+`/auth.js`
+This file is a middleware that assures users logged as adm will not have access to pages related to the graduates. The contrary also happens. 
+
+```bash
+export default function (context) {
+    const { store, redirect, route } = context;
+    const isLoggedIn = store.getters['auth/isLoggedIn'];
+    let isAdm = store.getters['auth/isAdm'];
+
+    if (isLoggedIn && route.name === "index" && !isAdm) {
+
+        return redirect('graduate/dashboard');
+    }
+(...)
+```
+
+This function shows how it happens. The middleware gets the data from the VUEX store through the context parameter. This context gives us the store, the route and the redirect function. From the store, we have access to the getters, which retrieve two properties, isAdm and isLoggedIn. Both are functions that return a boolean value. 
+
+>isAdm()=>!!state.adm
+>isLoggedIn()=!!state.token
+
+With this information, the middleware redirects the user to the right page. This middleware is connected to all the pages in your application.
+
+`/cousers.js`
+
+This middleware is essential to assure that the data from courses db will be loaded before the component mounts. It is used in pages where the data is displayed in tables. 
+
+```bash
+export default async function ({ store }) {
+    const token = await store.state.auth.token;
+    const id = await store.state.auth.user_id;
+    await store.dispatch('courses/fetchCourses', { token });
+    await store.dispatch('courses/fetchScores', { id, token });
+
+}
+```
+
+The process is more straightforward. The middleware get the data from the store and dispatch an action once the router is connected to the page. To have access to this data on the page, it is essential to set a middleware. 
+
+```bash
+export default {
+   middleware: "courses",}
+```
