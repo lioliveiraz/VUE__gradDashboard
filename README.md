@@ -124,7 +124,7 @@ In the helper folder, you will find the authentication helpers, and there is use
 <li>The components which have no folder are shared for different functionalities </li>
 </ul>
 
---- The pages folder is separated by administrator and graduate. 
+---The pages folder is separated by administrator and graduate. 
 
 ## 6. Middleware
 
@@ -197,18 +197,21 @@ The store consists of 2 modules, auth and courses.
 ### auth module
 
 The auth module handles the authentication process. 
-####state
+#### state
 
 The states holds:
 
--token:String, 
--user_id:String, 
--user_isAdm:String, 
--user_name:String. 
+<ul>
+  <li>token:String</li>
+    <li>user_id:String</li>
+      <li>user_isAdm:String</li>
+        <li>user_name:String</li>
+  </ul>
+
 
 Those properties are stored in the localStorage to certify that the user will be logged in even if the page is refreshed or closed. 
 
-####getters 
+#### getters 
 
 The getters `isLoggedIn`and `isAdm`checked if there is a property assigned to the token or user_adm state and returns a boolean value. The other keys return the state. 
 
@@ -220,10 +223,12 @@ The action login does not fetch data from the API; the component fetches the dat
 ### courses
 
 #### state
+<ul>
+  <li>courses:Array</li>
+    <li>assessments:Arrayy</li>
+  <li>scores:Array</li>
+  </ul>
 
--courses:Array
--assessments:Array
--scores:Array
 
 #### getters
 
