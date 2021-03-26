@@ -1,6 +1,6 @@
 <template>
-  <footer>
-    <p><span>&#169; </span> LLigia Souza</p>
+  <footer class="g-footer">
+    <p class="g-copyright">&copy; Ligia Souza</p>
     <a href="https://www.linkedin.com/in/lioliveiraz/"
       ><img src="../../assets/linkedin.svg" alt="linkedin"
     /></a>
@@ -12,10 +12,4 @@ export default {};
 </script>
 
 <style>
-footer {
-  height: 30vh;
-}
-footer img {
-  display: none;
-}
 </style>

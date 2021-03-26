@@ -1,12 +1,12 @@
   
 <template>
-  <div class="w-full card--main">
+  <div class="g-adm-dashboard-card">
     <div>
-      <h4 data-testId="graduate_name" class="text-orange-100 text-6xl">
+      <p class="g-adm-dashboard-card--title" data-testId="graduate_name">
         {{ graduated.name }}
-      </h4>
+      </p>
 
-      <p class="text-gray-100" data-testId="graduate_empID">
+      <p class="g-adm-dashboard-card--subtitle" data-testId="graduate_empID">
         Employeer id: {{ graduated.empId }}
       </p>
     </div>
@@ -21,20 +21,4 @@ export default {
 };
 </script>
 <style scoped>
-.card--main {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.card--main div {
-  width: 80%;
-  height: 80%;
-  text-transform: capitalize;
-  cursor: pointer;
-}
-.card--main:hover {
-  box-shadow: inset 1px 1px 100px #00c300;
-}
 </style>

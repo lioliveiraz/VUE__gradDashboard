@@ -5,34 +5,36 @@
       class="g-form-wrapper"
       data-testId="login_form"
     >
-      <div class="locker">
-        <TheLocker />
+      <div class="g-form-wrapper--inner">
+        <div class="locker">
+          <TheLocker />
+        </div>
+
+        <BaseInput
+          @getUserInput="getUserInput"
+          :attributeObj="{
+            type: this.TEXT_INPUT,
+            name: 'empId',
+            placeholder: '875463',
+            required: true,
+          }"
+        />
+        <BaseInput
+          @getUserInput="getUserInput"
+          :attributeObj="{
+            type: this.PASSWORD_INPUT,
+            name: this.PASSWORD_INPUT,
+            required: true,
+          }"
+        />
+
+        <input
+          :type="this.BUTTON_SUBMIT"
+          class="g-base-btn-submit"
+          :value="this.LOGIN_VALUE"
+          data-testId="login_button"
+        />
       </div>
-
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.TEXT_INPUT,
-          name: 'empId',
-          placeholder: '875463',
-          required: true,
-        }"
-      />
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.PASSWORD_INPUT,
-          name: this.PASSWORD_INPUT,
-          required: true,
-        }"
-      />
-
-      <input
-        :type="this.BUTTON_SUBMIT"
-        class="g-base-btn-submit"
-        :value="this.LOGIN_VALUE"
-        data-testId="login_button"
-      />
     </form>
   </div>
 </template>

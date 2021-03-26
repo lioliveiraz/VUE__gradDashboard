@@ -25,7 +25,6 @@ export default {};
 <style >
 @import "../assets/styles/styles.css";
 @import "../assets/styles/colors.css";
-@import "../assets/styles/colors.css";
 @import "../assets/styles/typography.css";
 @import "../assets/styles/forms.css";
 </style>

@@ -1,18 +1,17 @@
 <template>
-  <div class="scores--main mt-10" data-testId="score_component">
-    <div class="scores--container">
-      <div class="w-full scores_form">
-        <h3 class="text-gray-600 m-2 text-2xl" data-testId="score_form-title">
-          Add new Score
-        </h3>
+  <div class="g-scores" data-testId="score_component">
+    <div class="g-scores--container">
+      <section class="g-scores--form">
+        <h3 data-testId="score_form-title">Add new Score</h3>
         <AddNewScoreForm />
-      </div>
-      <div class="w-full">
-        <h3 class="text-gray-600 m-2 text-2xl" data-testId="score_form-table">
-          Your scores
-        </h3>
-        <ScoresTable :scores="scores" />
-      </div>
+      </section>
+
+      <section class="g-scores--table">
+        <h3 data-testId="score_form-table">Your scores</h3>
+        <div class="g-scores--table--inner">
+          <ScoresTable :scores="scores" />
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -39,14 +38,6 @@ export default {
 </script>
 
 <style>
-.scores--main {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: scroll;
-}
 .scores--container {
   height: 90%;
 }

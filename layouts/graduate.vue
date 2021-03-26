@@ -3,7 +3,7 @@
     <div class="g-container">
       <TheNav :links="isAdm ? links_adm : links_grad" :username="getName" />
 
-      <div>
+      <div class="g-container--inner">
         <Nuxt />
       </div>
     </div>

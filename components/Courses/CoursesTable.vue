@@ -1,8 +1,5 @@
 <template>
-  <table
-    class="table-auto border-separate font-medium"
-    data-testId="course_table"
-  >
+  <table class="g-table-wrapper" data-testId="course_table">
     <thead>
       <tr class="font-bold">
         <th class="g-table-cell">
@@ -64,12 +61,4 @@ export default {
 
 <style>
 @import "../../assets/styles/tables.css";
-
-th {
-  text-transform: uppercase;
-}
-table {
-  background: white;
-  width: 100%;
-}
 </style>

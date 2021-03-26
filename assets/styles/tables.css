@@ -1,14 +1,30 @@
 .g-table-wrapper{
-    @apply flex;
+    @apply table-auto border-separate bg-white w-full  ;
 }
 .g-table-cell{
-    @apply border-2 border-teal-600 p-1  items-center ;
-    font-size:8px;
+    @apply border-2 border-teal-600 p-1  items-center  text-xs;
+  
 }
 
+th {
+    text-transform: uppercase;
+  }
+
+ .g-cell-passedAss{
+     @apply  bg-green-700 text-gray-200;
+ } 
+ .g-cell-failedAss{
+    @apply bg-red-700 text-gray-200;
+} 
 
 @media screen and (min-width:768px){
     .g-table-cell{
-        @apply text-base ;
+        @apply text-2xl;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .g-table-cell{
+        @apply  p-2 ;
     }
 }
