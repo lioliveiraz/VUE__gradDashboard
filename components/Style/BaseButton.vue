@@ -1,5 +1,5 @@
 <template>
-  <button class="text-gray-100 h-12 md:m-4 font-bold p-2" @click="handleClick">
+  <button class="g-base-btn-blue" @click="handleClick">
     {{ value }}
   </button>
 </template>

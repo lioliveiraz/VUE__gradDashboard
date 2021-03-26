@@ -1,5 +1,5 @@
 <template>
-  <div v-if="courses && assessments" class="w-full h-full courses--main">
+  <div v-if="courses && assessments" class="">
     <Courses :coursesArr="courses" :assessmentsArr="assessments" />
   </div>
 </template>
@@ -30,17 +30,4 @@ export default {
 </script>
 
 <style>
-::-webkit-scrollbar {
-  display: none;
-}
-::-webkit-scrollbar-button {
-  display: none;
-}
-.courses--main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
 </style>

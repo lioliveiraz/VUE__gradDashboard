@@ -1,38 +1,40 @@
 <template>
-  <form @submit="handleSubmit" :key="key">
-    <BaseInput
-      @getUserInput="getUserInput"
-      :attributeObj="{
-        type: this.TEXT_INPUT,
-        name: this.EMPID_INPUT,
-        placeholder: 'employer ID',
-        required: true,
-      }"
-    />
-    {{ errors.empId && errors.empId }}
-    <BaseInput
-      @getUserInput="getUserInput"
-      :attributeObj="{
-        type: this.PASSWORD_INPUT,
-        name: this.PASSWORD_INPUT,
+  <form @submit="handleSubmit" :key="key" class="g-form-wrapper">
+    <div class="g-form-wrapper--inner">
+      <BaseInput
+        @getUserInput="getUserInput"
+        :attributeObj="{
+          type: this.TEXT_INPUT,
+          name: this.EMPID_INPUT,
+          placeholder: 'employer ID',
+          required: true,
+        }"
+      />
+      {{ errors.empId && errors.empId }}
+      <BaseInput
+        @getUserInput="getUserInput"
+        :attributeObj="{
+          type: this.PASSWORD_INPUT,
+          name: this.PASSWORD_INPUT,
 
-        required: true,
-      }"
-    />
-    {{ errors.password && errors.password }}
+          required: true,
+        }"
+      />
+      {{ errors.password && errors.password }}
 
-    <BaseInput
-      @getUserInput="getUserInput"
-      :attributeObj="{
-        type: this.TEXT_INPUT,
-        name: this.EMP_NAME_INPUT,
-        placeholder: 'employer name',
-        required: true,
-      }"
-    />
-    {{ errors.name && errors.name }}
+      <BaseInput
+        @getUserInput="getUserInput"
+        :attributeObj="{
+          type: this.TEXT_INPUT,
+          name: this.EMP_NAME_INPUT,
+          placeholder: 'employer name',
+          required: true,
+        }"
+      />
+      {{ errors.name && errors.name }}
 
-    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+    </div>
   </form>
 </template>
 
@@ -80,9 +82,6 @@ export default {
 </script>
 
 <style scoped>
-input[type="submit"] {
-  background: #00aaff;
-}
 form {
   width: 100%;
 }

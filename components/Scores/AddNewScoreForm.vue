@@ -1,28 +1,26 @@
 <template>
-  <form @submit="handleSubmit" class="w-full" :key="key">
-    <select
-      name="code"
-      v-model="userInput.code"
-      class="h-12 bg-gray-300 border-yellow-200 w-5/6 m-3"
-    >
-      <option
-        :value="assessment.course_code"
-        v-for="assessment in assessments"
-        :key="assessment.id"
-      >
-        {{ assessment.course_name }}({{ assessment.course_code }})
-      </option>
-    </select>
-    <BaseInput
-      @getUserInput="getUserInput"
-      :attributeObj="{
-        type: this.NUMBER_INPUT,
-        name: this.SCORE_INPUT,
-        required: true,
-      }"
-    />
+  <form @submit="handleSubmit" :key="key" class="g-form-wrapper">
+    <div class="g-form-wrapper--inner">
+      <select name="code" v-model="userInput.code" class="g-selector">
+        <option
+          :value="assessment.course_code"
+          v-for="assessment in assessments"
+          :key="assessment.id"
+        >
+          {{ assessment.course_name }}({{ assessment.course_code }})
+        </option>
+      </select>
+      <BaseInput
+        @getUserInput="getUserInput"
+        :attributeObj="{
+          type: this.NUMBER_INPUT,
+          name: this.SCORE_INPUT,
+          required: true,
+        }"
+      />
 
-    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+    </div>
   </form>
 </template>
 
@@ -68,7 +66,4 @@ export default {
 </script>
 
 <style scoped>
-input[type="submit"] {
-  background: #00aaff;
-}
 </style>

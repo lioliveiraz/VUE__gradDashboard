@@ -1,18 +1,18 @@
 <template>
-  <div class="courses--main">
-    <BaseButton
-      :handleClick="toggleCourses"
-      :value="!isCourse ? 'courses' : 'assesmentes'"
-    />
-
-    <div class="tables">
-      <h3 class="text-gray-600 m-2 text-2xl">
+  <div class="g-courses-wrapper">
+    <div class="g-tables">
+      <BaseButton
+        :handleClick="toggleCourses"
+        :value="!isCourse ? 'courses' : 'assessmentes'"
+      />
+      <h3 class="text-gray-600">
         {{ isCourse ? "Courses" : "Assessments" }}
       </h3>
+      <div class="g-tables-inner">
+        <CoursesTable v-if="isCourse" :courses="coursesArr" />
 
-      <CoursesTable v-if="isCourse" :courses="coursesArr" />
-
-      <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
+        <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
+      </div>
     </div>
   </div>
 </template>
@@ -44,23 +44,4 @@ export default {
 </script>
 
 <style scoped>
-.courses--main {
-  display: flex;
-  flex-direction: column;
-  height: 70%;
-  width: 100%;
-}
-.courses--main div:first-child {
-  height: 70%;
-  width: 100%;
-  overflow: scroll;
-}
-
-button {
-  text-transform: uppercase;
-  align-self: flex-start;
-  border-color: none;
-  background: #00aaff;
-  align-self: center;
-}
 </style>

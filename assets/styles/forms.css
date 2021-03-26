@@ -1,0 +1,17 @@
+.g-form-wrapper{
+    @apply  g-centralize-items w-full  text-left ;
+    height:90%;
+}
+.g-form-wrapper--inner{
+    @apply flex flex-col items-center  w-4/5 p-4 ;
+}
+
+
+
+@media screen and (min-width:768px){
+
+  }
+
+  @media screen and (min-width:1200px){
+
+  }

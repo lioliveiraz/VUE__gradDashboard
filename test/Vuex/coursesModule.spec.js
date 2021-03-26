@@ -2,12 +2,6 @@ import courseModule from '../../store/modules/courses';
 import axios from 'axios';
 jest.mock("axios");
 
-
-
-
-
-
-
 describe('vuex store course module', () => {
 
     let state = {

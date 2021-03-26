@@ -1,7 +1,7 @@
 <template>
   <div class="employeeScore">
     <div class="w-3/4">
-      <p class="text-blue-400 font-bold text-2xl">Employee: {{ empId }}</p>
+      <p class="employee-text">Employee: {{ empId }}</p>
       <div v-if="scoresArr">
         <ScoresTable :scores="scoresArr" />
       </div>
@@ -55,5 +55,8 @@ export default {
 .employeeScore div:first-child {
   height: 90%;
   overflow-y: scroll;
+}
+.employee-text {
+  @apply text-blue-400 font-bold text-2xl;
 }
 </style>
