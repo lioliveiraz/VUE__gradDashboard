@@ -33,7 +33,7 @@ The application also allows an administrator to register the employees to the pl
 <ul>
 <li>The codebase is implemented in <b>Nuxt.js</b>. </li>
 <li>The application uses the dependency "json-server" to mock an API</li>
-<li>Unit tests are implemented using Jest and vue-test-utilities. The test folder is separated by  **Pages**, **Components**,**Api**,**Vuex** and helpers</li>
+<li>Unit tests are implemented using Jest and vue-test-utilities. The test folder is separated by  <b>Pages </b>,  <b>Components</b>, <b>Api</b>, <b>Vuex</b> and helpers</li>
 <li>It uses <b>nuxtjs/tailwindcss</b> for the style</li>
   </ul>
 
@@ -64,7 +64,7 @@ mock_server
   user.json
 ```
 The API was built using json-server dependency. Using this tool, you can mock and run a database and server-side. This part of the application is separated into routers, database and server. You can have access to the files **db.json**, which mock a table of courses.
-> The properties of courses are: 
+#### The properties of courses are: 
 <ul>
   <li>id:Number</li>
 <li>week:Number</li>
@@ -78,7 +78,7 @@ The API was built using json-server dependency. Using this tool, you can mock an
 
 There is another table that represents the user; you can find this data in user.json
 
-> The properties of users are: 
+#### The properties of users are: 
 <ul>
 <li>id:Number</li>
 <li>empId:Number</li>
@@ -88,9 +88,8 @@ There is another table that represents the user; you can find this data in user.
 <li>assessments_score:Array</li>
 </ul>
 
-The server.js mocks an express node.js server. It sets a listener on the `4020` portal, and runs an authentication process using JWT. 
-The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. 
-In the router files, you can find CRUD operations, such as adding a new user, authenticating, getting data from the database, etc... Since the data is mocked the assertions to the db are made with fs dependency to read the file and change the content of it. The same thing occurs when you retrieve data from the db.
+The server.js mocks an express node.js server. It sets a listener on the `4020` portal and runs an authentication process using JWT. 
+The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as adding a new user, authenticating, getting data from the database, etc... Since the data is mocked, the db is made with fs dependency to read the file and change its content. The same thing occurs when you retrieve data from the db.
 
 ```bash
   fs.writeFile("./mock_server/db.json", JSON.stringify(coursesDb), (err, result) => {
@@ -100,9 +99,10 @@ In the router files, you can find CRUD operations, such as adding a new user, au
         });
 
 ```
-In the helper folder you will find the authentication helpers, there it is used JWT and bycript.  
+In the helper folder, you will find the authentication helpers, and there is used JWT and bycript.  
 
->There are 2 options to start the server:
+### There are 2 options to start the server:
+
 -without an authentication process **npm run start-server**
 -with an authentication process **npm run start-auth**
 
@@ -112,21 +112,7 @@ In the helper folder you will find the authentication helpers, there it is used 
 - The favicon is in `/static`
 
 ## 5. Component Hierarchy
-<p>The components are reserved for smaller / less complex functionalities and elements that can or will be reutilized for other components or pages. 
-The pages have a more complex structure; it holds multiple components and serves as endpoints for the routing architecture. 
-The naming follow the guideline from VUE</p>
-<ul>
-<li>The unique components, such as NavBar or Footer, are named with a THE  as a prefix. 
-**TheNav** 
-**TheFooter**</li>
-<li>The components which are base for other components and pages, such as, buttons and inputs are named with  Base as a prefix.
-**BaseButton**
-**BaseInput**</li>
-<li>The forms or components which has a functionality are named with a verb as a prefix. The forms end with the form word.
-**RegisterNewEmployeeForm**
-**AddNewScoreForm**</li>
-<ul>
-  
+In the helper folder, you will find the authentication helpers, and there is used JWT and bycript.  
   >Everything that has to be reutilized has to become a component. The component folder is separated by: 
 <ul>
 <li>Courses: Here, you place the components which are used to administrate the courses. It can be a course table, a course form or a common page to display courses</li>
@@ -138,11 +124,9 @@ The naming follow the guideline from VUE</p>
 <li>The components which have no folder are shared for different functionalities </li>
 </ul>
 
->The pages folder is separated by administrator and graduate. 
+--- The pages folder is separated by administrator and graduate. 
 
 ## 6. Middleware
-
-
 
 There are two middlewares in this application. One to handle the authentication and create guards to the page and the other to handle the data that has to be fetched before the component mounts.
 
@@ -162,7 +146,7 @@ export default function (context) {
 (...)
 ```
 
-This function shows how it happens. The middleware gets the data from the VUEX store through the context parameter. This context gives us the store, the route and the redirect function. From the store, we have access to the getters, which retrieve two properties, isAdm and isLoggedIn. Both are functions that return a boolean value. 
+This function shows how it happens. The middleware gets the data from the VUEX store through the context parameter. This context gives us the store, the route and the redirect function. From the store, we have access to the **getters**, which retrieve two properties, isAdm and isLoggedIn. Both are functions that return a boolean value. 
 
 <dl>isAdm()=>!!state.adm</dl>
 <dl>isLoggedIn()=!!state.token</dl>
@@ -192,13 +176,13 @@ export default {
 ## 7. Layout
 There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator. But, I noticed that only one was needed, so the name has to be changed. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
-**Mixin** 
+**Mixin:** 
 The Mixin holds the global variable, and it is assigned to the layout. 
 
-**Toast** 
+**Toast:** 
 The layout wraps and configures the toats to the application.
 
-**middleware**
+**middleware:**
 The layout assures that the middleware `course.js` is connected to the router. 
 
 To assign the layout to the page, you need to put this piece of code.
@@ -210,10 +194,10 @@ export default {
 ## 8.VUEX && Localhost
 The store consists of 2 modules, auth and courses. 
 
-#### auth module
+### auth module
 
 The auth module handles the authentication process. 
-`state`
+####state
 
 The states holds:
 
@@ -224,29 +208,28 @@ The states holds:
 
 Those properties are stored in the localStorage to certify that the user will be logged in even if the page is refreshed or closed. 
 
-`getters` 
+####getters 
 
 The getters `isLoggedIn`and `isAdm`checked if there is a property assigned to the token or user_adm state and returns a boolean value. The other keys return the state. 
 
-`actions`
+#### actions
 The actions are login and logout. Both call the mutations and set or delete data from the localStorage. 
 
 The action login does not fetch data from the API; the component fetches the data and passes it to the action. 
 
+### courses
 
-`courses`
-
-`state`
+#### state
 
 -courses:Array
 -assessments:Array
 -scores:Array
 
-`getters`
+#### getters
 
 All the getters return the state.
 
-`actions`
+#### actions
 
 `fetchCourses`
 
@@ -293,7 +276,7 @@ export const getCourses = async (token) => {
 
 If you don't intend to use those configuration just import axios in your file and make the request normally.
 
-##10. Test
+## 10. Test
 
 The application has only unit tests made with `vue-test-utilities` and  `jest`. The test folder is separated in:
 <ul>
