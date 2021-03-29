@@ -6,12 +6,17 @@
         <BaseButton :handleClick="toggleComponent" value="add new" />
       </div>
     </div>
-    <div v-if="isFormOpen" class="g-update-path--form">
+    <div v-if="isFormOpen" class="g-update-path--form focus:outline-none">
+      <div v-if="isFormOpen" class="g-update-path--overlay"></div>
+      <AddNewCourseForm :toggleComponent="toggleComponent" />
+    </div>
+
+    <!--  <div v-if="isFormOpen" class="g-update-path--form">
       <div class="g-update-path--overlay"></div>
       <div class="g-update-path--form--inner">
         <AddNewCourseForm :toggleComponent="toggleComponent" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

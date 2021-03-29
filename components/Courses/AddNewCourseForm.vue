@@ -1,82 +1,80 @@
 <template>
-  <form
-    @submit="handleSubmit"
-    data-testId="form"
-    class="g-form-wrapper"
-    :key="key"
-  >
-    <div class="g-form-wrapper--inner">
-      <h3
-        class="text-green-900 font-bold text-2xl"
-        data-testId="course_form-title"
-      >
-        Add new Course or Assessment
-      </h3>
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.NUMBER_INPUT,
-          name: this.TABLE_HEAD_WEEK_ENGLISH,
-          placeholder: 'week number',
-          required: true,
-        }"
-      />
-      {{ errors.week && errors.week }}
+  <div class="relative w-auto my-6 mx-auto h-auto">
+    <div class="g-modal-form--inner focus:outline-none">
+      <div class="border-blueGray-200 g-modal-form--header">
+        <h3>Update Path</h3>
+      </div>
+      <div class="g-modal-form--content">
+        <form @submit="handleSubmit" data-testId="form" :key="key">
+          <div>
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.NUMBER_INPUT,
+                name: this.TABLE_HEAD_WEEK_ENGLISH,
+                placeholder: 'week number',
+                required: true,
+              }"
+            />
+            {{ errors.week && errors.week }}
 
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.TEXT_INPUT,
-          name: this.COURSE_CODE_INPUT,
-          required: true,
-        }"
-      />
-      {{ errors.course_code && errors.course_code }}
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.TEXT_INPUT,
+                name: this.COURSE_CODE_INPUT,
+                required: true,
+              }"
+            />
+            {{ errors.course_code && errors.course_code }}
 
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.TEXT_INPUT,
-          name: this.COURSE_NAME_INPUT,
-          required: true,
-        }"
-      />
-      {{ errors.course_name && errors.course_name }}
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.TEXT_INPUT,
+                name: this.COURSE_NAME_INPUT,
+                required: true,
+              }"
+            />
+            {{ errors.course_name && errors.course_name }}
 
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.TEXT_INPUT,
-          name: this.TABLE_HEAD_SOURCE_ENGLISH,
-          placeholder: 'Udemy',
-          required: true,
-        }"
-      />
-      {{ errors.source && errors.source }}
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.TEXT_INPUT,
+                name: this.TABLE_HEAD_SOURCE_ENGLISH,
+                placeholder: 'Udemy',
+                required: true,
+              }"
+            />
+            {{ errors.source && errors.source }}
 
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.NUMBER_INPUT,
-          name: this.TABLE_HEAD_DURATION_ENGLISH,
-          placeholder: '875463',
-          required: true,
-        }"
-      />
-      <BaseInput
-        @getUserInput="getUserInput"
-        :attributeObj="{
-          type: this.CHECKBOX_INPUT,
-          name: this.ASSESSMENT_INPUT,
-        }"
-      />
-      <div class="g-addNewcourse-buttons">
-        <BaseButton :handleClick="handleSubmit" value="Send" />
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.NUMBER_INPUT,
+                name: this.TABLE_HEAD_DURATION_ENGLISH,
+                placeholder: '875463',
+                required: true,
+              }"
+            />
+            <BaseInput
+              @getUserInput="getUserInput"
+              :attributeObj="{
+                type: this.CHECKBOX_INPUT,
+                name: this.ASSESSMENT_INPUT,
+              }"
+            />
+            <div class="g-addNewcourse-buttons">
+              <BaseButton :handleClick="handleSubmit" value="Send" />
 
-        <BaseButton :handleClick="toggleComponent" value="close" />
+              <BaseButton :handleClick="toggleComponent" value="close" />
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
