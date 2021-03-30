@@ -2,14 +2,14 @@
   <div class="g-scores" data-testId="score_component">
     <div class="g-scores--container">
       <section class="g-scores--form">
-        <h3 data-testId="score_form-title">Add new Score</h3>
+        <h3 data-testId="score_form-title">{{ $t("ADD_NEW_SCORE") }}</h3>
         <AddNewScoreForm />
       </section>
 
       <section class="g-scores--table">
-        <h3 data-testId="score_form-table">Your scores</h3>
+        <h3 data-testId="score_form-table">{{ $t("YOUR_SCORE") }}</h3>
         <div class="g-scores--table--inner">
-          <ScoresTable :scores="scores" />
+          <ScoresTable :scores="scores" :assessments="assessments" />
         </div>
       </section>
     </div>
@@ -22,6 +22,8 @@ import AddNewScoreForm from "../../components/Scores/AddNewScoreForm";
 import { mapState } from "vuex";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Scores",
@@ -32,7 +34,7 @@ export default {
   components: { ScoresTable, AddNewScoreForm },
 
   computed: {
-    ...mapState("courses", ["scores"]),
+    ...mapState("courses", ["scores", "assessments"]),
   },
 };
 </script>

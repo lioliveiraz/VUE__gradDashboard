@@ -31,7 +31,7 @@
         <input
           :type="this.BUTTON_SUBMIT"
           class="g-base-btn-submit"
-          :value="this.LOGIN_VALUE"
+          :value="this.button_input"
           data-testId="login_button"
         />
       </div>
@@ -49,6 +49,7 @@ import TheLocker from "../components/Style/TheLocker";
 
 export default {
   name: "HomePage",
+  nuxtI18n: false,
   components: {
     BaseInput,
     TheLocker,
@@ -66,6 +67,9 @@ export default {
   },
   computed: {
     ...mapGetters("auth", ["isAdm"]),
+    button_input() {
+      return this.$t("BUTTON_LOGIN");
+    },
   },
   methods: {
     ...mapActions("auth", ["login"]),

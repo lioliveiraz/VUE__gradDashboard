@@ -1,10 +1,10 @@
 h1{
- @apply text-green-400 font-extrabold text-5xl  text-center m-2 max-w-2xl;
+ @apply text-green-400 font-extrabold text-5xl  capitalize text-center m-2 max-w-2xl;
     font-family: 'Zilla Slab', serif ;
 }
 
 h2,h3,,h5,h6{
-  @apply text-green-400 text-2xl m-1 font-semibold	;
+  @apply text-green-400 text-2xl m-1 font-semibold capitalize	;
 
 }
 

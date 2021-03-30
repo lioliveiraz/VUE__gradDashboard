@@ -1,7 +1,7 @@
 <template>
   <div class="g-dashboard">
     <section class="g-dashboard--top">
-      <h1>Welcome {{ getName }}</h1>
+      <h1>{{ $t("welcome") }}, {{ getName }}!</h1>
 
       <img src="../../assets/adm_img.svg" alt="hi" />
     </section>
@@ -25,6 +25,8 @@ import { getUsers } from "../../api/requests/get";
 import BaseCard from "../../components/BaseCard";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Welcome",
@@ -38,6 +40,7 @@ export default {
       grads: [],
     };
   },
+
   async created() {
     try {
       const res = await getUsers(this.getToken);

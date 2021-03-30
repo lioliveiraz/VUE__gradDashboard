@@ -30,6 +30,7 @@ import BaseInput from "../BaseInput";
 import { mapState, mapActions } from "vuex";
 
 export default {
+  props: ["assessments"],
   data() {
     return {
       userInput: {},
@@ -39,7 +40,7 @@ export default {
   components: { BaseInput },
   computed: {
     ...mapState("auth", ["user_id", "token"]),
-    ...mapState("courses", ["courses", "assessments"]),
+    ...mapState("courses", ["courses"]),
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),
@@ -60,6 +61,11 @@ export default {
           type: this.TOAST_ERROR,
         });
       }
+    },
+  },
+  computed: {
+    scoreInput() {
+      return this.$t("SCORE_INPUT");
     },
   },
 };

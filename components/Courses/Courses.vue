@@ -3,10 +3,10 @@
     <div class="g-tables">
       <BaseButton
         :handleClick="toggleCourses"
-        :value="!isCourse ? 'courses' : 'assessmentes'"
+        :value="!isCourse ? courseValue : assessmentValue"
       />
       <h3 class="text-gray-600">
-        {{ isCourse ? "Courses" : "Assessments" }}
+        {{ isCourse ? courseValue : assessmentValue }}
       </h3>
       <div class="g-tables-inner">
         <CoursesTable v-if="isCourse" :courses="coursesArr" />
@@ -30,6 +30,14 @@ export default {
   components: {
     CoursesTable,
     BaseButton,
+  },
+  computed: {
+    courseValue() {
+      return this.$t("COURSES_VALUE");
+    },
+    assessmentValue() {
+      return this.$t("ASSESSMENTS_VALUE");
+    },
   },
   props: {
     coursesArr: Array,

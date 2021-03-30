@@ -1,5 +1,5 @@
 <template>
-  <div v-if="courses && assessments" class="">
+  <div v-if="courses && assessments">
     <Courses :coursesArr="courses" :assessmentsArr="assessments" />
   </div>
 </template>
@@ -9,6 +9,8 @@ import Courses from "../../components/Courses/Courses";
 import { mapState } from "vuex";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Courses",

@@ -1,3 +1,5 @@
+import i18n from './plugins/i18n';
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -27,6 +29,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,7 +45,27 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-  ],
+    ['nuxt-i18n', {
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n_redirected',
+        onlyOnRoot: true,  // recommended
+      },
+      locales: [
+        {
+          code: 'en',
+          name: 'English'
+        },
+        {
+          code: 'pt',
+          name: 'Portugues'
+        }
+
+
+      ]
+    }]],
+
+  i18n: i18n,
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

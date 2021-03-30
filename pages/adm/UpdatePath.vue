@@ -27,6 +27,8 @@ import AddNewCourseForm from "../../components/Courses/AddNewCourseForm";
 import BaseButton from "../../components/Style/BaseButton";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Update Path",

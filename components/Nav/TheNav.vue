@@ -18,15 +18,19 @@
               :id="this.LOGO_IMAGE"
             />
           </div>
-          <p>Hello, {{ username }}</p>
+          <p>{{ $t("HELLO") }}, {{ username }}</p>
         </li>
+
         <div v-for="(link, index) of links" :key="index">
           <li>
             <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
           </li>
         </div>
         <li>
-          <BaseButton :value="this.LOGOUT_BUTTON" :handleClick="handlelogout" />
+          <BaseButton
+            :value="$t('BUTTON_LOGOUT')"
+            :handleClick="handlelogout"
+          />
         </li>
       </ul>
     </nav>

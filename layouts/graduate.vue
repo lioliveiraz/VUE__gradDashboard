@@ -1,8 +1,17 @@
 <template>
   <div class="g-layout--wrapper">
     <div class="g-container">
-      <TheNav :links="isAdm ? links_adm : links_grad" :username="getName" />
-
+      <TheNav :links="isAdm ? links_adm : links_grads" :username="getName" />
+      <div class="flex justify-end mt-16">
+        <a
+          class="m-5"
+          href="#"
+          v-for="locale in availableLocales"
+          :key="locale.code"
+          @click.prevent.stop="$i18n.setLocale(locale.code)"
+          >{{ locale.name }}</a
+        >
+      </div>
       <div class="g-container--inner">
         <Nuxt />
       </div>
@@ -32,39 +41,48 @@ export default {
   middleware: "courses",
   data() {
     return {
-      links_grad: [
+      displayADMLinks: this.isAdm,
+      THEname: "",
+    };
+  },
+
+  computed: {
+    ...mapGetters("auth", ["isAdm", "getName"]),
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+    links_grads() {
+      return [
         {
           path: "dashboard",
-          name: "home",
+          name: this.$t("PATH_NAME_HOME"),
         },
         {
           path: "learningpath",
-          name: "courses",
+          name: this.$t("PATH_NAME_COURSES"),
         },
         {
           path: "scores",
-          name: "scores",
+          name: this.$t("PATH_NAME_SCORE"),
         },
-      ],
-      links_adm: [
+      ];
+    },
+    links_adm() {
+      return [
         {
           path: "/adm/dashboard",
-          name: "home",
+          name: this.$t("PATH_NAME_HOME"),
         },
         {
           path: "/adm/registeremployee",
-          name: "new employee",
+          name: this.$t("PATH_NAME_NEW_EMPLOYEE"),
         },
         {
           path: "/adm/updatepath",
-          name: "new course",
+          name: this.$t("PATH_NAME_NEW_COURSE"),
         },
-      ],
-      displayADMLinks: this.isAdm,
-    };
-  },
-  computed: {
-    ...mapGetters("auth", ["isAdm", "getName"]),
+      ];
+    },
   },
 };
 </script>
