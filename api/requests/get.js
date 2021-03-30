@@ -1,5 +1,4 @@
 import http from '../http.services';
-import axios from 'axios';
 
 /**
  * @function getCourses
@@ -7,7 +6,7 @@ import axios from 'axios';
  * @returns {Promise}
  */
 export const getCourses = async (token) => {
-    const response = await axios.get("courses", {
+    const response = await http.get("courses", {
         headers: { 'Authorization': `Bearer ${token.token}` }
     });
     return response.data;

@@ -1,8 +1,20 @@
-import Table from '../../components/Courses/Table.vue';
+import CoursesTable from '../../components/Courses/CoursesTable.vue';
 import { shallowMount } from '@vue/test-utils';
+
+
 
 describe('<Table>', () => {
     let courses, wrapper;
+    const idsArr = [
+        'course_table',
+        'course_table-week',
+        'course_table-code',
+        'course_table-name',
+        'course_table-assessment',
+        'course_table-source',
+        'course_table-duration',
+        'course_table-link'];
+
     courses = [{
         week: 1,
         course_code: "988709",
@@ -13,11 +25,10 @@ describe('<Table>', () => {
         link: "link"
     }];
     beforeEach(() => {
-        wrapper = shallowMount(Table, { propsData: { courses } });
+        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
     });
 
     it('should render correctly', () => {
-        const idsArr = ['course_table', 'course_table-week', 'course_table-code', 'course_table-name', 'course_table-assessment', 'course_table-source', 'course_table-duration', 'course_table-link'];
         idsArr.forEach(id => {
             expect(wrapper.find(id)).toBeTruthy();
 
@@ -29,8 +40,11 @@ describe('<Table>', () => {
     });
     it('should renders according to props', () => {
         courses[0].assessment = true;
-        wrapper = shallowMount(Table, { propsData: { courses } });
+        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
         expect(wrapper.text()).toContain('assessment');
     });
+
+
+
 });
 

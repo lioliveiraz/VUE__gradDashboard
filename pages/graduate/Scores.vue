@@ -1,57 +1,43 @@
 <template>
-  <div class="scores--main mt-10">
-    <div class="scores--container">
-      <div class="w-full scores_form">
-        <h3 class="text-gray-600 m-2 text-2xl">Add new Score</h3>
-        <Form
-          :scores="scores"
-          :courses="courses"
-          :assessments="assessments"
-          :handleKey="handleKey"
-        />
-      </div>
-      <div class="w-full" :key="key">
-        <h3 class="text-gray-600 m-2 text-2xl">Your scores</h3>
-        <ScoresTable :scores="scores" />
-      </div>
+  <div class="g-scores" data-testId="score_component">
+    <div class="g-scores--container">
+      <section class="g-scores--form">
+        <h3 data-testId="score_form-title">Add new Score</h3>
+        <AddNewScoreForm />
+      </section>
+
+      <section class="g-scores--table">
+        <h3 data-testId="score_form-table">Your scores</h3>
+        <div class="g-scores--table--inner">
+          <ScoresTable :scores="scores" />
+        </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
 import ScoresTable from "../../components/Scores/ScoresTable";
-import Form from "../../components/Scores/Form";
+import AddNewScoreForm from "../../components/Scores/AddNewScoreForm";
 import { mapState } from "vuex";
 
 export default {
-  name: "gaduateScores",
-  layout: "graduate",
-  components: { ScoresTable, Form },
-  data() {
+  head() {
     return {
-      key: 0,
+      title: "Scores",
     };
   },
+  name: "gaduateScores",
+  layout: "graduate",
+  components: { ScoresTable, AddNewScoreForm },
+
   computed: {
-    ...mapState("courses", ["courses", "assessments", "scores"]),
-  },
-  methods: {
-    handleKey() {
-      this.key++;
-    },
+    ...mapState("courses", ["scores"]),
   },
 };
 </script>
 
 <style>
-.scores--main {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-y: scroll;
-}
 .scores--container {
   height: 90%;
 }

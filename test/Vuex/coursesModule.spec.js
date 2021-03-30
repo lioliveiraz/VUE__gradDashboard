@@ -2,12 +2,6 @@ import courseModule from '../../store/modules/courses';
 import axios from 'axios';
 jest.mock("axios");
 
-
-
-
-
-
-
 describe('vuex store course module', () => {
 
     let state = {
@@ -25,7 +19,7 @@ describe('vuex store course module', () => {
         it('should initial state be empty', () => {
             expect(courses).toEqual([]);
             expect(assessments).toEqual([]);
-            expect(scores).toEqual({});
+            expect(scores).toEqual([]);
         });
     });
     describe('test mutation', () => {

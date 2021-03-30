@@ -1,34 +1,32 @@
 <template>
-  <form @submit="handleSubmit" class="w-full" :key="key">
-    <select
-      name="code"
-      v-model="userInput.code"
-      class="h-12 bg-gray-300 border-yellow-200 w-5/6 m-3"
-    >
-      <option
-        :value="assessment.course_code"
-        v-for="assessment in assessments"
-        :key="assessment.id"
-      >
-        {{ assessment.course_name }}({{ assessment.course_code }})
-      </option>
-    </select>
-    <Input
-      @getUserInput="getUserInput"
-      :attributeObj="{
-        type: this.NUMBER_INPUT,
-        name: this.SCORE_INPUT,
-        required: true,
-      }"
-    />
+  <form @submit="handleSubmit" :key="key" class="g-form-wrapper">
+    <div class="g-form-wrapper--inner">
+      <select name="code" v-model="userInput.code" class="g-selector">
+        <option
+          :value="assessment.course_code"
+          v-for="assessment in assessments"
+          :key="assessment.id"
+        >
+          {{ assessment.course_name }}({{ assessment.course_code }})
+        </option>
+      </select>
+      <BaseInput
+        @getUserInput="getUserInput"
+        :attributeObj="{
+          type: this.NUMBER_INPUT,
+          name: this.SCORE_INPUT,
+          required: true,
+        }"
+      />
 
-    <input :type="this.BUTTON_SUBMIT" class="text-gray-100 w-2/4 h-12 m-3" />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+    </div>
   </form>
 </template>
 
 <script>
 import { addScore } from "../../api/requests/post";
-import Input from "../Input";
+import BaseInput from "../BaseInput";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -38,10 +36,10 @@ export default {
       key: 0,
     };
   },
-  components: { Input },
-  props: ["scores", "courses", "assessments", "handleKey"],
+  components: { BaseInput },
   computed: {
     ...mapState("auth", ["user_id", "token"]),
+    ...mapState("courses", ["courses", "assessments"]),
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),
@@ -57,7 +55,6 @@ export default {
         this.handleAddScore(this.userInput);
         this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
         this.key++;
-        this.handleKey();
       } catch (err) {
         this.$toast("Something went wrong! Try again latter", {
           type: this.TOAST_ERROR,
@@ -69,7 +66,4 @@ export default {
 </script>
 
 <style scoped>
-input[type="submit"] {
-  background: #00aaff;
-}
 </style>

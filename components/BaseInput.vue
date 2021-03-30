@@ -1,9 +1,9 @@
 <template>
-  <div class="form--input flex flex-col m-3 w-5/6">
+  <div class="g-base-input-wrapper">
     <label data-testId="label">{{ attributeObj.name.toUpperCase() }}</label>
     <input
       data-testId="input"
-      class="h-12 bg-gray-300 border-yellow-200 text-black"
+      class="g-base-input"
       :type="attributeObj.type"
       :name="attributeObj.name"
       :placeholder="attributeObj.placeholder"
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["attributeObj"],
+  props: { attributeObj: Object },
   data() {
     return {
       currentValue: "",
@@ -29,7 +29,5 @@ export default {
 </script>
 
 <style>
-.form--input label {
-  font-weight: 700;
-}
+
 </style>

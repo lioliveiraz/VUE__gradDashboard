@@ -69,16 +69,6 @@
             "source": "udemy",
             "duration": 10,
             "link": "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile"
-        },
-        {
-            "id": 8,
-            "assessment": false,
-            "link": "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
-            "week": "5",
-            "course code": "987654",
-            "course name": "course name",
-            "source": "Udemy",
-            "duration": 6
         }
     ]
 }

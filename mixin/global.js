@@ -24,12 +24,9 @@ export default {
             TOAST_SUCCESS: 'success',
             TOAST_ERROR: 'error',
 
-            LINK_HOME_ENGLISH: "home",
-            LINK_REGISTER_EMPLOYEE_ENGLISH: "new employee",
-            LINK_REGISTER_COURSE_ENGLISH: "new course",
 
-            LINK_COURSES_ENGLISH: "courses",
-            LINK_SCORES_ENGLISH: "scores",
+
+
 
             TABLE_HEAD_WEEK_ENGLISH: "week",
             TABLE_HEAD_COURSECODE_ENGLISH: 'course code',
