@@ -40,16 +40,16 @@ The application also allows an administrator to register the employees to the pl
 **Dependencies**
 <ul>
 
-<li> axios : to retrieve data from API</li>
-<li>vue-toastification: to generate toasts</li>
-<li>json-server: to mock an API and database</li>
+<li><b>axios</b> : to retrieve data from API</li>
+<li><b>vue-toastification</b>: to generate toasts</li>
+<li><b>json-server</b>: to mock an API and database</li>
 </ul>
 
 **Dev-Dependencies**
 <ul>
-<li>jest: to test the application</li>
-<li>bycript: to hash the passwords</li>
-<li>nodemon: to run the server-side continuously </li>
+<li><b>jest</b>: to test the application</li>
+<li><b>bycript</b>: to hash the passwords</li>
+<li><b>nodemon</b>: to run the server-side continuously </li>
 </ul>
 
 ## 3. Mocked API
@@ -63,10 +63,10 @@ mock_server
   server.js
   user.json
 ```
-The API was built using json-server dependency. Using this tool, you can mock and run a database and server-side. This part of the application is separated into routers, database and server. You can have access to the files **db.json**, which mock a table of courses.
+The API was built using `json-server` dependency. Using this tool, you can mock and run a database and server-side. This part of the application is separated into routers, database and server. You can have access to the files **db.json**, which mock a table of courses.
 #### The properties of courses are: 
 <ul>
-  <li>id:Number</li>
+ <li>id:Number</li>
 <li>week:Number</li>
 <li>course_code:String</li>
 <li>course_name:String</li>
@@ -76,7 +76,7 @@ The API was built using json-server dependency. Using this tool, you can mock an
 <li>link:String</li>
 </ul>
 
-There is another table that represents the user; you can find this data in user.json
+There is another table that represents the user; you can find this data in **user.json**
 
 #### The properties of users are: 
 <ul>
@@ -88,8 +88,8 @@ There is another table that represents the user; you can find this data in user.
 <li>assessments_score:Array</li>
 </ul>
 
-The server.js mocks an express node.js server. It sets a listener on the `4020` portal and runs an authentication process using JWT. 
-The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as adding a new user, authenticating, getting data from the database, etc... Since the data is mocked, the db is made with fs dependency to read the file and change its content. The same thing occurs when you retrieve data from the db.
+The `server.js` mocks  Express Node.js server. It sets a listener on the `4020` portal and runs an authentication process using **JWT**. 
+The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as: adding a new user, authenticating, getting data from the database, etc... Since the data is mocked, the database is made with **fs** dependency to read the file and change its content. The same thing occurs when you retrieve data from the database.
 
 ```bash
   fs.writeFile("./mock_server/db.json", JSON.stringify(coursesDb), (err, result) => {
@@ -99,7 +99,7 @@ The server gets the client's token and verifies if the user is authenticated for
         });
 
 ```
-In the helper folder, you will find the authentication helpers, and there is used JWT and bycript.  
+In the helper folder, you will find the authentication helpers, and there is used **JWT** and **bycript**.  
 
 ### There are 2 options to start the server:
 
@@ -109,11 +109,14 @@ In the helper folder, you will find the authentication helpers, and there is use
 ## 4. Assets
 
 - Logos, svgs and other images are in `/assets`
+- The stylesheets are in `/assets/`
 - The favicon is in `/static`
 
 ## 5. Component Hierarchy
-In the helper folder, you will find the authentication helpers, and there is used JWT and bycript.  
-  >Everything that has to be reutilized has to become a component. The component folder is separated by: 
+
+  >Everything that has to be reutilized has to become a component.  
+
+### The component folder is separated by:
 <ul>
 <li>Courses: Here, you place the components which are used to administrate the courses. It can be a course table, a course form or a common page to display courses</li>
 <li>Footer</li>
@@ -128,7 +131,7 @@ In the helper folder, you will find the authentication helpers, and there is use
 
 ## 6. Middleware
 
-There are two middlewares in this application. One to handle the authentication and create guards to the page and the other to handle the data that has to be fetched before the component mounts.
+There are two middlewares in this application.
 
 `/auth.js`
 This file is a middleware that assures users logged as adm will not have access to pages related to the graduates. The contrary also happens. 
@@ -148,14 +151,16 @@ export default function (context) {
 
 This function shows how it happens. The middleware gets the data from the VUEX store through the context parameter. This context gives us the store, the route and the redirect function. From the store, we have access to the **getters**, which retrieve two properties, isAdm and isLoggedIn. Both are functions that return a boolean value. 
 
-<dl>isAdm()=>!!state.adm</dl>
-<dl>isLoggedIn()=!!state.token</dl>
+```bash
+isAdm()=>!!state.adm
+isLoggedIn()=>!!state.token
+```
 
 With this information, the middleware redirects the user to the right page. This middleware is connected to all the pages in your application.
 
 `/cousers.js`
 
-This middleware is essential to assure that the data from courses db will be loaded before the component mounts. It is used in pages where the data is displayed in tables. 
+This middleware is essential to assure that the data from courses database will be loaded before the component mounts. It is used in all the pages with the layout "graduate". 
 
 ```bash
 export default async function ({ store }) {
@@ -174,7 +179,7 @@ export default {
    middleware: "courses",}
 ```
 ## 7. Layout
-There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator. But, I noticed that only one was needed, so the name has to be changed. The layout holds not just the shared components (Nav and footer) but also important configuration:
+There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator, but, I noticed that only one was needed. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
 **Mixin:** 
 The Mixin holds the global variable, and it is assigned to the layout. 
@@ -197,8 +202,8 @@ The store consists of 2 modules, auth and courses.
 ### auth module
 
 The auth module handles the authentication process. 
-#### state
 
+#### states
 The states holds:
 
 <ul>
@@ -251,15 +256,19 @@ This action call the mutations 'ADD_ASSESMENT'/'ADD_COURSE' and according to the
 ## 9.API
 
 
-The API requests are made with **axios**. I separated the requests based on both API that this application fetches data. 
+The API requests are made with **axios**. I separated the requests based on both API which this application fetches data. 
 
 `mocked database api/requests`
 
-Those requests are made with  a service http that settle some default configuration to the API request. 
-First, all the requests are made with a default baseURL assign to 'localhost:4020'. So all the requests will have this endpoint + a route.
-Second, there is an interception that reads the status of the response. In case the status is a client error ( status >=400 &&  =< 500), it will throw an error that can be caught. In case it is a server error, the error will log in to the console. This file exports the http request GET,POST and PUT. To have access to other http request it is need to include it to the export default object. 
 
-To use those configuration you neet to import http from '../http.services.js' to your file and use it in your function
+Those requests are made with a service HTTP that settle some default configuration to the API request. 
+
+<p>All the requests are made with a default baseURL assign to 'localhost:4020'. So all the requests will have this endpoint + a route.</p>
+
+<p>There is an interception that reads the status of the response. In case the status is a client error ( status >=400 &&  =< 500), it will throw an error that can be caught. In case it is a server error, the error will log in to the console. </p>
+<p>This file exports the HTTP request GET, POST and PUT. To have access to another HTTP request you need to include it in the export default object.</p>
+
+To use those configuration you neet to import http from `../http.services.js` to your file and use it in your function
 
 example: 
 
@@ -292,7 +301,7 @@ The application has only unit tests made with `vue-test-utilities` and  `jest`. 
 <li>helpers</li>
 </ul>
 
-To test the pages that have VUEX, it is necessary to mock the store; there is already a store mocked on ./store/__mocks__. To use this store, you will need to import it to your test and create a Local Vue passing VUEX as parameter. 
+To test the pages with VUEX, it is necessary to mock the store; there is already a store mocked on ./store/__mocks__. To use this store, you will need to import it to your test and create a Local Vue passing VUEX as parameter. 
 
 **example**
 
@@ -325,7 +334,7 @@ Then you can shallow the component using `vue-test-utils` and pass the mocked st
 
 ## 11. Mixin
 
-In the mixin there is the file that store all the global variables. This mixin is connect to the graduate layout and you can connect to your page or layout using this piece of code. 
+In the mixin, there is a file that stores all the global variables. This mixin is connected to the graduate layout, and you can connect to your page or layout using this piece of code. 
 
 ```bash
 import global from "../mixin/global";
