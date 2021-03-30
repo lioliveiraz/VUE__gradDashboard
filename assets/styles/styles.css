@@ -433,31 +433,12 @@ height:calc(100vh - 100px);
   }
 
   .g-update-path--form{
-    @apply modal absolute w-full flex items-center justify-center;
+    @apply modal overflow-x-hidden overflow-y-auto fixed inset-0 outline-none  justify-center items-center flex;
     
   }
   
 
   .g-update-path--overlay{
-    @apply  absolute w-full bg-black h-full opacity-25 top-0 left-0 cursor-pointer .overflow-hidden;
+    @apply  opacity-25 fixed inset-0 bg-black .cursor-pointer;
   }
   
-  .g-update-path--form--inner{
-    @apply absolute .bg-white  w-5/6 rounded-sm shadow-lg flex items-center justify-center overflow-auto pt-40	 ;
-    height:80%;
-  
-  }
-
-@media screen and (min-width:1200px){
- 
-  .g-update-path--form--inner{
-    @apply  pt-64	w-1/2 ;
- 
-  
-  }
-}
-
-.g-addNewcourse-buttons{
-  @apply w-full flex justify-end  content-end ;
-}
-
