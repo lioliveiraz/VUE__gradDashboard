@@ -64,7 +64,7 @@
 
 /* Button base*/
 .g-base-btn{
- @apply text-gray-100 w-2/4 h-12  p-2 rounded text-xl	font-bold my-10 mx-3;
+ @apply text-gray-100 w-2/4 h-12  p-2 rounded text-xl	font-bold mx-3;
  text-transform: uppercase;
 }
 
