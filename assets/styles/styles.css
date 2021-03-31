@@ -113,6 +113,10 @@
   .g-selector{
     @apply  w-5/6;
   }
+  .g-selector--options{
+    @apply .text-base m-2 ;
+
+  }
  
   @media screen and (min-width:768px){
     .g-base-input,.g-selector{
@@ -129,6 +133,10 @@
   }
   .g-base-input-wrapper label{
     @apply text-2xl ;  
+}
+.g-selector--options{
+  @apply text-2xl ;
+
 }
   }
 
@@ -198,6 +206,9 @@
     outline: none;
     z-index: 99;
   }
+  .g-language-toggle{
+@apply border w-auto g-color-blue font-bold uppercase text-xs px-2 py-1 rounded shadow  outline-none  ease-linear transition-all duration-150 
+  }
   span {
     width: 70%;
     height: 3px;
@@ -260,6 +271,10 @@
  .g-list li { 
    @apply my-5;
  }
+
+ .g-language-toggle{
+  @apply text-2xl p-5;
+    }
   }
 
   @media screen and (min-width:1200px){
@@ -273,6 +288,10 @@
   .g-list li { 
     @apply  my-3;
   }
+  .g-language-toggle{
+    @apply text-base ;
+      }
+
   }
 
  

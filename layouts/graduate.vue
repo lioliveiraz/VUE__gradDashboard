@@ -2,16 +2,7 @@
   <div class="g-layout--wrapper">
     <div class="g-container">
       <TheNav :links="isAdm ? links_adm : links_grads" :username="getName" />
-      <div class="flex justify-end mt-16">
-        <a
-          class="m-5"
-          href="#"
-          v-for="locale in availableLocales"
-          :key="locale.code"
-          @click.prevent.stop="$i18n.setLocale(locale.code)"
-          >{{ locale.name }}</a
-        >
-      </div>
+
       <div class="g-container--inner">
         <Nuxt />
       </div>

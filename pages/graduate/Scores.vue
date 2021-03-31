@@ -9,7 +9,7 @@
       <section class="g-scores--table">
         <h3 data-testId="score_form-table">{{ $t("YOUR_SCORE") }}</h3>
         <div class="g-scores--table--inner">
-          <ScoresTable :scores="scores" :assessments="assessments" />
+          <ScoresTable :scores="scores" />
         </div>
       </section>
     </div>
@@ -34,7 +34,7 @@ export default {
   components: { ScoresTable, AddNewScoreForm },
 
   computed: {
-    ...mapState("courses", ["scores", "assessments"]),
+    ...mapState("courses", ["scores"]),
   },
 };
 </script>

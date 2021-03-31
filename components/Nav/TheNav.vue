@@ -1,12 +1,24 @@
 <template>
   <header class="g-nav-wrapper">
-    <div
-      @click="isMenu = !isMenu"
-      :class="isMenu ? 'g-menu close ' : 'g-menu open '"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="flex justify-between">
+      <div
+        @click="isMenu = !isMenu"
+        :class="isMenu ? 'g-menu close ' : 'g-menu open '"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="g-menu g-language-toggle">
+        <a
+          href="#"
+          v-for="locale in availableLocales"
+          :key="locale.code"
+          @click.prevent.stop="$i18n.setLocale(locale.code)"
+          >{{ locale.name }}</a
+        >
+      </div>
     </div>
     <nav :class="+isMenu ? ' nav_open ' : ' nav_close '">
       <ul class="g-list">
@@ -52,6 +64,11 @@ export default {
     };
   },
 
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+  },
   methods: {
     ...mapActions("auth", ["logout"]),
 

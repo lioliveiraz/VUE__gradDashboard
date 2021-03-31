@@ -8,7 +8,11 @@ describe("<ScoresTable>", () => {
             code: "847843",
             score: "3"
         }];
-        wrapper = await shallowMount(ScoresTable, { propsData: { scores } });
+        wrapper = await shallowMount(ScoresTable, {
+            propsData: { scores }, mocks: {
+                $t: (msg) => msg
+            }
+        });
     });
 
     it('should render correctly', () => {

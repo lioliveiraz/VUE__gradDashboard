@@ -25,10 +25,20 @@ describe('<Table>', () => {
         link: "link"
     }];
     beforeEach(() => {
-        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
+        const $t = () => { };
+        wrapper = shallowMount(CoursesTable, {
+            propsData: { courses }, mocks: {
+                _vm: {
+                    $t: () => { }
+                }
+            }
+        });
     });
 
     it('should render correctly', () => {
+
+
+
         idsArr.forEach(id => {
             expect(wrapper.find(id)).toBeTruthy();
 

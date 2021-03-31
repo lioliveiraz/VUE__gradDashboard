@@ -10,13 +10,6 @@
       <div v-if="isFormOpen" class="g-update-path--overlay"></div>
       <AddNewCourseForm :toggleComponent="toggleComponent" />
     </div>
-
-    <!--  <div v-if="isFormOpen" class="g-update-path--form">
-      <div class="g-update-path--overlay"></div>
-      <div class="g-update-path--form--inner">
-        <AddNewCourseForm :toggleComponent="toggleComponent" />
-      </div>
-    </div> -->
   </div>
 </template>
 
