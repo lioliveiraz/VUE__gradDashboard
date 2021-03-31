@@ -1,6 +1,6 @@
 <template>
   <div class="g-update-path">
-    <div v-if="getCourses && getAssessments">
+    <div v-if="getCourses && getAssessments" class="w-full">
       <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
       <div class="g-update-path-toggleButton">
         <BaseButton :handleClick="toggleComponent" value="add new" />

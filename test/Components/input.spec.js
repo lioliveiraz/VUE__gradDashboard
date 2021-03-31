@@ -1,5 +1,7 @@
 import BaseInput from '../../components/BaseInput.vue';
 import { shallowMount } from '@vue/test-utils';
+import Vue from 'vue';
+Vue.directive('t', () => { });
 
 
 describe('<Input>', () => {
@@ -13,7 +15,10 @@ describe('<Input>', () => {
             required: true
         };
 
-        wrapper = shallowMount(BaseInput, { propsData: { attributeObj } });
+        wrapper = shallowMount(BaseInput, {
+            propsData: { attributeObj },
+
+        });
 
     });
 

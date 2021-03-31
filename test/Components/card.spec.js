@@ -1,5 +1,10 @@
 import BaseCard from '../../components/BaseCard.vue';
 import { shallowMount, mount } from '@vue/test-utils';
+import { createLocalVue } from "@vue/test-utils";
+
+const localVue = createLocalVue();
+localVue.directive("t", () => { });
+
 
 
 describe('<BaseCard/>', () => {
@@ -9,7 +14,7 @@ describe('<BaseCard/>', () => {
             name: "name",
             empId: "123456"
         };
-        wrapper = await shallowMount(BaseCard, { propsData: { graduated } });
+        wrapper = await shallowMount(BaseCard, { propsData: { graduated }, localVue });
     });
 
     it('should render correctly', () => {
