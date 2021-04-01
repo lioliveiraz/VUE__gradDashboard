@@ -5,10 +5,11 @@
         :handleClick="toggleCourses"
         :value="!isCourse ? courseValue : assessmentValue"
       />
-      <h3 class="text-gray-600">
-        {{ isCourse ? courseValue : assessmentValue }}
-      </h3>
+
       <div class="g-tables-inner">
+        <h3 class="text-gray-600 self-auto">
+          {{ isCourse ? courseValue : assessmentValue }}
+        </h3>
         <CoursesTable v-if="isCourse" :courses="coursesArr" />
 
         <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
@@ -22,9 +23,13 @@ import CoursesTable from "./CoursesTable";
 import BaseButton from "../../components/Style/BaseButton";
 
 export default {
+  props: {
+    coursesArr: Array,
+    assessmentsArr: Array,
+  },
   data() {
     return {
-      isCourse: false,
+      isCourse: true,
     };
   },
   components: {
@@ -39,10 +44,7 @@ export default {
       return this.$t("ASSESSMENTS_VALUE");
     },
   },
-  props: {
-    coursesArr: Array,
-    assessmentsArr: Array,
-  },
+
   methods: {
     toggleCourses() {
       this.isCourse = !this.isCourse;

@@ -10,15 +10,14 @@
         <span></span>
       </div>
 
-      <div class="g-menu g-language-toggle">
-        <a
-          href="#"
-          v-for="locale in availableLocales"
-          :key="locale.code"
-          @click.prevent.stop="$i18n.setLocale(locale.code)"
-          >{{ locale.name }}</a
-        >
-      </div>
+      <a
+        href="#"
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        @click.prevent.stop="$i18n.setLocale(locale.code)"
+      >
+        <button class="g-menu g-language-toggle">{{ locale.name }}</button>
+      </a>
     </div>
     <nav :class="+isMenu ? ' nav_open ' : ' nav_close '">
       <ul class="g-list">
@@ -34,7 +33,7 @@
         </li>
 
         <div v-for="(link, index) of links" :key="index">
-          <li>
+          <li @click="isMenu = !isMenu">
             <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
           </li>
         </div>

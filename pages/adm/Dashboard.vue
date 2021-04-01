@@ -46,12 +46,17 @@ export default {
       const res = await getUsers(this.getToken);
       this.grads = res;
     } catch (err) {
-      console.log(err);
+      this.$toast(this.toast_message, {
+        type: this.TOAST_ERROR,
+      });
     }
   },
 
   computed: {
     ...mapGetters("auth", ["getToken", "getName"]),
+    toast_message() {
+      return this.$t("TOAST_FAIL_MESSAGE");
+    },
   },
   methods: {},
 };

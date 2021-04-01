@@ -64,7 +64,7 @@
 
 /* Button base*/
 .g-base-btn{
- @apply text-gray-100 w-2/4 h-12  p-2 rounded text-xl	font-bold mx-3;
+ @apply text-gray-100 w-2/4 h-12  p-2 rounded text-xl	font-bold my-3;
  text-transform: uppercase;
 }
 
@@ -452,7 +452,7 @@ height:calc(100vh - 100px);
   }
 
   .g-update-path--form{
-    @apply modal overflow-x-hidden overflow-y-auto fixed inset-0 outline-none  justify-center items-center flex;
+    @apply modal overflow-x-hidden overflow-y-auto fixed inset-0 outline-none  justify-center items-center flex z-50	;
     
   }
   

@@ -7,8 +7,8 @@
     </section>
 
     <section class="g-dashboard--middle">
-      <!--     <BaseDashCard :name="$t('COGNIZANT_NEWS')" :articles="cognizantTopics" />
-      <BaseDashCard :name="$t('TECH_NEWS')" :articles="techTopics" /> -->
+      <BaseDashCard :name="$t('COGNIZANT_NEWS')" :articles="cognizantTopics" />
+      <BaseDashCard :name="$t('TECH_NEWS')" :articles="techTopics" />
     </section>
 
     <section class="g-dashboard--bottom">
@@ -56,12 +56,10 @@ export default {
   },
   async created() {
     this.calculateCourseHours();
-    /*     this.callAPi();
-     */
+    this.callAPi();
   },
   updated() {
-    /*     this.callAPi();
-     */
+    this.callAPi();
   },
 
   methods: {

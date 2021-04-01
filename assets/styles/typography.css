@@ -3,13 +3,13 @@ h1{
     font-family: 'Zilla Slab', serif ;
 }
 
-h2,h3,,h5,h6{
-  @apply text-green-400 text-2xl m-1 font-semibold capitalize	;
+h2,h3,h5,h6{
+  @apply text-green-400 text-2xl  font-semibold capitalize	 m-2;
 
 }
 
 p{
-  @apply text-sm m-1	;
+  @apply text-sm m-2 	;
   font-family: 'Karla', sans-serif;
 }
 
@@ -30,6 +30,7 @@ p{
   h1{
     font-size: 7rem;
   }
+  
   h2,h3,h4,h5,h6{
     @apply text-4xl
 

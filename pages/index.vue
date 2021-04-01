@@ -7,7 +7,7 @@
     >
       <div class="g-form-wrapper--inner">
         <div class="locker">
-          <TheLocker />
+          <TheLogo />
         </div>
 
         <BaseInput
@@ -45,14 +45,14 @@ import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
-import TheLocker from "../components/Style/TheLocker";
+import TheLogo from "../components/Style/TheLogo";
 
 export default {
   name: "HomePage",
   nuxtI18n: false,
   components: {
     BaseInput,
-    TheLocker,
+    TheLogo,
   },
   mixins: [global],
 
