@@ -13,7 +13,7 @@ export default {
                 STUDY_TIME: "Your study time",
 
                 PATH_NAME_HOME: "dashboard",
-                PATH_NAME_COURSES: "courses",
+                PATH_NAME_COURSES: "Learning path",
                 PATH_NAME_SCORE: "scores",
                 PATH_NAME_NEW_EMPLOYEE: "new employee",
                 PATH_NAME_NEW_COURSE: "new course",
@@ -23,13 +23,13 @@ export default {
                 ASSESSMENTS_VALUE: "Assessments",
 
                 TABLE_HEAD_WEEK: "week",
-                TABLE_HEAD_COURSECODE: 'course code',
-                TABLE_HEAD_COURSENAME: "course name",
+                TABLE_HEAD_COURSECODE: 'code',
+                TABLE_HEAD_COURSENAME: "name",
                 TABLE_HEAD_MODE: "Mode",
                 TABLE_HEAD_SOURCE: "source",
                 TABLE_HEAD_DURATION: "duration",
                 TABLE_HEAD_LINK: "link",
-                TABLE_HEAD_ASSCODE: "assessment Code",
+                TABLE_HEAD_ASSCODE: "code",
                 TABLE_HEAD_SCORES: "scores",
                 TABLE_HEAD_PASSED: "passed",
 
@@ -43,6 +43,9 @@ export default {
                 BUTTON_SUBMIT: 'submit',
                 BUTTON_LOGIN: "login",
                 BUTTON_LOGOUT: "logout",
+                ADD_NEW: "add new",
+
+                TOAST_FAIL_MESSAGE: "Something went wrong with our server. 🤯 Try again later"
 
             },
             pt: {
@@ -54,7 +57,7 @@ export default {
                 STUDY_TIME: "Seu tempo de estudo",
 
                 PATH_NAME_HOME: "dashboard",
-                PATH_NAME_COURSES: "cursos",
+                PATH_NAME_COURSES: "Tabela",
                 PATH_NAME_SCORE: "notas",
                 PATH_NAME_NEW_EMPLOYEE: "adicionar funcionário",
                 PATH_NAME_NEW_COURSE: "adicionar curso",
@@ -74,6 +77,8 @@ export default {
                 TABLE_HEAD_PASSED: "passou",
                 ADD_NEW_SCORE: "Adicione nova nota",
 
+                EMPLOYER_ID_VALUE: "Funcionário ID",
+
                 YOUR_SCORE: "Suas notas",
                 YES: "Sim",
                 NO: "Não",
@@ -81,6 +86,9 @@ export default {
                 BUTTON_SUBMIT: 'enviar',
                 BUTTON_LOGIN: "entrar",
                 BUTTON_LOGOUT: "sair",
+                ADD_NEW: "Add novo",
+                TOAST_FAIL_MESSAGE: "Parece que algo esta errado com nosso servidor. 🤯 Tente novamente mais tarde"
+
 
 
 
