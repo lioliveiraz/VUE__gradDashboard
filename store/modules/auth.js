@@ -2,7 +2,6 @@
 const state = {
     token: window.localStorage.getItem('token'),
     user_id: window.localStorage.getItem('user_id'),
-    user_isAdm: window.localStorage.getItem('user_isAdm'),
     user_name: window.localStorage.getItem('user_name')
 };
 const getters = {
@@ -14,6 +13,7 @@ const getters = {
 };
 const actions = {
     login: ({ commit }, data) => {
+        
         const token = data["access_token"];
         const id = data['user']['id'];
         const role = data['user']['role'];
@@ -26,14 +26,7 @@ const actions = {
         window.localStorage.setItem('user_id', id);
         window.localStorage.setItem('user_name', name);
 
-        if (role[0] === "ADM") {
-            commit('SET_ADM', role[0]);
-            window.localStorage.setItem('user_isAdm', role[0]);
-        } else {
-
-            commit('SET_ADM', null);
-        }
-
+    
     },
 
     logout: ({ commit }) => {
