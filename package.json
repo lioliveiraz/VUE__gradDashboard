@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test:ci": "jest",
+    "test:ci": "jest --coverage",
     "test": "jest --watch",
     "start-server": "json-server --watch ./mock_server/db.json",
     "start-auth": "nodemon ./mock_server/server.js"
@@ -22,6 +22,7 @@
     "nuxt": "^2.14.12",
     "sass": "^1.32.8",
     "vue-i18n": "^8.24.1",
+    "vue-jwt-decode": "^0.1.0",
     "vue-toastification": "^1.7.11",
     "vuex": "^3.6.2"
   },

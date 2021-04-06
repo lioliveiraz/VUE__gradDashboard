@@ -17,6 +17,7 @@
             name: 'empId',
             placeholder: '875463',
             required: true,
+            error: errors.empId&&errors.empId
           }"
         />
         <BaseInput
@@ -25,6 +26,7 @@
             type: this.PASSWORD_INPUT,
             name: this.PASSWORD_INPUT,
             required: true,
+              error: errors.password&&errors.password
           }"
         />
 
@@ -46,6 +48,7 @@ import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
 import TheLocker from "../components/Style/TheLocker";
+import {isUserAdm} from "../helpers/service"
 
 export default {
   name: "HomePage",
@@ -65,7 +68,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["isAdm"]),
+    ...mapGetters("auth", ["getToken"]),
+    isAdm(){
+      return isUserAdm(this.getToken)
+    }
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -78,17 +84,17 @@ export default {
       e.preventDefault();
       const errors = userValidation(this.loginUserData);
 
-      if (Object.entries(errors).length === 0) {
-        handleLogin(this.loginUserData)
-          .then((res) => {
+      if (Object.entries(errors).length !== 0){ this.errors=errors}
+      else{
+        handleLogin(this.loginUserData).then((res) => {
             this.login(res.data);
+
             this.isAdm
               ? this.$router.push({ query: "adm_dashboard" })
               : this.$router.push({ query: "dashboard" });
-          })
-          .catch((err) =>
-            this.$toast(err.response.data.message, { type: "error" })
-          );
+          }).catch((err) =>
+             this.$toast(err.response.data.message, { type: "error" }) 
+         );
       }
     },
   },

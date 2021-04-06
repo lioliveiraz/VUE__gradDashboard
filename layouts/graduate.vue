@@ -18,7 +18,7 @@ import global from "../mixin/global";
 import TheNav from "../components/Nav/TheNav";
 import TheFooter from "../components/Footer/TheFooter";
 import { mapGetters } from "vuex";
-
+import {isUserAdm} from "../helpers/service"
 Vue.mixin(global);
 
 Vue.use(Toast, {
@@ -30,6 +30,7 @@ Vue.use(Toast, {
 export default {
   components: { TheNav, TheFooter },
   middleware: "courses",
+
   data() {
     return {
       links_grad: [
@@ -64,7 +65,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["isAdm", "getName"]),
+    ...mapGetters("auth", ["getToken", "getName"]),
+    isAdm(){
+      return isUserAdm(this.getToken)
+    }
   },
 };
 </script>

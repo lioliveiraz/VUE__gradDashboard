@@ -1,9 +1,11 @@
+import {isUserAdm} from '../helpers/service.js'
 
 export default function (context) {
     const { store, redirect, route } = context;
     const isLoggedIn = store.getters['auth/isLoggedIn'];
-    let isAdm = store.getters['auth/isAdm'];
-
+    const token = store.getters['auth/getToken']
+    const isAdm = isUserAdm(token);
+  
 
 
     if (isLoggedIn && route.name === "index" && !isAdm) {

@@ -43,7 +43,9 @@ export default {
       const res = await getUsers(this.getToken);
       this.grads = res;
     } catch (err) {
-      console.log(err);
+                   this.$toast("Something is wrong! Try again later", { type: "error" }) 
+
+  
     }
   },
 
