@@ -17,6 +17,9 @@ describe('<Input>', () => {
 
         wrapper = shallowMount(BaseInput, {
             propsData: { attributeObj },
+            mocks: {
+                $t: (msg) => msg
+            }
 
         });
 

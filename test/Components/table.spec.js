@@ -15,29 +15,25 @@ describe('<Table>', () => {
         'course_table-duration',
         'course_table-link'];
 
-    courses = [{
-        week: 1,
-        course_code: "988709",
-        course_name: "name",
-        assessment: false,
-        source: "source",
-        duration: 4,
-        link: "link"
-    }];
-    beforeEach(() => {
-        const $t = () => { };
-        wrapper = shallowMount(CoursesTable, {
+
+    beforeEach(async () => {
+        courses = [{
+            week: 1,
+            course_code: "988709",
+            course_name: "name",
+            assessment: false,
+            source: "source",
+            duration: 4,
+            link: "link"
+        }];
+        wrapper = await shallowMount(CoursesTable, {
             propsData: { courses }, mocks: {
-                _vm: {
-                    $t: () => { }
-                }
+                $t: (msg) => msg
             }
         });
     });
 
     it('should render correctly', () => {
-
-
 
         idsArr.forEach(id => {
             expect(wrapper.find(id)).toBeTruthy();
@@ -48,10 +44,15 @@ describe('<Table>', () => {
         expect(wrapper.props()).toEqual({ courses });
         expect(wrapper.text()).toContain("self-paced");
     });
+
     it('should renders according to props', () => {
         courses[0].assessment = true;
-        wrapper = shallowMount(CoursesTable, { propsData: { courses } });
-        expect(wrapper.text()).toContain('assessment');
+        wrapper = shallowMount(CoursesTable, {
+            propsData: { courses }, mocks: {
+                $t: (msg) => msg
+            }
+        });
+        expect(wrapper.text()).toContain('ASSESSMENTS_VALUE');
     });
 
 

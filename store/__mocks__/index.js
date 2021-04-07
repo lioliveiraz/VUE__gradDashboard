@@ -6,27 +6,43 @@ Vue.use(Vuex);
 export const getters = {
     isLoggedIn: jest.fn().mockReturnValue(true),
     getToken: jest.fn().mockReturnValue({ token: "token" }),
-    isAdm: jest.fn().mockReturnValue(),
-    getName: jest.fn().mockReturnValue()
+    getName: jest.fn().mockReturnValue(),
+    getCourses: jest.fn().mockReturnValue([{ name: "course" }]),
+    getAssessments: jest.fn().mockReturnValue([{ name: "assessments" }]),
+    getScores: jest.fn().mockReturnValue([{ name: "scores" }])
+
 };
 
 export const mutations = {
     SET_TOKEN: jest.fn(),
     SET_ID: jest.fn(),
-    SET_ADM: jest.fn(),
-    SET_NAME: jest.fn()
+    SET_NAME: jest.fn(),
+    SET_COURSES: jest.fn(),
+    SET_ASSESSMENTS: jest.fn(),
+    SET_SCORES: jest.fn(),
+    ADD_COURSE: jest.fn(),
+    ADD_ASSESSMENT: jest.fn(),
+    ADD_SCORE: jest.fn()
 };
 
 export const actions = {
     login: jest.fn(),
-    LOGO_IMAGEut: jest.fn()
+    logout: jest.fn(),
+    fetchCourses: jest.fn(),
+    fetchScores: jest.fn(),
+    handleAddCourse: jest.fn(),
+    handleAddScore: jest.fn()
+
+
 };
 
 export const state = {
     token: "token",
     user_id: 1,
-    user_isAdm: "adm",
-    user_name: "name"
+    user_name: "name",
+    courses: [{ name: "course" }],
+    assessments: [{ name: "assessments" }],
+    scores: [{ name: "scores" }]
 };
 
 export function __createMocks(custom = { getters: {}, mutations: {}, actions: {}, state: {} }) {
@@ -41,10 +57,23 @@ export function __createMocks(custom = { getters: {}, mutations: {}, actions: {}
         actions: mockActions,
         state: mockState,
         store: new Vuex.Store({
-            getters: mockGetters,
-            mutations: mockMutations,
-            actions: mockActions,
-            state: mockState,
+            modules: {
+                auth: {
+                    namespaced: true,
+                    getters: mockGetters,
+                    mutations: mockMutations,
+                    actions: mockActions,
+                    state: mockState,
+                },
+                courses: {
+                    namespaced: true,
+                    getters: mockGetters,
+                    mutations: mockMutations,
+                    actions: mockActions,
+                    state: mockState,
+                }
+            }
+
         }),
     };
 }

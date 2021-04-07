@@ -18,7 +18,9 @@ describe('<Index/>', () => {
     beforeEach(async () => {
         wrapper = await shallowMount(Index, {
             store: store,
-
+            mocks: {
+                $t: (msg) => msg
+            },
             localVue
         });
     });
