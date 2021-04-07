@@ -1,29 +1,33 @@
 <template>
   <div class="g-dashboard">
-    <section class="g-dashboard--top">
-      <h1>Welcome {{ getName }}</h1>
+            <LazyHydrate never >
 
-      <img src="../../assets/hi.svg" alt="hi" />
-    </section>
+    <DashboardHeader/>
+                   </LazyHydrate>
 
     <section class="g-dashboard--middle">
+       <LazyHydrate on-interaction="hover" >
       <BaseDashCard name="Cognizant News" :articles="cognizantTopics" />
+     </LazyHydrate>
+      <LazyHydrate  on-interaction="hover" >
       <BaseDashCard name="Tech News" :articles="techTopics" />
+            </LazyHydrate>
+
+    </section>
+    <section class="g-dashboard--bottom">
+          <LazyHydrate never >
+
+   <TheCircleStudyTime :text="circle.text" />
+               </LazyHydrate>
+
     </section>
 
-    <section class="g-dashboard--bottom">
-      <div>
-        <h3>Your study time</h3>
-        <div class="circled-hours">{{ circle.text }}h</div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
-import BaseDashCard from "../../components/BaseDashCard";
 import { getNewsFromApi } from "../../api/newsApi/request";
-
+import LazyHydrate from 'vue-lazy-hydration';
 import { mapGetters } from "vuex";
 export default {
   watchQuery: ["dashboard"],
@@ -34,7 +38,10 @@ export default {
     };
   },
   components: {
-    BaseDashCard,
+      LazyHydrate,
+  BaseDashCard: ()=>import ("../../components/BaseDashCard"),
+  TheCircleStudyTime: ()=>import ("../../components/Style/TheCircleStudyTime"),
+  DashboardHeader:()=>import ("../../components/Style/DashboardHeader")
   },
   data() {
     return {
@@ -49,7 +56,6 @@ export default {
   layout: "graduate",
   computed: {
     ...mapGetters("courses", ["getCourses", "getScores"]),
-    ...mapGetters("auth", ["getName"]),
   },
   async mounted() {
     this.calculateCourseHours();
@@ -60,9 +66,9 @@ export default {
       this.cognizantTopics = cognizant.articles;
       this.techTopics = tech.articles;
     } catch (error) {
-      this.$toast("Something is wrong with our server! Try again later", {
+    /*   this.$toast("Something is wrong with our server! Try again later", {
         type: this.TOAST_ERROR,
-      });
+      }); */
     }
   },
 
