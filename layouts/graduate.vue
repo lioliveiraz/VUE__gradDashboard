@@ -1,7 +1,7 @@
 <template>
   <div class="g-layout--wrapper">
     <div class="g-container">
-      <TheNav :links="isAdm ? links_adm : links_grad" :username="getName" />
+      <TheNav :links="isAdm ? links_adm : links_grads" :username="getName" />
 
       <div class="g-container--inner">
         <Nuxt />
@@ -33,43 +33,57 @@ export default {
 
   data() {
     return {
-      links_grad: [
+      displayADMLinks: this.isAdm,
+      THEname: "",
+            displayADMLinks: this.isAdm,
+
+    };
+  },
+
+  computed: {
+    ...mapGetters("auth", ["getToken", "getName"]),
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+
+    isAdm(){
+      return isUserAdm(this.getToken)
+    },
+
+    links_grads() {
+      return [
         {
           path: "dashboard",
-          name: "home",
+          name: this.$t("PATH_NAME_HOME"),
         },
         {
           path: "learningpath",
-          name: "courses",
+          name: this.$t("PATH_NAME_COURSES"),
         },
         {
           path: "scores",
-          name: "scores",
+          name: this.$t("PATH_NAME_SCORE"),
         },
-      ],
-      links_adm: [
+      ];
+    },
+    links_adm() {
+      return [
         {
           path: "/adm/dashboard",
-          name: "home",
+          name: this.$t("PATH_NAME_HOME"),
         },
         {
           path: "/adm/registeremployee",
-          name: "new employee",
+          name: this.$t("PATH_NAME_NEW_EMPLOYEE"),
         },
         {
           path: "/adm/updatepath",
-          name: "new course",
+          name: this.$t("PATH_NAME_NEW_COURSE"),
         },
-      ],
-      displayADMLinks: this.isAdm,
-    };
-  },
-  computed: {
-    ...mapGetters("auth", ["getToken", "getName"]),
-    isAdm(){
-      return isUserAdm(this.getToken)
-    }
-  },
+      ]
+    
+  }},
+
 };
 </script>
 <style >

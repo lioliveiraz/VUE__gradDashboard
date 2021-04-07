@@ -1,7 +1,7 @@
 <template>
     <section class="g-dashboard--top">
 
-  <h1>Welcome {{ getName }}</h1>
+      <h1>{{ $t("welcome") }}, {{ getName }}!</h1>
 
       <img src="../../assets/hi.svg" alt="hi" />
           </section>

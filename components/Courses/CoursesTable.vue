@@ -3,25 +3,25 @@
     <thead>
       <tr class="font-bold">
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_WEEK_ENGLISH }}
+          {{ $t("TABLE_HEAD_WEEK") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_COURSECODE_ENGLISH }}
+          {{ $t("TABLE_HEAD_COURSECODE") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_COURSENAME_ENGLISH }}
+          {{ $t("TABLE_HEAD_COURSENAME") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_MODE_ENGLISH }}
+          {{ $t("TABLE_HEAD_MODE") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_SOURCE_ENGLISH }}
+          {{ $t("TABLE_HEAD_SOURCE") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_DURATION_ENGLISH }}
+          {{ $t("TABLE_HEAD_DURATION") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_LINK_ENGLISH }}
+          {{ $t("TABLE_HEAD_LINK") }}
         </th>
       </tr>
     </thead>
@@ -37,7 +37,7 @@
           {{ course.course_name }}
         </td>
         <td class="g-table-cell" data-testId="course_table-assessment">
-          {{ course.assessment ? "assessment" : "self-paced" }}
+          {{ course.assessment ? $t("ASSESSMENTS_VALUE") : "self-paced" }}
         </td>
         <td class="g-table-cell" data-testId="course_table-source">
           {{ course.source }}

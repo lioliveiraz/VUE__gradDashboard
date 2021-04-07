@@ -3,11 +3,12 @@
     <div class="g-form-wrapper--inner">
       <select name="code" v-model="userInput.code" class="g-selector">
         <option
+          class="g-selector--options"
           :value="assessment.course_code"
           v-for="assessment in assessments"
           :key="assessment.id"
         >
-          {{ assessment.course_name }}({{ assessment.course_code }})
+          {{ assessment.course_name }} ({{ assessment.course_code }})
         </option>
       </select>
       <BaseInput
@@ -40,6 +41,9 @@ export default {
   computed: {
     ...mapState("auth", ["user_id", "token"]),
     ...mapState("courses", ["courses", "assessments"]),
+    scoreInput() {
+      return this.$t("SCORE_INPUT");
+    },
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),

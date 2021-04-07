@@ -65,6 +65,7 @@
                 name: this.ASSESSMENT_INPUT,
               }"
             />
+
             <div class="g-addNewcourse-buttons">
               <BaseButton :handleClick="handleSubmit" value="Send" />
 

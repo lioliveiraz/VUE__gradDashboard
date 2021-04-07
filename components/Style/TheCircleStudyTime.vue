@@ -1,6 +1,6 @@
 <template>
       <div>
-        <h3>Your study time</h3>
+        <h3>{{ $t("STUDY_TIME") }}</h3>
         <div class="circled-hours">{{ text }}h</div>
       </div>
 </template>

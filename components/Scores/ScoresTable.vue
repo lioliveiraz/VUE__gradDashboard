@@ -5,14 +5,14 @@
         <th class="g-table-cell">N</th>
 
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_ASSCODE_ENGLISH }}
+          {{ $t("TABLE_HEAD_ASSCODE") }}
         </th>
 
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_SCORES_ENGLISH }}
+          {{ $t("TABLE_HEAD_SCORES") }}
         </th>
         <th class="g-table-cell">
-          {{ this.TABLE_HEAD_PASSED_ENGLISH }}
+          {{ $t("TABLE_HEAD_PASSED") }}
         </th>
       </tr>
     </thead>
@@ -34,7 +34,7 @@
               : ' g-table-cell  g-cell-failedAss'
           "
         >
-          {{ score > 140 ? "Yes" : "No" }}
+          {{ score > 140 ? $t("YES") : $t("NO") }}
         </td>
       </tr>
     </tbody>

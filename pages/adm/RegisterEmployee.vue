@@ -11,6 +11,8 @@
 import RegisterEmployeeForm from "../../components/Register/RegisterEmployeeForm";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Register employee",
