@@ -1,7 +1,6 @@
 import Vuex from 'vuex';
-import Vue from 'vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { __createMocks as createStoreMocks, store } from '../../store/__mocks__';
+import { __createMocks, store } from '../../store/__mocks__';
 import Index from '../../pages';
 import VueMeta from 'vue-meta';
 
@@ -36,13 +35,13 @@ describe('<Index/>', () => {
         expect(wrapper).toMatchSnapshot();
 
     });
-    it('data should initialize correctly', async () => {
+
+    it('data should initialize correctly', () => {
         expect(Index.data().loginUserData).toBeTruthy();
         expect(Index.data().errors).toBeTruthy();
 
-
-
     });
+
     it('form should NOT  return error', async () => {
         const form = wrapper.find('form');
         await wrapper.setData({
@@ -57,6 +56,14 @@ describe('<Index/>', () => {
     });
     it("testing metaInfo", () => {
         expect(wrapper.vm.$metaInfo.title).toBe('Welcome');
+
+    });
+    it("should change the date once the method is called", async () => {
+        await wrapper.vm.getUserInput("111111", "empId");
+        let object = {
+            empId: "111111"
+        };
+        expect(wrapper.vm.loginUserData).toEqual(expect.objectContaining(object));
 
     });
 

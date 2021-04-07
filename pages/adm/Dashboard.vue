@@ -29,7 +29,7 @@ export default {
 
   head() {
     return {
-      title: "Welcome",
+      title: "Dashboard",
     };
   },
   watchQuery: ["adm_dashboard"],
