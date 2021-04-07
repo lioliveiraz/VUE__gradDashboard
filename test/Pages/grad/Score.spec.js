@@ -1,9 +1,10 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
-import Dashboard from '../../../pages/adm/Dashboard.vue';
+import Score from '../../../pages/graduate/Scores.vue';
 import VueMeta from 'vue-meta';
-import BaseCard from '../../../components/BaseCard.vue';
+import AddNewScore from '../../../components/Scores/AddNewScoreForm.vue';
+import ScoresTable from '../../../components/Scores/ScoresTable.vue';
 
 jest.mock('../../../store');
 
@@ -11,15 +12,14 @@ const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<ADMDashboard/>', () => {
+describe('<Index/>', () => {
     let wrapper;
 
     beforeEach(async () => {
-        wrapper = await shallowMount(Dashboard, {
+        wrapper = await shallowMount(Score, {
             store: store,
             mocks: {
-                $t: (msg) => msg,
-                $toast: (msg) => msg
+                $t: (msg) => msg
             },
             localVue
         });
@@ -30,17 +30,18 @@ describe('<ADMDashboard/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--top", ".g-dashboard--top"];
+        const addNewScore = wrapper.findComponent(AddNewScore);
+        const scoreTable = wrapper.findComponent(ScoresTable);
+
+        const idArr = [".g-scores", ".g-scores--container", ".g-scores--form", "g-scores--table", "g-scores--table--inner"];
         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
         expect(wrapper).toMatchSnapshot();
-    });
-    it('data should initialize correctly', () => {
-        expect(Dashboard.data().grads).toBeTruthy();
-        expect(Dashboard.data().grads).toEqual([]);
+        expect(scoreTable).toBeTruthy();
+        expect(addNewScore).toBeTruthy();
 
     });
     it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Dashboard');
+        expect(wrapper.vm.$metaInfo.title).toBe('Scores');
 
     });
 });

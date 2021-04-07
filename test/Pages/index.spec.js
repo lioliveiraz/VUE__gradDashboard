@@ -5,7 +5,7 @@ import Index from '../../pages';
 import VueMeta from 'vue-meta';
 
 
-jest.mock('../../store/__mocks__');
+jest.mock('../../store');
 
 const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });

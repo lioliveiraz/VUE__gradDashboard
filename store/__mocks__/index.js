@@ -7,7 +7,7 @@ export const getters = {
     isLoggedIn: jest.fn().mockReturnValue(true),
     getToken: jest.fn().mockReturnValue({ token: "token" }),
     getName: jest.fn().mockReturnValue(),
-    getCourses: jest.fn().mockReturnValue([{ name: "course" }]),
+    getCourses: jest.fn().mockReturnValue([{ name: "course", duration: 1 }, { name: "course", duration: 2 }]),
     getAssessments: jest.fn().mockReturnValue([{ name: "assessments" }]),
     getScores: jest.fn().mockReturnValue([{ name: "scores" }])
 

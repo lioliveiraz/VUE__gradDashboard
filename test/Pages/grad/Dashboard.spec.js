@@ -1,9 +1,8 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
-import Dashboard from '../../../pages/adm/Dashboard.vue';
+import Dashboard from '../../../pages/graduate/Dashboard.vue';
 import VueMeta from 'vue-meta';
-import BaseCard from '../../../components/BaseCard.vue';
 
 jest.mock('../../../store');
 
@@ -30,17 +29,25 @@ describe('<ADMDashboard/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--top", ".g-dashboard--top"];
+        const idArr = [".g-dashboard", ".g-dashboard--middle", ".g-dashboard--bottom"];
         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
         expect(wrapper).toMatchSnapshot();
     });
     it('data should initialize correctly', () => {
-        expect(Dashboard.data().grads).toBeTruthy();
-        expect(Dashboard.data().grads).toEqual([]);
+        expect(Dashboard.data().circle).toEqual({
+            text: 0,
+        });
+        expect(Dashboard.data().courses).toEqual([]);
+        expect(Dashboard.data().cognizantTopics).toEqual([]);
+        expect(Dashboard.data().techTopics).toEqual([]);
 
     });
     it("testing metaInfo", () => {
         expect(wrapper.vm.$metaInfo.title).toBe('Dashboard');
 
+    });
+    it("calculate hours should return the right value", async () => {
+        await wrapper.vm.calculateCourseHours();
+        expect(wrapper.vm.circle.text).toEqual(3);
     });
 });

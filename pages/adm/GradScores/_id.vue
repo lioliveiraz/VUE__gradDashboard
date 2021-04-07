@@ -47,18 +47,4 @@ export default {
 </script>
 
 <style>
-.employeeScore {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.employeeScore div:first-child {
-  height: 90%;
-  overflow-y: scroll;
-}
-.employee-text {
-  @apply text-blue-400 font-bold text-2xl;
-}
 </style>

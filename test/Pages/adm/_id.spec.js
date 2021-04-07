@@ -1,25 +1,25 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
-import Dashboard from '../../../pages/adm/Dashboard.vue';
+import { __createMocks, store } from '../../../store/__mocks__';
+import id from '../../../pages/adm/GradScores/_id.vue';
 import VueMeta from 'vue-meta';
-import BaseCard from '../../../components/BaseCard.vue';
 
-jest.mock('../../../store');
+
+jest.mock('../../../store/__mocks__');
 
 const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<ADMDashboard/>', () => {
+describe('<id/>', () => {
     let wrapper;
 
     beforeEach(async () => {
-        wrapper = await shallowMount(Dashboard, {
+        wrapper = await shallowMount(id, {
             store: store,
             mocks: {
                 $t: (msg) => msg,
-                $toast: (msg) => msg
+                $route: { params: { id: 1 } }
             },
             localVue
         });
@@ -29,18 +29,16 @@ describe('<ADMDashboard/>', () => {
             wrapper.destroy();
         }
     });
+
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--top", ".g-dashboard--top"];
+        const idArr = [".employeeScore", ".employee-text"];
         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
         expect(wrapper).toMatchSnapshot();
-    });
-    it('data should initialize correctly', () => {
-        expect(Dashboard.data().grads).toBeTruthy();
-        expect(Dashboard.data().grads).toEqual([]);
 
     });
+
     it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Dashboard');
+        expect(wrapper.vm.$metaInfo.title).toBe('Employee: 1');
 
     });
 });

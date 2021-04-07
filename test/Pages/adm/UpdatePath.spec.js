@@ -1,25 +1,23 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
-import Dashboard from '../../../pages/adm/Dashboard.vue';
+import { __createMocks, store } from '../../../store/__mocks__';
+import UpdatePath from '../../../pages/adm/UpdatePath.vue';
 import VueMeta from 'vue-meta';
-import BaseCard from '../../../components/BaseCard.vue';
 
-jest.mock('../../../store');
+jest.mock('../../../store/__mocks__');
 
 const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<ADMDashboard/>', () => {
+describe('<Index/>', () => {
     let wrapper;
 
     beforeEach(async () => {
-        wrapper = await shallowMount(Dashboard, {
+        wrapper = await shallowMount(UpdatePath, {
             store: store,
             mocks: {
-                $t: (msg) => msg,
-                $toast: (msg) => msg
+                $t: (msg) => msg
             },
             localVue
         });
@@ -30,17 +28,18 @@ describe('<ADMDashboard/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--top", ".g-dashboard--top"];
+        const idArr = [".g-update-path", ".g-update-path-toggleButton", ".g-update-path--overlay", ".g-update-path--form"];
         idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
         expect(wrapper).toMatchSnapshot();
     });
     it('data should initialize correctly', () => {
-        expect(Dashboard.data().grads).toBeTruthy();
-        expect(Dashboard.data().grads).toEqual([]);
+        expect(UpdatePath.data().isFormOpen).toEqual(false);
 
     });
-    it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Dashboard');
-
+    it('function should be called', async () => {
+        await wrapper.vm.toggleComponent();
+        expect(wrapper.vm.isFormOpen).toBe(true);
     });
+
+
 });

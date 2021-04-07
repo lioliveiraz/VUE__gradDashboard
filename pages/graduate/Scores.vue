@@ -40,22 +40,4 @@ export default {
 </script>
 
 <style>
-.scores--container {
-  height: 90%;
-}
-.scores--container div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (min-width: 700px) {
-  .scores--container {
-    width: 70%;
-    height: 85%;
-  }
-  .scores--container div:first-child {
-    width: 50%;
-  }
-}
 </style>

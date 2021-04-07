@@ -24,7 +24,7 @@ export default {
       isCourse: true,
     };
   },
-  async created() {},
+
   computed: {
     ...mapState("courses", ["courses", "assessments"]),
   },
