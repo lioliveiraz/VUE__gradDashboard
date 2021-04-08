@@ -11,7 +11,7 @@ const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<ADMDashboard/>', () => {
+describe('<Dashboard/>', () => {
     let wrapper;
 
     beforeEach(async () => {
@@ -54,7 +54,6 @@ describe('<ADMDashboard/>', () => {
 
     });
     it("calculate hours should return the right value", async () => {
-        await wrapper.vm.calculateCourseHours();
-        expect(wrapper.vm.circle.text).toEqual(3);
+        expect(wrapper.vm.calculateCourseHours).toEqual(3);
     });
 });
