@@ -2,10 +2,10 @@
   <div class="relative w-auto my-6 mx-auto h-auto">
     <div class="g-modal-form--inner focus:outline-none">
       <div class="border-blueGray-200 g-modal-form--header">
-        <h3>Update Path</h3>
+        <h3 data-testId="course_form-title">Update Path</h3>
       </div>
       <div class="g-modal-form--content">
-        <form @submit="handleSubmit" data-testId="form" :key="key">
+        <form @submit="handleSubmit" data-testId="course_form" :key="key">
           <div>
             <BaseInput
               @getUserInput="getUserInput"
@@ -14,9 +14,9 @@
                 name: this.TABLE_HEAD_WEEK_ENGLISH,
                 placeholder: 'week number',
                 required: true,
+                error: errors.week && errors.week,
               }"
             />
-            {{ errors.week && errors.week }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -24,9 +24,9 @@
                 type: this.TEXT_INPUT,
                 name: this.COURSE_CODE_INPUT,
                 required: true,
+                error: errors.course_code && errors.course_code,
               }"
             />
-            {{ errors.course_code && errors.course_code }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -34,9 +34,9 @@
                 type: this.TEXT_INPUT,
                 name: this.COURSE_NAME_INPUT,
                 required: true,
+                error: errors.course_name && errors.course_name,
               }"
             />
-            {{ errors.course_name && errors.course_name }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -45,9 +45,9 @@
                 name: this.TABLE_HEAD_SOURCE_ENGLISH,
                 placeholder: 'Udemy',
                 required: true,
+                error: errors.source && errors.source,
               }"
             />
-            {{ errors.source && errors.source }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -65,9 +65,9 @@
                 name: this.ASSESSMENT_INPUT,
               }"
             />
-            <div class="g-addNewcourse-buttons">
-              <BaseButton :handleClick="handleSubmit" value="Send" />
 
+            <div class="g-addNewcourse-buttons">
+              <input type="submit" value="Send" class="g-base-btn-blue" />
               <BaseButton :handleClick="toggleComponent" value="close" />
             </div>
           </div>
@@ -121,7 +121,7 @@ export default {
           .then((res) => {
             this.errors = {};
             this.toggleComponent();
-            this.key++;
+            this.key = this.key + 1;
             this.handleAddCourse(this.courseData);
             this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
           })

@@ -1,12 +1,23 @@
 <template>
   <header class="g-nav-wrapper">
-    <div
-      @click="isMenu = !isMenu"
-      :class="isMenu ? 'g-menu close ' : 'g-menu open '"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="flex justify-between">
+      <div
+        @click="isMenu = !isMenu"
+        :class="isMenu ? 'g-menu close ' : 'g-menu open '"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <a
+        href="#"
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        @click.prevent.stop="$i18n.setLocale(locale.code)"
+      >
+        <button class="g-menu g-language-toggle">{{ locale.name }}</button>
+      </a>
     </div>
     <nav :class="+isMenu ? ' nav_open ' : ' nav_close '">
       <ul class="g-list">
@@ -18,15 +29,19 @@
               :id="this.LOGO_IMAGE"
             />
           </div>
-          <p>Hello, {{ username }}</p>
+          <p>{{ $t("HELLO") }}, {{ username }}</p>
         </li>
+
         <div v-for="(link, index) of links" :key="index">
-          <li>
+          <li @click="isMenu = !isMenu">
             <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
           </li>
         </div>
         <li>
-          <BaseButton :value="this.LOGOUT_BUTTON" :handleClick="handlelogout" />
+          <BaseButton
+            :value="$t('BUTTON_LOGOUT')"
+            :handleClick="handleLogout"
+          />
         </li>
       </ul>
     </nav>
@@ -48,10 +63,15 @@ export default {
     };
   },
 
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+    },
+  },
   methods: {
     ...mapActions("auth", ["logout"]),
 
-    handlelogout() {
+    handleLogout() {
       this.logout();
       this.$router.push("/");
     },

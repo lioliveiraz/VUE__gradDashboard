@@ -7,7 +7,7 @@
     >
       <div class="g-form-wrapper--inner">
         <div class="locker">
-          <TheLocker />
+          <TheLogo />
         </div>
 
         <BaseInput
@@ -17,6 +17,7 @@
             name: 'empId',
             placeholder: '875463',
             required: true,
+            error: errors.empId && errors.empId,
           }"
         />
         <BaseInput
@@ -25,13 +26,14 @@
             type: this.PASSWORD_INPUT,
             name: this.PASSWORD_INPUT,
             required: true,
+            error: errors.password && errors.password,
           }"
         />
 
         <input
           :type="this.BUTTON_SUBMIT"
           class="g-base-btn-submit"
-          :value="this.LOGIN_VALUE"
+          :value="this.button_input"
           data-testId="login_button"
         />
       </div>
@@ -45,13 +47,15 @@ import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
-import TheLocker from "../components/Style/TheLocker";
+import { isUserAdm } from "../helpers/service";
+import TheLogo from "../components/Style/TheLogo";
 
 export default {
   name: "HomePage",
+  nuxtI18n: false,
   components: {
     BaseInput,
-    TheLocker,
+    TheLogo,
   },
   mixins: [global],
 
@@ -65,7 +69,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["isAdm"]),
+    ...mapGetters("auth", ["getToken"]),
+    isAdm() {
+      return isUserAdm(this.getToken);
+    },
+    button_input() {
+      return this.$t("BUTTON_LOGIN");
+    },
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -78,7 +88,9 @@ export default {
       e.preventDefault();
       const errors = userValidation(this.loginUserData);
 
-      if (Object.entries(errors).length === 0) {
+      if (Object.entries(errors).length !== 0) {
+        this.errors = errors;
+      } else {
         handleLogin(this.loginUserData)
           .then((res) => {
             this.login(res.data);

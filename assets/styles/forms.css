@@ -11,7 +11,8 @@
 /*Modal form*/
 
 .g-modal-form--main{
-@apply relative w-auto my-6 mx-auto h-auto
+@apply relative w-auto my-6 mx-auto h-auto	;
+
 }
 .g-modal-form--inner{
     @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none 
@@ -21,4 +22,11 @@
 }
 .g-modal-form--content{
     @apply relative p-6 flex-auto
+}
+
+.g-addNewcourse-buttons{
+    @apply flex
+}
+.g-addNewcourse-buttons button{
+    @apply mx-3
 }

@@ -1,31 +1,36 @@
 <template>
   <div class="g-dashboard">
-    <section class="g-dashboard--top">
-      <h1>Welcome {{ getName }}</h1>
-
-      <img src="../../assets/hi.svg" alt="hi" />
-    </section>
+    <LazyHydrate never>
+      <DashboardHeader />
+    </LazyHydrate>
 
     <section class="g-dashboard--middle">
-      <BaseDashCard name="Cognizant News" :articles="cognizantTopics" />
-      <BaseDashCard name="Tech News" :articles="techTopics" />
+      <LazyHydrate on-interaction="hover">
+        <BaseDashCard
+          :name="$t('COGNIZANT_NEWS')"
+          :articles="cognizantTopics"
+        />
+      </LazyHydrate>
+      <LazyHydrate on-interaction="hover">
+        <BaseDashCard :name="$t('TECH_NEWS')" :articles="techTopics" />
+      </LazyHydrate>
     </section>
 
     <section class="g-dashboard--bottom">
-      <div>
-        <h3>Your study time</h3>
-        <div class="circled-hours">{{ circle.text }}h</div>
-      </div>
+      <LazyHydrate never>
+        <TheCircleStudyTime :text="circle.text" />
+      </LazyHydrate>
     </section>
   </div>
 </template>
 
 <script>
-import BaseDashCard from "../../components/BaseDashCard";
 import { getNewsFromApi } from "../../api/newsApi/request";
-
+import LazyHydrate from "vue-lazy-hydration";
 import { mapGetters } from "vuex";
 export default {
+  nuxtI18n: false,
+
   watchQuery: ["dashboard"],
   layout: "graduate",
   head() {
@@ -34,7 +39,11 @@ export default {
     };
   },
   components: {
-    BaseDashCard,
+    LazyHydrate,
+    BaseDashCard: () => import("../../components/BaseDashCard"),
+    TheCircleStudyTime: () =>
+      import("../../components/Style/TheCircleStudyTime"),
+    DashboardHeader: () => import("../../components/Style/DashboardHeader"),
   },
   data() {
     return {
@@ -47,26 +56,39 @@ export default {
     };
   },
   layout: "graduate",
+
   computed: {
     ...mapGetters("courses", ["getCourses", "getScores"]),
-    ...mapGetters("auth", ["getName"]),
   },
-  async mounted() {
+  async created() {
     this.calculateCourseHours();
-    try {
-      const cognizant = await getNewsFromApi("Cognizant");
-      const tech = await getNewsFromApi("Technology");
-
-      this.cognizantTopics = cognizant.articles;
-      this.techTopics = tech.articles;
-    } catch (error) {
-      this.$toast("Something is wrong with our server! Try again later", {
-        type: this.TOAST_ERROR,
-      });
-    }
+    /*     this.callAPi()
+     */
+  },
+  updated() {
+    /* this.callAPi() */
   },
 
   methods: {
+    async callAPi() {
+      try {
+        const cognizant = await getNewsFromApi(
+          "Cognizant",
+          this.$root.$i18n.locale
+        );
+        const tech = await getNewsFromApi(
+          "Technology",
+          this.$root.$i18n.locale
+        );
+
+        this.cognizantTopics = cognizant.articles;
+        this.techTopics = tech.articles;
+      } catch (error) {
+        this.$toast("Something is wrong with our server! Try again later", {
+          type: this.TOAST_ERROR,
+        });
+      }
+    },
     calculateCourseHours() {
       this.circle.text = this.getCourses.reduce((acc, cur) => {
         return acc + +cur.duration;

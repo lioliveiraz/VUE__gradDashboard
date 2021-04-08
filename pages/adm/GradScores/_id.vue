@@ -15,6 +15,8 @@ import { mapGetters } from "vuex";
 import ScoresTable from "../../../components/Scores/ScoresTable";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: `Employee: ${this.empId}`,
@@ -38,25 +40,13 @@ export default {
       const res = await getScores(this.empId, this.getToken);
       this.scoresArr = res.scores;
     } catch (err) {
-      console.log(err);
+      this.$toast("Something went wrong! Try again latter", {
+        type: this.TOAST_ERROR,
+      });
     }
   },
 };
 </script>
 
 <style>
-.employeeScore {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.employeeScore div:first-child {
-  height: 90%;
-  overflow-y: scroll;
-}
-.employee-text {
-  @apply text-blue-400 font-bold text-2xl;
-}
 </style>

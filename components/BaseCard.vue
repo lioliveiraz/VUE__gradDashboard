@@ -7,7 +7,7 @@
       </p>
 
       <p class="g-adm-dashboard-card--subtitle" data-testId="graduate_empID">
-        Employeer id: {{ graduated.empId }}
+        {{ $t("EMPLOYER_ID_VALUE") }}: {{ graduated.empId }}
       </p>
     </div>
   </div>

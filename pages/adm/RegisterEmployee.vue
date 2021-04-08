@@ -11,6 +11,8 @@
 import RegisterEmployeeForm from "../../components/Register/RegisterEmployeeForm";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Register employee",
@@ -22,11 +24,4 @@ export default {
 </script>
 
 <style scoped>
-.register--main {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 </style>

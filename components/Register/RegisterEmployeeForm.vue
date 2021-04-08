@@ -8,9 +8,10 @@
           name: this.EMPID_INPUT,
           placeholder: 'employer ID',
           required: true,
+          error: errors.empId && errors.empId,
         }"
       />
-      {{ errors.empId && errors.empId }}
+
       <BaseInput
         @getUserInput="getUserInput"
         :attributeObj="{
@@ -18,9 +19,9 @@
           name: this.PASSWORD_INPUT,
 
           required: true,
+          error: errors.password && errors.password,
         }"
       />
-      {{ errors.password && errors.password }}
 
       <BaseInput
         @getUserInput="getUserInput"
@@ -29,9 +30,9 @@
           name: this.EMP_NAME_INPUT,
           placeholder: 'employer name',
           required: true,
+          error: errors.name && errors.name,
         }"
       />
-      {{ errors.name && errors.name }}
 
       <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
     </div>
@@ -71,7 +72,7 @@ export default {
           this.errors = {};
 
           this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
-          this.key++;
+          this.key = this.key + 1;
         } catch (err) {
           this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
         }

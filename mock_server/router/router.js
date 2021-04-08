@@ -16,8 +16,8 @@ module.exports = {
             return;
         }
         const userObject = findUser(empId);
-        const access_token = createToken({ empId, password });
-        res.status(200).json({ access_token, user: { id: userObject.id, role: userObject.role, name: userObject.name } });
+        const access_token = createToken({ empId, password,role:userObject.role });
+        res.status(200).json({ access_token, user: { id: userObject.id,  name: userObject.name } });
     },
     newUser: async (req, res) => {
         const { empId, password, name } = req.body.data;

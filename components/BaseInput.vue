@@ -11,6 +11,8 @@
       v-model="currentValue"
       :required="attributeObj.required"
     />
+  <p class="text-red-700	 font-bold	">{{attributeObj.error}} </p>
+
   </div>
 </template>
 

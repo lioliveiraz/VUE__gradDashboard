@@ -164,7 +164,7 @@
     font-size: 8rem
    }
   .g-adm-dashboard-card--subtitle{
-    @apply text-white text-2xl		;
+    @apply  text-2xl		;
   
   }
 }
@@ -178,10 +178,7 @@
   .g-adm-dashboard-card--title{
    font-size: 8rem
   }
-  .g-adm-dashboard-card--subtitle{
-    @apply text-white text-sm	;
-  
-  }
+ 
 }
 
 
