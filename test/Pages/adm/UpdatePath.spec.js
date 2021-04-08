@@ -3,14 +3,15 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks, store } from '../../../store/__mocks__';
 import UpdatePath from '../../../pages/adm/UpdatePath.vue';
 import VueMeta from 'vue-meta';
+import { validateTruthiness, validateBooleanValues } from './../../utils/index';
 
-jest.mock('../../../store/__mocks__');
+jest.mock('../../../store');
 
 const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<Index/>', () => {
+describe('<UpdatePath/>', () => {
     let wrapper;
 
     beforeEach(async () => {
@@ -28,17 +29,20 @@ describe('<Index/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-update-path", ".g-update-path-toggleButton", ".g-update-path--overlay", ".g-update-path--form"];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+
         expect(wrapper).toMatchSnapshot();
     });
     it('data should initialize correctly', () => {
-        expect(UpdatePath.data().isFormOpen).toEqual(false);
+        const isFormOpen = UpdatePath.data().isFormOpen;
+        validateBooleanValues(isFormOpen, false);
 
     });
     it('function should be called', async () => {
+
         await wrapper.vm.toggleComponent();
-        expect(wrapper.vm.isFormOpen).toBe(true);
+        const isFormOpen = wrapper.vm.isFormOpen;
+
+        validateBooleanValues(isFormOpen, true);
     });
 
 

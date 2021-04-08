@@ -4,8 +4,9 @@ import { __createMocks, store } from '../../../store/__mocks__';
 import RegisterEmployee from '../../../pages/adm/RegisterEmployee.vue';
 import VueMeta from 'vue-meta';
 import RegisterEmployeeForm from '../../../components/Register/RegisterEmployeeForm.vue';
+import { validateTruthiness, validateStringDataType, validateMatchingStringValues } from './../../utils/index';
 
-jest.mock('../../../store/__mocks__');
+jest.mock('../../../store');
 
 const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
@@ -30,16 +31,18 @@ describe('<RegisterEmployee/>', () => {
     });
     it('should render correctly', () => {
         const form = wrapper.findComponent(RegisterEmployeeForm);
-
-        const idArr = [".g-register", ".g-register--form", "login_button"];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        const elements = [".g-register", ".g-register--form"];
+        elements.forEach((id) => validateTruthiness(wrapper.get(id)));
         expect(wrapper).toMatchSnapshot();
-        expect(form.exists()).toBeTruthy();
-
-
+        validateTruthiness(form.exists());
     });
-    it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Register employee');
+
+    it("should have title 'Register employee'", () => {
+        const title = wrapper.vm.$metaInfo.title;
+        const mockedValue = 'Register employee';
+        validateStringDataType(title);
+        validateMatchingStringValues(title, mockedValue);
+
 
     });
 });

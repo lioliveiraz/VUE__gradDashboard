@@ -3,9 +3,10 @@ import RegisterEmployeeForm from '../../../components/Register/RegisterEmployeeF
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks, store } from '../../../store/__mocks__';
 import BaseInput from '../../../components/BaseInput.vue';
+import { validateTruthiness, validateLength, validateObjectDataType, validateObjectToHaveProperty } from './../../utils/index';
 
 
-jest.mock('../../../store/__mocks__');
+jest.mock('../../../store');
 
 const localVue = createLocalVue();
 
@@ -13,9 +14,7 @@ localVue.use(Vuex);
 
 describe('<RegisterEmployeeForm/>', () => {
     let wrapper, mockedData, errors;
-    mockedData = {
-
-    };
+    mockedData = {};
     errors = {};
     beforeEach(async () => {
         wrapper = await shallowMount(RegisterEmployeeForm, {
@@ -24,30 +23,28 @@ describe('<RegisterEmployeeForm/>', () => {
         });
     });
     it('should render correctly', () => {
-        const idArr = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-base-btn-submit'];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        const elements = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-base-btn-submit'];
+        elements.forEach((id) => validateTruthiness(wrapper.find(id)));
         expect(wrapper).toMatchSnapshot();
 
     });
     it('child components render correctly', () => {
         const baseInput = wrapper.findComponent(BaseInput);
         const inputs = wrapper.findAllComponents(BaseInput);
-
-        expect(baseInput.exists()).toBeTruthy();
-        expect(inputs).toHaveLength(3);
-
+        validateTruthiness(baseInput.exists());
+        validateLength(inputs, 3);
     });
     it('data initialize correctly', () => {
-
-        expect(RegisterEmployeeForm.data().employeeObj).toEqual(mockedData);
-        expect(RegisterEmployeeForm.data().errors).toEqual({});
-        expect(RegisterEmployeeForm.data().key).toEqual(0);
-
+        const employeeOvj = RegisterEmployeeForm.data().employeeObj;
+        const errors = RegisterEmployeeForm.data().errors;
+        const key = RegisterEmployeeForm.data().key;
+        validateObjectDataType(employeeOvj);
+        validateObjectDataType(errors);
+        expect(key).toEqual(0);
     });
 
     it("should return an object with errors", async () => {
         const form = wrapper.find('form');
-
         mockedData = {
             name: "!",
             empId: "!"
@@ -62,11 +59,16 @@ describe('<RegisterEmployeeForm/>', () => {
             name: expect.any(String),
             empId: expect.any(String)
         };
-        expect(wrapper.vm.errors).toEqual(errors);
+        const wrapperErrors = wrapper.vm.errors;
+        validateObjectDataType(wrapperErrors);
+        validateObjectToHaveProperty(wrapperErrors, "name");
+        validateObjectToHaveProperty(wrapperErrors, "empId");
+
     });
 
     it("should NOT return an object with errors", async () => {
         const form = wrapper.find('form');
+        const wrapperErrors = wrapper.vm.errors;
 
         mockedData = {
             name: "name",
@@ -78,10 +80,9 @@ describe('<RegisterEmployeeForm/>', () => {
         });
 
         await form.trigger("submit");
-        errors = {
-        };
-        expect(wrapper.vm.errors).toEqual(errors);
-
+        errors = {};
+        expect(wrapperErrors).toEqual(errors);
+        validateObjectDataType(wrapperErrors);
     });
 
     it("should change the date once the method is called", async () => {

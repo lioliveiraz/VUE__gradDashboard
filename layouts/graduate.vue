@@ -18,7 +18,7 @@ import global from "../mixin/global";
 import TheNav from "../components/Nav/TheNav";
 import TheFooter from "../components/Footer/TheFooter";
 import { mapGetters } from "vuex";
-import {isUserAdm} from "../helpers/service"
+import { isUserAdm } from "../helpers/service";
 Vue.mixin(global);
 
 Vue.use(Toast, {
@@ -35,8 +35,7 @@ export default {
     return {
       displayADMLinks: this.isAdm,
       THEname: "",
-            displayADMLinks: this.isAdm,
-
+      displayADMLinks: this.isAdm,
     };
   },
 
@@ -46,8 +45,8 @@ export default {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
     },
 
-    isAdm(){
-      return isUserAdm(this.getToken)
+    isAdm() {
+      return isUserAdm(this.getToken);
     },
 
     links_grads() {
@@ -80,10 +79,9 @@ export default {
           path: "/adm/updatepath",
           name: this.$t("PATH_NAME_NEW_COURSE"),
         },
-      ]
-    
-  }},
-
+      ];
+    },
+  },
 };
 </script>
 <style >

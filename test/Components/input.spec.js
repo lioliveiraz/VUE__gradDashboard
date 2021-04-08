@@ -1,10 +1,9 @@
 import BaseInput from '../../components/BaseInput.vue';
 import { shallowMount } from '@vue/test-utils';
-import Vue from 'vue';
-Vue.directive('t', () => { });
+import { validateTruthiness, validateMatchingStringValues } from './../utils/index';
 
 
-describe('<Input>', () => {
+describe('<BaseInput>', () => {
     let wrapper, attributeObj;
 
     beforeEach(async () => {
@@ -25,30 +24,32 @@ describe('<Input>', () => {
 
     });
 
-    it('should render correctly', () => {
-        let label = wrapper.find('label');
+    it('should all elements render correctly', () => {
+        const label = wrapper.find('label');
+        const input = wrapper.find('input');
+        const text = attributeObj.name.toUpperCase();
+        validateTruthiness(label);
+        validateTruthiness(input);
         expect(wrapper).toMatchSnapshot();
-        expect(wrapper.find('input')).toBeTruthy();
-        expect(wrapper.find('label')).toBeTruthy();
-        expect(label.text()).toBe(attributeObj.name.toUpperCase());
-
+        validateMatchingStringValues(label.text(), text);
     });
 
     it('value should initialize as an empty string', () => {
-        expect(BaseInput.data().currentValue).toEqual("");
+        const currentValue = BaseInput.data().currentValue;
+        validateMatchingStringValues(currentValue, "");
     });
+
     it('data should bind to input', async () => {
         const input = wrapper.find('input');
         await wrapper.setData({
             currentValue: "value"
         });
-        expect(input.element.value).toEqual("value");
+        validateMatchingStringValues(input.element.value, "value");
     });
     it('input should bind to data', async () => {
         const input = wrapper.find('input');
-
         input.element.value = 'value';
         await input.trigger('input');
-        expect(wrapper.vm.currentValue).toEqual("value");
+        validateMatchingStringValues(wrapper.vm.currentValue, "value");
     });
 });

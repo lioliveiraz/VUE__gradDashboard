@@ -4,6 +4,7 @@ import { __createMocks as createStoreMocks, store } from '../../../store/__mocks
 import Dashboard from '../../../pages/adm/Dashboard.vue';
 import VueMeta from 'vue-meta';
 import BaseCard from '../../../components/BaseCard.vue';
+import { validateTruthiness, validateArrayDataType, validateStringDataType, validateMatchingStringValues } from './../../utils/index';
 
 jest.mock('../../../store');
 
@@ -11,7 +12,7 @@ const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<ADMDashboard/>', () => {
+describe('<ADM Dashboard/>', () => {
     let wrapper;
 
     beforeEach(async () => {
@@ -30,17 +31,21 @@ describe('<ADMDashboard/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--top", ".g-dashboard--top"];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        const elements = [".g-dashboard", ".g-dashboard--top"];
+        elements.forEach((id) => validateTruthiness(wrapper.get(id)));
         expect(wrapper).toMatchSnapshot();
     });
+
     it('data should initialize correctly', () => {
-        expect(Dashboard.data().grads).toBeTruthy();
-        expect(Dashboard.data().grads).toEqual([]);
-
+        const data = Dashboard.data().grads;
+        validateTruthiness(data);
+        expect(data).toEqual([]);
     });
-    it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Dashboard');
 
+    it("should have title 'Dashboard'", () => {
+        const title = wrapper.vm.$metaInfo.title;
+        const mockedValue = 'Dashboard';
+        validateStringDataType(title);
+        validateMatchingStringValues(title, mockedValue);
     });
 });

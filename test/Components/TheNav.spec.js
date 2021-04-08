@@ -1,41 +1,57 @@
 import TheNav from '../../components/Nav/TheNav.vue';
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BaseButton from '../../components/Style/BaseButton.vue';
+import { validateTruthiness, validateStringDataType, validateObjectDataType, validateObjectToHaveProperty } from './../utils/index';
+import { __createMocks, store } from '../../store/__mocks__';
+import Vuex from 'vuex';
+
+jest.mock('../../store');
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe('<TheNav>', () => {
     let wrapper, links, username;
     links = [];
     username = 'username';
     beforeEach(async () => {
-
         wrapper = await shallowMount(TheNav, {
+            store: store,
             propsData: { links, username }, mocks: {
                 $t: (msg) => msg,
-                $i18n: { locales: ['pt', 'en'] }
-            }
+                $i18n: { locales: ['pt', 'en'] },
+                $router: []
+            },
+            localVue
+
         });
     });
-    it('should render correctly', () => {
+    it('should all elements render correctly', () => {
         const baseButton = wrapper.findComponent(BaseButton);
 
-        let idsArr = [
+        let elements = [
             ".g-nav-wrapper", ".g-language-toggle", ".g-nav--profile", ".g-list", '.g-nav--profile'
         ];
-        idsArr.forEach(id => {
-            expect(wrapper.find(id)).toBeTruthy();
-
+        elements.forEach(id => {
+            validateTruthiness(wrapper.find(id));
         });
-        expect(baseButton.exists()).toBeTruthy();
+        validateTruthiness(baseButton.exists());
         expect(wrapper).toMatchSnapshot();
     });
+
     it('should receive props correctly', () => {
-        expect(wrapper.props()).toEqual({ links, username });
-
+        const props = wrapper.props();
+        validateObjectDataType(props);
+        validateStringDataType(props.username);
+        validateObjectToHaveProperty(props, "links");
     });
+
     it('data initialize correctly', () => {
-
         expect(TheNav.data().isMenu).toEqual(expect.any(Boolean));
+    });
 
-
+    it("handleLogout should be called", async () => {
+        await wrapper.vm.handleLogout();
+        expect(wrapper.vm.$router).toEqual(["/"]);
     });
 });

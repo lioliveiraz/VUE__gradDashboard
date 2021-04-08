@@ -1,5 +1,6 @@
 import ScoresTable from '../../components/Scores/ScoresTable.vue';
 import { shallowMount } from '@vue/test-utils';
+import { validateTruthiness, validateObjectDataType, validateMatchingStringValues } from './../utils/index';
 
 describe("<ScoresTable>", () => {
     let scores, wrapper;
@@ -16,15 +17,18 @@ describe("<ScoresTable>", () => {
     });
 
     it('should render correctly', () => {
+        const elements = [".g-table-wrapper", ".g-table-cell"];
+        elements.forEach(el => {
+            validateTruthiness(wrapper.get(el));
+        });
         expect(wrapper).toMatchSnapshot();
-        expect(wrapper.find('score_table')).toBeTruthy();
-        expect(wrapper.find('score_table--code')).toBeTruthy();
-        expect(wrapper.find('score_table--score')).toBeTruthy();
-
     });
     it('receive props correctly', () => {
+        const props = wrapper.props();
+        const text = wrapper.text();
+        validateObjectDataType(props);
+        expect(props).toEqual({ scores });
+        validateMatchingStringValues(text, "847843");
 
-        expect(wrapper.props()).toEqual({ scores });
-        expect(wrapper.text()).toContain("847843");
     });
 });

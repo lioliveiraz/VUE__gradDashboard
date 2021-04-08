@@ -40,7 +40,9 @@ export default {
       const res = await getScores(this.empId, this.getToken);
       this.scoresArr = res.scores;
     } catch (err) {
-      console.log(err);
+      this.$toast("Something went wrong! Try again latter", {
+        type: this.TOAST_ERROR,
+      });
     }
   },
 };

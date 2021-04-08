@@ -4,6 +4,8 @@ import { __createMocks, store } from '../../../store/__mocks__';
 import LearningPath from '../../../pages/graduate/LearningPath.vue';
 import VueMeta from 'vue-meta';
 import Courses from '../../../components/Courses/Courses.vue';
+import { validateTruthiness, validateStringDataType, validateMatchingStringValues } from '../../utils/index';
+
 
 jest.mock('../../../store');
 
@@ -27,18 +29,20 @@ describe('<Index/>', () => {
         }
     });
     it('should render correctly', () => {
+        const div = wrapper.find("div");
         const courses = wrapper.findComponent(Courses);
-
-        expect(wrapper.find("div")).toBeTruthy();
-        expect(courses).toBeTruthy();
-
+        validateTruthiness(div);
+        validateTruthiness(courses);
     });
     it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Courses');
+        const title = wrapper.vm.$metaInfo.title;
+        validateStringDataType(title);
+        validateMatchingStringValues(title, "Courses");
 
     });
     it('data should initialize correctly', () => {
-        expect(LearningPath.data().isCourse).toBeTruthy();
+        const isCourses = LearningPath.data().isCourse;
+        validateTruthiness(isCourses);
 
 
     });

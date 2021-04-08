@@ -40,7 +40,7 @@
         <li>
           <BaseButton
             :value="$t('BUTTON_LOGOUT')"
-            :handleClick="handlelogout"
+            :handleClick="handleLogout"
           />
         </li>
       </ul>
@@ -71,7 +71,7 @@ export default {
   methods: {
     ...mapActions("auth", ["logout"]),
 
-    handlelogout() {
+    handleLogout() {
       this.logout();
       this.$router.push("/");
     },

@@ -5,7 +5,7 @@ import Score from '../../../pages/graduate/Scores.vue';
 import VueMeta from 'vue-meta';
 import AddNewScore from '../../../components/Scores/AddNewScoreForm.vue';
 import ScoresTable from '../../../components/Scores/ScoresTable.vue';
-
+import { validateTruthiness, validateStringDataType, validateMatchingStringValues } from '../../utils';
 jest.mock('../../../store');
 
 const localVue = createLocalVue();
@@ -33,15 +33,18 @@ describe('<Index/>', () => {
         const addNewScore = wrapper.findComponent(AddNewScore);
         const scoreTable = wrapper.findComponent(ScoresTable);
 
-        const idArr = [".g-scores", ".g-scores--container", ".g-scores--form", "g-scores--table", "g-scores--table--inner"];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        const elements = [".g-scores", ".g-scores--container", ".g-scores--form", "g-scores--table", "g-scores--table--inner"];
+        elements.forEach((id) => validateTruthiness(wrapper.find(id)));
+        validateTruthiness(scoreTable);
+        validateTruthiness(addNewScore);
+
         expect(wrapper).toMatchSnapshot();
-        expect(scoreTable).toBeTruthy();
-        expect(addNewScore).toBeTruthy();
+
 
     });
     it("testing metaInfo", () => {
-        expect(wrapper.vm.$metaInfo.title).toBe('Scores');
-
+        const title = wrapper.vm.$metaInfo.title;
+        validateMatchingStringValues(title, "Scores");
+        validateStringDataType(title);
     });
 });

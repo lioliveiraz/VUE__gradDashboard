@@ -7,9 +7,7 @@
 <script>
 export default {
   beforeMount() {
-    window.onNuxtReady(() => {
-      window.$nuxt.$router.push("/");
-    });
+    this.$router.push("/");
   },
 };
 </script>

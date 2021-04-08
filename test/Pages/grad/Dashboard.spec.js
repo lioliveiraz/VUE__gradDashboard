@@ -3,6 +3,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
 import Dashboard from '../../../pages/graduate/Dashboard.vue';
 import VueMeta from 'vue-meta';
+import { validateTruthiness, validateObjectDataType, validateObjectToHaveProperty } from '../../utils';
 
 jest.mock('../../../store');
 
@@ -30,16 +31,22 @@ describe('<ADMDashboard/>', () => {
     });
     it('should render correctly', () => {
         const idArr = [".g-dashboard", ".g-dashboard--middle", ".g-dashboard--bottom"];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        idArr.forEach((id) => validateTruthiness(wrapper.get(id)));
         expect(wrapper).toMatchSnapshot();
     });
     it('data should initialize correctly', () => {
-        expect(Dashboard.data().circle).toEqual({
-            text: 0,
-        });
-        expect(Dashboard.data().courses).toEqual([]);
-        expect(Dashboard.data().cognizantTopics).toEqual([]);
-        expect(Dashboard.data().techTopics).toEqual([]);
+        const circle = Dashboard.data().circle;
+        const courses = Dashboard.data().courses;
+        const cognizantTopics = Dashboard.data().cognizantTopics;
+        const techTopics = Dashboard.data().techTopics;
+        const receivedArrays = [courses, cognizantTopics, techTopics];
+
+
+        validateObjectDataType(circle);
+        validateObjectToHaveProperty(circle, "text");
+
+        receivedArrays.forEach(el => expect(el).toEqual([]));
+
 
     });
     it("testing metaInfo", () => {

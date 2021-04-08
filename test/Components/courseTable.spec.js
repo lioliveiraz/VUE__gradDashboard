@@ -1,19 +1,14 @@
 import CoursesTable from '../../components/Courses/CoursesTable.vue';
 import { shallowMount } from '@vue/test-utils';
-
+import { validateTruthiness, validateObjectDataType, validateMatchingStringValues, validateObjectToHaveProperty } from '../utils';
 
 
 describe('<Table>', () => {
     let courses, wrapper;
-    const idsArr = [
-        'course_table',
-        'course_table-week',
-        'course_table-code',
-        'course_table-name',
-        'course_table-assessment',
-        'course_table-source',
-        'course_table-duration',
-        'course_table-link'];
+    const elements = [
+        '.g-table-wrapper',
+        '.g-table-cell',
+    ];
 
 
     beforeEach(async () => {
@@ -35,14 +30,17 @@ describe('<Table>', () => {
 
     it('should render correctly', () => {
 
-        idsArr.forEach(id => {
-            expect(wrapper.find(id)).toBeTruthy();
+        elements.forEach(id => {
+            validateTruthiness(wrapper.get(id));
 
         });
     });
     it('should receive props correctly', () => {
-        expect(wrapper.props()).toEqual({ courses });
-        expect(wrapper.text()).toContain("self-paced");
+        const props = wrapper.props();
+        const text = wrapper.text();
+        validateObjectDataType(props);
+        validateObjectDataType(props, 'course_name');
+        validateMatchingStringValues(text, "self-paced");
     });
 
     it('should renders according to props', () => {
@@ -52,7 +50,8 @@ describe('<Table>', () => {
                 $t: (msg) => msg
             }
         });
-        expect(wrapper.text()).toContain('ASSESSMENTS_VALUE');
+        validateMatchingStringValues(wrapper.text(), 'ASSESSMENTS_VALUE');
+
     });
 
 

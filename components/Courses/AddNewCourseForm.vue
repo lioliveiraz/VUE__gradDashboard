@@ -67,8 +67,7 @@
             />
 
             <div class="g-addNewcourse-buttons">
-              <BaseButton :handleClick="handleSubmit" value="Send" />
-
+              <input type="submit" value="Send" class="g-base-btn-blue" />
               <BaseButton :handleClick="toggleComponent" value="close" />
             </div>
           </div>
@@ -122,7 +121,7 @@ export default {
           .then((res) => {
             this.errors = {};
             this.toggleComponent();
-            this.key++;
+            this.key = this.key + 1;
             this.handleAddCourse(this.courseData);
             this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
           })

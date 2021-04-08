@@ -2,8 +2,9 @@ import DashboardHeader from '../../components/Style/DashboardHeader.vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import { __createMocks as createStoreMocks, store } from '../../store/__mocks__';
+import { validateTruthiness } from './../utils/index';
 
-jest.mock('../../store/__mocks__');
+jest.mock('../../store');
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -13,22 +14,19 @@ describe('<DashboardHeader>', () => {
     links = [];
     username = 'username';
     beforeEach(async () => {
-
         wrapper = await shallowMount(DashboardHeader, {
             store: store,
             mocks: {
                 $t: (msg) => msg,
-
             },
             localVue
         });
     });
-    it('should render correctly', () => {
+    it('should all elements render correctly', () => {
 
-        let idsArr = [
-            ".g-dashboard--top", "img"];
-        idsArr.forEach(id => {
-            expect(wrapper.find(id)).toBeTruthy();
+        const elements = [".g-dashboard--top", "img"];
+        elements.forEach(id => {
+            validateTruthiness(wrapper.get(id));
 
         });
         expect(wrapper).toMatchSnapshot();

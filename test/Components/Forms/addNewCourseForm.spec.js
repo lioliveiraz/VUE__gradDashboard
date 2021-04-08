@@ -4,8 +4,9 @@ import { __createMocks, store } from '../../../store/__mocks__';
 import AddNewCourseForm from '../../../components/Courses/AddNewCourseForm.vue';
 import BaseButton from '../../../components/Style/BaseButton.vue';
 import BaseInput from '../../../components/BaseInput.vue';
+import { validateTruthiness, validateLength } from './../../utils/index';
 
-jest.mock('../../../store/__mocks__');
+jest.mock('../../../store');
 
 const localVue = createLocalVue();
 
@@ -23,23 +24,24 @@ describe('<AddNewCourseForm/>', () => {
     });
 
     it('should render correctly', () => {
-        const idArr = ["h3", "form", '.g-addNewcourse-buttons'];
-        idArr.forEach((id) => expect(wrapper.find(id)).toBeTruthy());
+        const elements = ["h3", "form", '.g-addNewcourse-buttons'];
+        elements.forEach((id) => validateTruthiness(wrapper.find(id)));
         expect(wrapper).toMatchSnapshot();
 
     });
-    it('child components render correctly', () => {
+    it('children components should render correctly', () => {
         const baseButton = wrapper.findComponent(BaseButton);
         const baseInput = wrapper.findComponent(BaseInput);
         const inputs = wrapper.findAllComponents(BaseInput);
+        validateTruthiness(baseButton.exists());
+        validateTruthiness(baseInput.exists());
+        validateLength(inputs, 6);
 
-        expect(baseButton.exists()).toBeTruthy();
-        expect(baseInput.exists()).toBeTruthy();
-        expect(inputs).toHaveLength(6);
 
     });
     it('should receive props correctly', () => {
-        expect(wrapper.props()).toEqual({ toggleComponent });
+        const props = wrapper.props();
+        expect(props).toEqual({ toggleComponent });
 
     });
     it('data initialize correctly', () => {
@@ -53,7 +55,6 @@ describe('<AddNewCourseForm/>', () => {
     });
     it("should return an object with errors", async () => {
         let courseMock = {
-
             week: 10,
             course_code: "!!!",
             course_name: "Wro3#gN04Me",
@@ -97,6 +98,14 @@ describe('<AddNewCourseForm/>', () => {
 
         };
         expect(wrapper.vm.errors).toEqual(error);
+    });
+    it("should change the date once the method is called", async () => {
+        await wrapper.vm.getUserInput("value", "name");
+        let object = {
+            name: "value"
+        };
+        expect(wrapper.vm.courseData).toEqual(expect.objectContaining(object));
+
     });
 
 
