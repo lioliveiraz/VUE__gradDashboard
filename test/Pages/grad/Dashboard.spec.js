@@ -19,7 +19,8 @@ describe('<Dashboard/>', () => {
             store: store,
             mocks: {
                 $t: (msg) => msg,
-                $toast: (msg) => msg
+                $toast: (msg) => msg,
+                $i18n: { locales: 'pt' },
             },
             localVue
         });
@@ -35,15 +36,10 @@ describe('<Dashboard/>', () => {
         expect(wrapper).toMatchSnapshot();
     });
     it('data should initialize correctly', () => {
-        const circle = Dashboard.data().circle;
-        const courses = Dashboard.data().courses;
-        const cognizantTopics = Dashboard.data().cognizantTopics;
-        const techTopics = Dashboard.data().techTopics;
+        const courses = wrapper.vm.courses;
+        const cognizantTopics = wrapper.vm.cognizantTopics;
+        const techTopics = wrapper.vm.techTopics;
         const receivedArrays = [courses, cognizantTopics, techTopics];
-
-
-        validateObjectDataType(circle);
-        validateObjectToHaveProperty(circle, "text");
 
         receivedArrays.forEach(el => expect(el).toEqual([]));
 

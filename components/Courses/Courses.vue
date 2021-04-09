@@ -1,18 +1,24 @@
 <template>
   <div class="g-courses-wrapper">
     <div class="g-tables">
-      <BaseButton
-        :handleClick="toggleCourses"
-        :value="!isCourse ? courseValue : assessmentValue"
-      />
+      <LazyHydrate on-interaction="click">
+        <BaseButton
+          :handleClick="toggleCourses"
+          :value="!isCourse ? courseValue : assessmentValue"
+        />
+      </LazyHydrate>
 
       <div class="g-tables-inner">
         <h3 class="text-gray-600 self-auto">
           {{ isCourse ? courseValue : assessmentValue }}
         </h3>
-        <CoursesTable v-if="isCourse" :courses="coursesArr" />
+        <LazyHydrate never>
+          <CoursesTable v-if="isCourse" :courses="coursesArr" />
+        </LazyHydrate>
 
-        <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
+        <LazyHydrate never>
+          <CoursesTable v-if="!isCourse" :courses="assessmentsArr" />
+        </LazyHydrate>
       </div>
     </div>
   </div>
@@ -21,6 +27,7 @@
 <script>
 import CoursesTable from "./CoursesTable";
 import BaseButton from "../../components/Style/BaseButton";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   props: {
@@ -33,8 +40,9 @@ export default {
     };
   },
   components: {
-    CoursesTable,
-    BaseButton,
+    LazyHydrate,
+    CoursesTable: () => import("./CoursesTable"),
+    BaseButton: () => import("../../components/Style/BaseButton"),
   },
   computed: {
     courseValue() {

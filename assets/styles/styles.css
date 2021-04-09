@@ -32,6 +32,9 @@
     box-sizing: border-box;
     margin: 0;
   }
+  *:focus {
+    outline: none;
+}
 
   .g-container{
     @apply h-screen  flex w-full;
@@ -72,6 +75,9 @@
 .g-base-btn-submit{
   @apply g-base-btn g-background-green   ;
   }
+  .g-disabled{
+    background-color: rgb(184, 183, 183) !important;
+    }
   .g-base-btn-blue{
     @apply  g-base-btn g-background-blue  ;
   }
@@ -108,7 +114,7 @@
     font-weight: 700;
   }
   .g-base-input,.g-selector {
-    @apply h-12 bg-gray-300 border-yellow-200 text-black p-3 ;
+    @apply h-12 bg-gray-300  text-black p-3 ;
   }
   .g-selector{
     @apply  w-5/6;

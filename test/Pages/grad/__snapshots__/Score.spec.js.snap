@@ -9,10 +9,16 @@ VueWrapper {
     "hook:beforeMount": Array [
       Array [],
     ],
+    "hook:beforeUpdate": Array [
+      Array [],
+    ],
     "hook:created": Array [
       Array [],
     ],
     "hook:mounted": Array [
+      Array [],
+    ],
+    "hook:updated": Array [
       Array [],
     ],
   },
@@ -32,6 +38,14 @@ VueWrapper {
     Object {
       "args": Array [],
       "name": "hook:mounted",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:beforeUpdate",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:updated",
     },
   ],
   "isFunctionalComponent": undefined,

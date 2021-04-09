@@ -36,54 +36,12 @@ describe('<RegisterEmployeeForm/>', () => {
     });
     it('data initialize correctly', () => {
         const employeeOvj = RegisterEmployeeForm.data().employeeObj;
-        const errors = RegisterEmployeeForm.data().errors;
         const key = RegisterEmployeeForm.data().key;
         validateObjectDataType(employeeOvj);
-        validateObjectDataType(errors);
         expect(key).toEqual(0);
     });
 
-    it("should return an object with errors", async () => {
-        const form = wrapper.find('form');
-        mockedData = {
-            name: "!",
-            empId: "!"
-        };
 
-        await wrapper.setData({
-            employeeObj: mockedData
-        });
-
-        await form.trigger("submit");
-        errors = {
-            name: expect.any(String),
-            empId: expect.any(String)
-        };
-        const wrapperErrors = wrapper.vm.errors;
-        validateObjectDataType(wrapperErrors);
-        validateObjectToHaveProperty(wrapperErrors, "name");
-        validateObjectToHaveProperty(wrapperErrors, "empId");
-
-    });
-
-    it("should NOT return an object with errors", async () => {
-        const form = wrapper.find('form');
-        const wrapperErrors = wrapper.vm.errors;
-
-        mockedData = {
-            name: "name",
-            empId: "123456"
-        };
-
-        await wrapper.setData({
-            employeeObj: mockedData
-        });
-
-        await form.trigger("submit");
-        errors = {};
-        expect(wrapperErrors).toEqual(errors);
-        validateObjectDataType(wrapperErrors);
-    });
 
     it("should change the date once the method is called", async () => {
         await wrapper.vm.getUserInput("value", "name");
@@ -91,6 +49,23 @@ describe('<RegisterEmployeeForm/>', () => {
             name: "value"
         };
         expect(wrapper.vm.employeeObj).toEqual(expect.objectContaining(object));
+
+    });
+    it("getUserInput should change the data for true", async () => {
+        let employeeDataMock = {
+            empId: '123456',
+            password: '123456',
+        };
+
+        await wrapper.setData({
+            isFormValid: false,
+            employeeObj: employeeDataMock
+        });
+
+        await wrapper.vm.getUserInput('name', "name");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeTruthy();
 
     });
 

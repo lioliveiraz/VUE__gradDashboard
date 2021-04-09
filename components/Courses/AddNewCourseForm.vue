@@ -14,7 +14,6 @@
                 name: this.TABLE_HEAD_WEEK_ENGLISH,
                 placeholder: 'week number',
                 required: true,
-                error: errors.week && errors.week,
               }"
             />
 
@@ -24,7 +23,6 @@
                 type: this.TEXT_INPUT,
                 name: this.COURSE_CODE_INPUT,
                 required: true,
-                error: errors.course_code && errors.course_code,
               }"
             />
 
@@ -34,7 +32,6 @@
                 type: this.TEXT_INPUT,
                 name: this.COURSE_NAME_INPUT,
                 required: true,
-                error: errors.course_name && errors.course_name,
               }"
             />
 
@@ -45,7 +42,6 @@
                 name: this.TABLE_HEAD_SOURCE_ENGLISH,
                 placeholder: 'Udemy',
                 required: true,
-                error: errors.source && errors.source,
               }"
             />
 
@@ -67,7 +63,14 @@
             />
 
             <div class="g-addNewcourse-buttons">
-              <input type="submit" value="Send" class="g-base-btn-blue" />
+              <input
+                type="submit"
+                value="Send"
+                :class="
+                  isFormValid ? 'g-base-btn-blue' : 'g-base-btn-blue g-disabled'
+                "
+                :disabled="!isFormValid"
+              />
               <BaseButton :handleClick="toggleComponent" value="close" />
             </div>
           </div>
@@ -83,6 +86,7 @@ import { addCourse } from "../../api/requests/post";
 import { mapGetters, mapActions } from "vuex";
 import { courseValidation } from "../../helpers/validation";
 import BaseButton from "../../components/Style/BaseButton";
+import { isObjectEmpty, isObjectValuesEmpty } from "../../helpers/service";
 
 export default {
   components: { BaseInput, BaseButton },
@@ -95,8 +99,8 @@ export default {
         link:
           "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
       },
-      errors: {},
       key: 0,
+      isFormValid: false,
     };
   },
   computed: {
@@ -105,30 +109,38 @@ export default {
   methods: {
     ...mapActions("courses", ["fetchCourses", "handleAddCourse"]),
 
+    formValidation() {
+      const errors = courseValidation(this.courseData);
+      this.isFormValid = isObjectEmpty(errors);
+    },
     getUserInput(inputValue, inputName) {
       this.courseData[inputName] = inputValue;
+      if (
+        !isObjectEmpty(this.courseData) &&
+        isObjectValuesEmpty(this.courseData).length === 7
+      ) {
+        this.formValidation();
+      } else {
+        this.isFormValid = false;
+      }
     },
     async handleSubmit(e) {
       e.preventDefault();
       this.courseData[this.DURATION_INPUT] = +this.courseData[
         this.DURATION_INPUT
       ];
-      const errors = courseValidation(this.courseData);
-      if (Object.entries(errors).length !== 0) {
-        this.errors = errors;
-      } else {
-        addCourse(this.courseData, this.getToken)
-          .then((res) => {
-            this.errors = {};
-            this.toggleComponent();
-            this.key = this.key + 1;
-            this.handleAddCourse(this.courseData);
-            this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
-          })
-          .catch((err) =>
-            this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
-          );
-      }
+      if (!this.isFormValid) return null;
+      addCourse(this.courseData, this.getToken)
+        .then((res) => {
+          this.errors = {};
+          this.toggleComponent();
+          this.key = this.key + 1;
+          this.handleAddCourse(this.courseData);
+          this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
+        })
+        .catch((err) =>
+          this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
+        );
     },
   },
 };

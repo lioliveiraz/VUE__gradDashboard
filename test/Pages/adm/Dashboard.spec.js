@@ -3,7 +3,6 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
 import Dashboard from '../../../pages/adm/Dashboard.vue';
 import VueMeta from 'vue-meta';
-import BaseCard from '../../../components/BaseCard.vue';
 import { validateTruthiness, validateArrayDataType, validateStringDataType, validateMatchingStringValues } from './../../utils/index';
 
 jest.mock('../../../store');

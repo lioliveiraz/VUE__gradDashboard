@@ -13,13 +13,15 @@ const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
-describe('<Index/>', () => {
+describe('<Learning Path/>', () => {
     let wrapper;
 
     beforeEach(async () => {
         wrapper = await shallowMount(LearningPath, {
             store: store,
-
+            mocks: {
+                $t: (msg) => msg,
+            },
             localVue
         });
     });

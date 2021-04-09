@@ -1,7 +1,7 @@
 <template>
   <form @submit="handleSubmit" :key="key" class="g-form-wrapper">
     <div class="g-form-wrapper--inner">
-      <select name="code" v-model="userInput.code" class="g-selector">
+      <select name="code" v-model="userInput.code" class="g-selector" required>
         <option
           class="g-selector--options"
           :value="assessment.course_code"
@@ -27,9 +27,8 @@
 
 <script>
 import { addScore } from "../../api/requests/post";
-import BaseInput from "../BaseInput";
 import { mapState, mapActions } from "vuex";
-
+import BaseInput from "../BaseInput";
 export default {
   data() {
     return {
