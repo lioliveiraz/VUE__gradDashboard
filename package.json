@@ -19,6 +19,7 @@
     "jest-html-reporter": "^3.3.0",
     "json-server": "^0.16.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.22.3",
     "sass": "^1.32.8",

@@ -7,11 +7,3 @@ VueWrapper {
   "isFunctionalComponent": undefined,
 }
 `;
-
-exports[`<TheNav> should render correctly 1`] = `
-VueWrapper {
-  "_emitted": Object {},
-  "_emittedByOrder": Array [],
-  "isFunctionalComponent": undefined,
-}
-`;

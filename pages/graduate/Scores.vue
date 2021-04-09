@@ -3,13 +3,17 @@
     <div class="g-scores--container">
       <section class="g-scores--form">
         <h3 data-testId="score_form-title">{{ $t("ADD_NEW_SCORE") }}</h3>
-        <AddNewScoreForm />
+        <LazyHydrate on-interaction>
+          <AddNewScoreForm />
+        </LazyHydrate>
       </section>
 
       <section class="g-scores--table">
         <h3 data-testId="score_form-table">{{ $t("YOUR_SCORE") }}</h3>
         <div class="g-scores--table--inner">
-          <ScoresTable :scores="scores" />
+          <LazyHydrate never>
+            <ScoresTable :scores="scores" />
+          </LazyHydrate>
         </div>
       </section>
     </div>
@@ -17,9 +21,8 @@
 </template>
 
 <script>
-import ScoresTable from "../../components/Scores/ScoresTable";
-import AddNewScoreForm from "../../components/Scores/AddNewScoreForm";
 import { mapState } from "vuex";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   nuxtI18n: false,
@@ -31,7 +34,11 @@ export default {
   },
   name: "gaduateScores",
   layout: "graduate",
-  components: { ScoresTable, AddNewScoreForm },
+  components: {
+    LazyHydrate,
+    ScoresTable: () => import("../../components/Scores/ScoresTable"),
+    AddNewScoreForm: () => import("../../components/Scores/AddNewScoreForm"),
+  },
 
   computed: {
     ...mapState("courses", ["scores"]),

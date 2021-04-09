@@ -1,23 +1,28 @@
 <template>
   <div class="g-update-path">
     <div v-if="getCourses && getAssessments" class="w-full">
-      <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
+      <LazyHydrate when-idle>
+        <Courses :coursesArr="getCourses" :assessmentsArr="getAssessments" />
+      </LazyHydrate>
+
       <div class="g-update-path-toggleButton">
-        <BaseButton :handle-click="toggleComponent" :value="$t('ADD_NEW')" />
+        <LazyHydrate on-interaction="click">
+          <BaseButton :handle-click="toggleComponent" :value="$t('ADD_NEW')" />
+        </LazyHydrate>
       </div>
     </div>
     <div v-if="isFormOpen" class="g-update-path--form focus:outline-none">
       <div v-if="isFormOpen" class="g-update-path--overlay"></div>
-      <AddNewCourseForm :toggle-component="toggleComponent" />
+      <LazyHydrate on-interaction>
+        <AddNewCourseForm :toggle-component="toggleComponent" />
+      </LazyHydrate>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Courses from "../../components/Courses/Courses";
-import AddNewCourseForm from "../../components/Courses/AddNewCourseForm";
-import BaseButton from "../../components/Style/BaseButton";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   nuxtI18n: false,
@@ -28,7 +33,12 @@ export default {
     };
   },
   middleware: "courses",
-  components: { Courses, AddNewCourseForm, BaseButton },
+  components: {
+    LazyHydrate,
+    Courses: () => import("../../components/Courses/Courses"),
+    AddNewCourseForm: () => import("../../components/Courses/AddNewCourseForm"),
+    BaseButton: () => import("../../components/Style/BaseButton"),
+  },
   layout: "graduate",
   data() {
     return {

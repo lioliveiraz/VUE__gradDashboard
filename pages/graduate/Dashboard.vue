@@ -18,7 +18,7 @@
 
     <section class="g-dashboard--bottom">
       <LazyHydrate never>
-        <TheCircleStudyTime :text="circle.text" />
+        <TheCircleStudyTime :text="calculateCourseHours" />
       </LazyHydrate>
     </section>
   </div>
@@ -47,12 +47,10 @@ export default {
   },
   data() {
     return {
-      circle: {
-        text: 0,
-      },
       courses: [],
       cognizantTopics: [],
       techTopics: [],
+      language: this.$i18n.locale,
     };
   },
   layout: "graduate",
@@ -66,13 +64,10 @@ export default {
     },
   },
 
-  async updated() {
+  async created() {
     try {
-      const cognizant = await getNewsFromApi(
-        "Cognizant",
-        this.$root.$i18n.locale
-      );
-      const tech = await getNewsFromApi("Technology", this.$root.$i18n.locale);
+      const cognizant = await getNewsFromApi("Cognizant", this.language);
+      const tech = await getNewsFromApi("Technology", this.language);
 
       this.cognizantTopics = cognizant.articles;
       this.techTopics = tech.articles;

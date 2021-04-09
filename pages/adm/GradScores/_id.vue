@@ -3,7 +3,9 @@
     <div class="w-3/4">
       <p class="employee-text">Employee: {{ empId }}</p>
       <div v-if="scoresArr">
-        <ScoresTable :scores="scoresArr" />
+        <LazyHydrate never>
+          <ScoresTable :scores="scoresArr" />
+        </LazyHydrate>
       </div>
     </div>
   </div>
@@ -12,7 +14,7 @@
 <script>
 import { getScores } from "../../../api/requests/get";
 import { mapGetters } from "vuex";
-import ScoresTable from "../../../components/Scores/ScoresTable";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   nuxtI18n: false,
@@ -23,7 +25,8 @@ export default {
     };
   },
   components: {
-    ScoresTable,
+    LazyHydrate,
+    ScoresTable: () => import("../../../components/Scores/ScoresTable"),
   },
   layout: "graduate",
   data() {

@@ -7,34 +7,40 @@
     >
       <div class="g-form-wrapper--inner">
         <div class="locker">
-          <TheLogo />
+          <LazyHydrate never>
+            <TheLogo />
+          </LazyHydrate>
         </div>
+        <LazyHydrate on-interaction>
+          <BaseInput
+            @getUserInput="getUserInput"
+            :attributeObj="{
+              type: this.TEXT_INPUT,
+              name: 'empId',
+              placeholder: '875463',
+              required: true,
+            }"
+          />
+        </LazyHydrate>
 
-        <BaseInput
-          @getUserInput="getUserInput"
-          :attributeObj="{
-            type: this.TEXT_INPUT,
-            name: 'empId',
-            placeholder: '875463',
-            required: true,
-            error: errors.empId && errors.empId,
-          }"
-        />
-        <BaseInput
-          @getUserInput="getUserInput"
-          :attributeObj="{
-            type: this.PASSWORD_INPUT,
-            name: this.PASSWORD_INPUT,
-            required: true,
-            error: errors.password && errors.password,
-          }"
-        />
-
+        <LazyHydrate on-interaction>
+          <BaseInput
+            @getUserInput="getUserInput"
+            :attributeObj="{
+              type: this.PASSWORD_INPUT,
+              name: this.PASSWORD_INPUT,
+              required: true,
+            }"
+          />
+        </LazyHydrate>
         <input
           :type="this.BUTTON_SUBMIT"
-          class="g-base-btn-submit"
+          :class="
+            isFormValid ? 'g-base-btn-submit' : 'g-base-btn-submit g-disabled'
+          "
           :value="this.button_input"
           data-testId="login_button"
+          :disabled="!isFormValid"
         />
       </div>
     </form>
@@ -42,20 +48,24 @@
 </template>
 
 <script>
-import BaseInput from "../components/BaseInput";
 import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
 import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
-import { isUserAdm } from "../helpers/service";
-import TheLogo from "../components/Style/TheLogo";
+import {
+  isObjectEmpty,
+  isUserAdm,
+  isObjectValuesEmpty,
+} from "../helpers/service";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   name: "HomePage",
   nuxtI18n: false,
   components: {
-    BaseInput,
-    TheLogo,
+    LazyHydrate,
+    BaseInput: () => import("../components/BaseInput"),
+    TheLogo: () => import("../components/Style/TheLogo"),
   },
   mixins: [global],
 
@@ -65,7 +75,7 @@ export default {
   data() {
     return {
       loginUserData: {},
-      errors: {},
+      isFormValid: false,
     };
   },
   computed: {
@@ -80,28 +90,36 @@ export default {
   methods: {
     ...mapActions("auth", ["login"]),
 
+    formValidation() {
+      const errors = userValidation(this.loginUserData);
+      this.isFormValid = isObjectEmpty(errors);
+    },
+
     getUserInput(inputValue, inputName) {
       this.loginUserData[inputName] = inputValue;
+      if (
+        !isObjectEmpty(this.loginUserData) &&
+        isObjectValuesEmpty(this.loginUserData).length === 2
+      ) {
+        this.formValidation();
+      } else {
+        this.isFormValid = false;
+      }
     },
 
     async handleSubmit(e) {
       e.preventDefault();
-      const errors = userValidation(this.loginUserData);
-
-      if (Object.entries(errors).length !== 0) {
-        this.errors = errors;
-      } else {
-        handleLogin(this.loginUserData)
-          .then((res) => {
-            this.login(res.data);
-            this.isAdm
-              ? this.$router.push({ query: "adm_dashboard" })
-              : this.$router.push({ query: "dashboard" });
-          })
-          .catch((err) =>
-            this.$toast(err.response.data.message, { type: "error" })
-          );
-      }
+      if (!this.isFormValid) return null;
+      handleLogin(this.loginUserData)
+        .then((res) => {
+          this.login(res.data);
+          this.isAdm
+            ? this.$router.push({ query: "adm_dashboard" })
+            : this.$router.push({ query: "dashboard" });
+        })
+        .catch((err) =>
+          this.$toast(err.response.data.message, { type: "error" })
+        );
     },
   },
 };

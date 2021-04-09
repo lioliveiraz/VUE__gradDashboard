@@ -4,7 +4,8 @@ import { __createMocks, store } from '../../store/__mocks__';
 import Index from '../../pages';
 import VueMeta from 'vue-meta';
 import { validateTruthiness } from './../utils/index';
-
+import axios from 'axios';
+import { handleLogin } from './../../api/requests/post';
 
 jest.mock('../../store');
 
@@ -12,6 +13,24 @@ const localVue = createLocalVue();
 localVue.use(VueMeta, { keyName: 'head' });
 localVue.use(Vuex);
 
+jest.mock('axios', () => ({
+
+    defaults: {
+        baseUrl: "http://localhost:4020/",
+    },
+
+    interceptors: {
+        request: {
+            use: jest.fn(),
+        },
+        response: {
+            use: jest.fn()
+        }
+    },
+    post: jest.fn(() => Promise.resolve({})),
+    post: jest.fn(() => Promise.rejects({}))
+
+}));
 describe('<Index/>', () => {
     let wrapper;
 
@@ -21,6 +40,7 @@ describe('<Index/>', () => {
             mocks: {
                 $t: (msg) => msg,
                 $router: [],
+                get: jest.fn(() => Promise.resolve({}))
             },
             localVue
         });
@@ -40,39 +60,28 @@ describe('<Index/>', () => {
 
     it('data should initialize correctly', () => {
         const loginUserData = Index.data().loginUserData;
-        const errors = Index.data().errors;
+        const isFormValid = Index.data().isFormValid;
         validateTruthiness(loginUserData);
-        validateTruthiness(errors);
+        expect(isFormValid).toBeFalsy();
+
     });
 
-    it('form should NOT  return error', async () => {
-        const form = wrapper.find('form');
+    it('button should be disabled', async () => {
         await wrapper.setData({
-            loginUserData: {
-                empId: "123456",
-                password: "123456"
-            }
+            isFormValid: false
         });
-        await form.trigger('submit');
-
-        expect(wrapper.vm.errors).toStrictEqual({});
+        expect(wrapper.get('.g-disabled')).toBeTruthy();
     });
-    it("data is not correct should return error object", async () => {
-        const form = wrapper.find("form");
+
+    it('button should NOT be disabled', async () => {
         await wrapper.setData({
-            loginUserData: {
-                empId: "maria",
-                password: "123456"
-            }
+            isFormValid: true
         });
-        let error = {
-            empId: expect.any(String)
-        };
-        await form.trigger("submit");
-        expect(wrapper.vm.errors).toEqual(expect.objectContaining(error));
+        expect(wrapper.get('.g-base-btn-submit')).toBeTruthy();
+
 
     });
-    it("testing metaInfo", () => {
+    it("should return title 'Welcome'", () => {
         expect(wrapper.vm.$metaInfo.title).toBe('Welcome');
 
     });
@@ -84,10 +93,35 @@ describe('<Index/>', () => {
         expect(wrapper.vm.loginUserData).toEqual(expect.objectContaining(object));
 
     });
-    it("", () => {
+    it("computed should return the right data", () => {
         expect(wrapper.vm.button_input).toBe("BUTTON_LOGIN");
 
     });
+    it("getUserInput should change the data for true", async () => {
+        let object = {
+            password: '123456'
+        };
+
+        await wrapper.setData({
+            isFormValid: false,
+            loginUserData: object
+        });
+
+        await wrapper.vm.getUserInput('empId', "111111");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeTruthy();
+
+    });
+    it("getUserInput should change the data for false", async () => {
+
+        await wrapper.vm.getUserInput('empId', "111111");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeFalsy();
+
+    });
+
 
 
 

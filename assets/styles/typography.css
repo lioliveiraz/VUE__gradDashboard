@@ -1,5 +1,5 @@
 h1{
- @apply text-green-400 font-extrabold text-5xl  capitalize text-center m-2 max-w-2xl;
+ @apply text-green-400 font-extrabold text-4xl	  capitalize text-center m-2 max-w-2xl;
     font-family: 'Zilla Slab', serif ;
 }
 
@@ -22,13 +22,13 @@ p{
 
   }
   h1{
-    font-size: 5rem;
+    @apply text-5xl	
   }
 }
 
 @media screen and ( min-width:1200px){
   h1{
-    font-size: 7rem;
+    font-size: 6rem;
   }
   
   h2,h3,h4,h5,h6{

@@ -41,7 +41,7 @@ describe('<AddNewScoreForm/>', () => {
         };
         expect(wrapper.vm.userInput).toEqual(expect.objectContaining(object));
     });
-    it("", () => {
+    it("check if the computed render the correct data", () => {
         expect(wrapper.vm.scoreInput).toBe("SCORE_INPUT");
 
     });

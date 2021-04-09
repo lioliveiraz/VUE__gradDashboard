@@ -1,14 +1,16 @@
 <template>
   <div class="g-register">
     <div class="g-register--form">
-      <RegisterEmployeeForm />
+      <LazyHydrate on-interaction>
+        <RegisterEmployeeForm />
+      </LazyHydrate>
     </div>
     <img src="../../assets/sittingMan.svg" alt="man sitting" />
   </div>
 </template>
 
 <script>
-import RegisterEmployeeForm from "../../components/Register/RegisterEmployeeForm";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   nuxtI18n: false,
@@ -18,7 +20,11 @@ export default {
       title: "Register employee",
     };
   },
-  components: { RegisterEmployeeForm },
+  components: {
+    LazyHydrate,
+    RegisterEmployeeForm: () =>
+      import("../../components/Register/RegisterEmployeeForm"),
+  },
   layout: "graduate",
 };
 </script>

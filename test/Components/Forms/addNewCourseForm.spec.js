@@ -49,7 +49,6 @@ describe('<AddNewCourseForm/>', () => {
             assessment: expect.any(Boolean), link: expect.any(String)
         };
         expect(AddNewCourseForm.data().courseData).toEqual(expect.objectContaining(courseDataMock));
-        expect(AddNewCourseForm.data().errors).toEqual({});
         expect(AddNewCourseForm.data().key).toEqual(0);
 
     });
@@ -63,18 +62,14 @@ describe('<AddNewCourseForm/>', () => {
             duration: 7,
             link: "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile"
         };
-        const form = wrapper.find('form');
 
         await wrapper.setData({
             courseData: courseMock
         });
 
-        await form.trigger("submit");
-        let error = {
-            course_code: expect.any(String),
-            course_name: expect.any(String)
-        };
-        expect(wrapper.vm.errors).toEqual(error);
+        await wrapper.vm.formValidation();
+
+        expect(wrapper.vm.isFormValid).toBeFalsy();
     });
     it("should not return an object with errors", async () => {
         let courseMock = {
@@ -93,11 +88,9 @@ describe('<AddNewCourseForm/>', () => {
             courseData: courseMock
         });
 
-        await form.trigger("submit");
-        let error = {
+        await wrapper.vm.formValidation();
 
-        };
-        expect(wrapper.vm.errors).toEqual(error);
+        expect(wrapper.vm.isFormValid).toBeTruthy();
     });
     it("should change the date once the method is called", async () => {
         await wrapper.vm.getUserInput("value", "name");
@@ -105,6 +98,49 @@ describe('<AddNewCourseForm/>', () => {
             name: "value"
         };
         expect(wrapper.vm.courseData).toEqual(expect.objectContaining(object));
+
+    });
+    it("getUserInput should change the data for true", async () => {
+        let courseMock = {
+
+            week: 10,
+            course_code: "123456",
+            course_name: "Right name",
+            assessment: false,
+            duration: 7,
+            link: "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile"
+        };
+
+        await wrapper.setData({
+            isFormValid: false,
+            courseData: courseMock
+        });
+
+        await wrapper.vm.getUserInput('source', "udemy");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeTruthy();
+
+    });
+    it("getUserInput should change the data for false", async () => {
+
+        await wrapper.setData({
+            isFormValid: false,
+            courseData: {}
+        });
+
+        await wrapper.vm.getUserInput('source', "udemy");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeFalsy();
+
+    });
+    it("getUserInput should change the data for false", async () => {
+
+        await wrapper.vm.getUserInput('empId', "111111");
+
+        const data = wrapper.vm.isFormValid;
+        expect(data).toBeFalsy();
 
     });
 
