@@ -32,7 +32,7 @@ export default {
   nuxtI18n: false,
 
   watchQuery: ["dashboard"],
-  layout: "graduate",
+  layout: "dash_layout",
   head() {
     return {
       title: "Dashboard",
@@ -53,7 +53,7 @@ export default {
       language: this.$i18n.locale,
     };
   },
-  layout: "graduate",
+  layout: "dash_layout",
 
   computed: {
     ...mapGetters("courses", ["getCourses", "getScores"]),

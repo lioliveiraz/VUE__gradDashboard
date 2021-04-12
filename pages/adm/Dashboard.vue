@@ -12,9 +12,7 @@
         class="g-adm-dashboard--middle--inner"
       >
         <nuxt-link :to="'gradscores/' + grad.empId">
-          <LazyHydrate on-interaction="click">
             <BaseCard :graduated="grad" />
-          </LazyHydrate>
         </nuxt-link>
       </div>
     </section>
@@ -24,7 +22,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { getUsers } from "../../api/requests/get";
-import LazyHydrate from "vue-lazy-hydration";
 
 export default {
   nuxtI18n: false,
@@ -35,9 +32,8 @@ export default {
     };
   },
   watchQuery: ["adm_dashboard"],
-  layout: "graduate",
+  layout: "dash_layout",
   component: {
-    LazyHydrate,
     BaseCard: () => import("../../components/BaseCard"),
   },
   data() {

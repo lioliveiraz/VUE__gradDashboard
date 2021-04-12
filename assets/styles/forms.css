@@ -1,32 +1,29 @@
-.g-form-wrapper{
-    @apply  g-centralize-items w-full  text-left ;
-    height:90%;
+.g-form-wrapper {
+  @apply g-centralize-items w-full  text-left;
+  height: 90%;
 }
-.g-form-wrapper--inner{
-    @apply flex flex-col items-center  w-4/5 p-4 ;
+.g-form-wrapper--inner {
+  @apply flex flex-col items-center  w-4/5 p-4;
 }
-
-
 
 /*Modal form*/
 
-.g-modal-form--main{
-@apply relative w-auto my-6 mx-auto h-auto	;
+.g-modal-form--main {
+  @apply relative w-auto my-6 mx-auto h-auto;
+}
+.g-modal-form--inner {
+  @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none;
+}
+.g-modal-form--header {
+  @apply flex items-start justify-between p-6 border-b border-solid rounded-t;
+}
+.g-modal-form--content {
+  @apply relative p-6 flex-auto;
+}
 
+.g-addNewcourse-buttons {
+  @apply flex;
 }
-.g-modal-form--inner{
-    @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none 
-}
-.g-modal-form--header{
-    @apply flex items-start justify-between p-6 border-b border-solid rounded-t
-}
-.g-modal-form--content{
-    @apply relative p-6 flex-auto
-}
-
-.g-addNewcourse-buttons{
-    @apply flex
-}
-.g-addNewcourse-buttons button{
-    @apply mx-3
+.g-addNewcourse-buttons button {
+  @apply mx-3;
 }

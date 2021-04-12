@@ -9,6 +9,7 @@
 import { mapGetters } from "vuex";
 
 export default {
+  name:"DashboardHeader",
   computed: {
     ...mapGetters("auth", ["getName"]),
   },

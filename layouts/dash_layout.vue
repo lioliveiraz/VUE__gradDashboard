@@ -15,8 +15,7 @@
 import Vue from "vue";
 import Toast from "vue-toastification";
 import global from "../mixin/global";
-import TheNav from "../components/Nav/TheNav";
-import TheFooter from "../components/Footer/TheFooter";
+
 import { mapGetters } from "vuex";
 import { isUserAdm } from "../helpers/service";
 Vue.mixin(global);
@@ -25,24 +24,24 @@ Vue.use(Toast, {
   position: "top-right",
   newestOnTop: true,
   maxToasts: 3,
-  pauseOnHover: true,
+  pauseOnHover: true
 });
 export default {
-  components: { TheNav, TheFooter },
+  components: { TheNav:()=>import("../components/Nav/TheNav"), TheFooter:()=>import("../components/Footer/TheFooter") },
   middleware: "courses",
 
   data() {
     return {
       displayADMLinks: this.isAdm,
       THEname: "",
-      displayADMLinks: this.isAdm,
+      displayADMLinks: this.isAdm
     };
   },
 
   computed: {
     ...mapGetters("auth", ["getToken", "getName"]),
     availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale);
     },
 
     isAdm() {
@@ -53,42 +52,45 @@ export default {
       return [
         {
           path: "dashboard",
-          name: this.$t("PATH_NAME_HOME"),
+          name: this.$t("PATH_NAME_HOME")
         },
         {
           path: "learningpath",
-          name: this.$t("PATH_NAME_COURSES"),
+          name: this.$t("PATH_NAME_COURSES")
         },
         {
           path: "scores",
-          name: this.$t("PATH_NAME_SCORE"),
-        },
+          name: this.$t("PATH_NAME_SCORE")
+        }
       ];
     },
     links_adm() {
       return [
         {
           path: "/adm/dashboard",
-          name: this.$t("PATH_NAME_HOME"),
+          name: this.$t("PATH_NAME_HOME")
         },
         {
           path: "/adm/registeremployee",
-          name: this.$t("PATH_NAME_NEW_EMPLOYEE"),
+          name: this.$t("PATH_NAME_NEW_EMPLOYEE")
         },
         {
           path: "/adm/updatepath",
-          name: this.$t("PATH_NAME_NEW_COURSE"),
-        },
+          name: this.$t("PATH_NAME_NEW_COURSE")
+        }
       ];
-    },
-  },
+    }
+  }
 };
 </script>
-<style >
+<style>
+@import "../assets/styles/global.css";
+
 @import "../assets/styles/styles.css";
 @import "../assets/styles/tables.css";
 @import "../assets/styles/colors.css";
 @import "../assets/styles/typography.css";
 @import "../assets/styles/forms.css";
 @import "../assets/styles/dashboard.css";
+@import "../assets/styles/buttons.css";
 </style>

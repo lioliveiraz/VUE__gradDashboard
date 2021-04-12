@@ -19,7 +19,7 @@ export default {
       title: "Courses",
     };
   },
-  layout: "graduate",
+  layout: "dash_layout",
   components: {
     LazyHydrate,
     Courses: () => import("../../components/Courses/Courses"),

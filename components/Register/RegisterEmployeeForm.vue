@@ -33,7 +33,7 @@
 
       <input
         :type="this.BUTTON_SUBMIT"
-        :class="isFormValid ? 'g-base-btn-blue' : 'g-base-btn-blue g-disabled'"
+        :class="isFormValid ? 'g-base-btn-green' : 'g-base-btn-green g-disabled'"
         :disabled="!isFormValid"
       />
     </div>
@@ -95,7 +95,5 @@ export default {
 </script>
 
 <style scoped>
-form {
-  width: 100%;
-}
+
 </style>

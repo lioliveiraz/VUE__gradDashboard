@@ -1,36 +1,33 @@
 /* blue*/
 
-.g-color-blue{
-    color:#00aaff
+.g-color-blue {
+  color: #00aaff;
 }
-.g-background-blue{
-    background-color:#00aaff
+.g-background-blue {
+  background-color: #00aaff;
 }
 
 /*gray*/
-.g-color-gray{
-    @apply text-gray-300	
+.g-color-gray {
+  @apply text-gray-300;
 }
-.g-background-gray{
-    @apply bg-gray-300	
+.g-background-gray {
+  @apply bg-gray-300;
 }
-
 
 /*dark gray*/
-.g-color-darkGray{
-    background:whitesmoke	
+.g-color-darkGray {
+  background: whitesmoke;
 }
-.g-background-darkGray{
-    background:whitesmoke	
+.g-background-darkGray {
+  background: whitesmoke;
 }
-
-
 
 /*green */
 
-.g-color-green{
-    color:#00c300
+.g-color-green {
+  color: #00c300;
 }
-.g-background-green{
-    background-color:#00c300
+.g-background-green {
+  background-color: #00c300;
 }

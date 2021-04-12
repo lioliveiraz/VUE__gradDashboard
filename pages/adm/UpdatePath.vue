@@ -39,7 +39,7 @@ export default {
     AddNewCourseForm: () => import("../../components/Courses/AddNewCourseForm"),
     BaseButton: () => import("../../components/Style/BaseButton"),
   },
-  layout: "graduate",
+  layout: "dash_layout",
   data() {
     return {
       isFormOpen: false,

@@ -28,7 +28,7 @@ export default {
     LazyHydrate,
     ScoresTable: () => import("../../../components/Scores/ScoresTable"),
   },
-  layout: "graduate",
+  layout: "dash_layout",
   data() {
     return {
       empId: this.$route.params.id,

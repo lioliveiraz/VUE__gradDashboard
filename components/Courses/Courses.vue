@@ -25,8 +25,7 @@
 </template>
 
 <script>
-import CoursesTable from "./CoursesTable";
-import BaseButton from "../../components/Style/BaseButton";
+
 import LazyHydrate from "vue-lazy-hydration";
 
 export default {
