@@ -1,8 +1,10 @@
 <template>
-  <div v-if="courses && assessments">
+  <div v-if="courses && assessments" class="g-learning-path">
+    <div class="g-learning-path-table">
     <LazyHydrate when-idle>
       <Courses :courses-arr="courses" :assessments-arr="assessments" />
     </LazyHydrate>
+  </div>
   </div>
 </template>
 

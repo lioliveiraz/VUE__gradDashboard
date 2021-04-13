@@ -1,9 +1,14 @@
 <template>
   <div class="g-dashboard">
-    <LazyHydrate never>
-      <DashboardHeader />
-    </LazyHydrate>
+    <section class="g-dashboard-stats">
+      <LazyHydrate never>
+        <BaseStats :title="$t('STUDY_TIME')" :value="calculateCourseHours +'h'" />
+      </LazyHydrate>
+      <LazyHydrate never>
+        <BaseStats :title="$t('AVERAGE_SCORE')" :value="calculatedScores" code="" />
+      </LazyHydrate>
 
+</section>
     <section class="g-dashboard--middle">
       <LazyHydrate on-interaction="hover">
         <BaseDashCard
@@ -16,11 +21,7 @@
       </LazyHydrate>
     </section>
 
-    <section class="g-dashboard--bottom">
-      <LazyHydrate never>
-        <TheCircleStudyTime :text="calculateCourseHours" />
-      </LazyHydrate>
-    </section>
+
   </div>
 </template>
 
@@ -44,6 +45,7 @@ export default {
     TheCircleStudyTime: () =>
       import("../../components/Style/TheCircleStudyTime"),
     DashboardHeader: () => import("../../components/Style/DashboardHeader"),
+    BaseStats:()=>import("../../components/Style/BaseStats")
   },
   data() {
     return {
@@ -51,7 +53,8 @@ export default {
       cognizantTopics: [],
       techTopics: [],
       language: this.$i18n.locale,
-    };
+    
+      };
   },
   layout: "dash_layout",
 
@@ -60,9 +63,16 @@ export default {
     calculateCourseHours() {
       return this.getCourses.reduce((acc, cur) => {
         return acc + +cur.duration;
-      }, 0);
+      }, 0)
+  
     },
-  },
+        calculatedScores() {
+      const sum= this.getScores.reduce((acc, cur) => {
+        return acc + +cur.score;
+      }, 0);
+
+      return Math.floor(sum/this.getScores.length).toString()
+  }},
 
   async created() {
     try {

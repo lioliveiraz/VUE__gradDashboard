@@ -1,5 +1,5 @@
 .g-table-wrapper {
-  @apply table-auto bg-white  w-full text-xl;
+  @apply table-auto bg-white  w-full text-xl .h-full;
 }
 .g-table-header {
   @apply bg-gray-200 text-gray-600 uppercase leading-normal;

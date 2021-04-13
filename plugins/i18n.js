@@ -45,7 +45,8 @@ export default {
                 BUTTON_LOGOUT: "logout",
                 ADD_NEW: "add new",
 
-                TOAST_FAIL_MESSAGE: "Something went wrong with our server. 🤯 Try again later"
+                TOAST_FAIL_MESSAGE: "Something went wrong with our server. 🤯 Try again later",
+                AVERAGE_SCORE:`Your average Score`
 
             },
             pt: {
@@ -87,7 +88,8 @@ export default {
                 BUTTON_LOGIN: "entrar",
                 BUTTON_LOGOUT: "sair",
                 ADD_NEW: "Add novo",
-                TOAST_FAIL_MESSAGE: "Parece que algo esta errado com nosso servidor. 🤯 Tente novamente mais tarde"
+                TOAST_FAIL_MESSAGE: "Parece que algo esta errado com nosso servidor. 🤯 Tente novamente mais tarde",
+                AVERAGE_SCORE:`Sua média de nota`
 
 
 

@@ -191,11 +191,12 @@ a:hover {
     @apply text-xl px-3 py-2;
   }
 }
-/* Tablet-landscape-up*/
-@media (min-width: 900px) {
+/* Desktop*/
+@media (min-width: 1200px) {
   .nav_close,
   .nav_open {
-    @apply relative w-1/3;
+    @apply relative w-1/4;
+    min-width: 25%;
   }
   .nav_close ul {
     display: block;
@@ -228,7 +229,7 @@ a:hover {
 .close span:nth-of-type(3) {
   transform: rotate(45deg) translate(-1px, -2px);
 }
-span {
+.g-menu span {
   width: 70%;
   height: 3px;
   background: #fff;
@@ -240,7 +241,7 @@ span {
 /* ---------------------------------------- The Footer ----------------------------------------*/
 
 .g-footer {
-  @apply g-background-primary p-10;
+  @apply g-background-primary p-10 mt-10;
   height: 30vh;
 }
 .g-footer img {
@@ -272,17 +273,24 @@ span {
   align-items: center;
   justify-content: center;
 }
+/* ---------------------------------------- Learning Path ----------------------------------------*/
+
+.g-learning-path {
+  @apply h-auto;
+  width: 100vw;
+}
 
 /* ---------------------------------------- Courses ----------------------------------------*/
 .g-courses-wrapper {
-  @apply flex  w-full h-auto;
+  @apply flex  h-auto;
+  height: calc(100vh - 100px);
 }
 .g-tables {
-  @apply flex-col w-full g-centralize-items;
-  height: 80%;
+  @apply flex-col w-full g-centralize-items my-5;
+  height: 95%;
 }
 .g-tables-inner {
-  @apply w-11/12  overflow-scroll;
+  @apply w-11/12 h-full  overflow-scroll;
 }
 
 /* ---------------------------------------- Scores ----------------------------------------*/

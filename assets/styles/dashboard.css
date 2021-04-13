@@ -1,7 +1,7 @@
 /*------common------*/
 
 .g-dashboard {
-  @apply h-auto flex-col  w-full;
+  @apply h-auto flex-col  w-full min-h-screen;
 }
 .g-dashboard--sections {
   @apply flex w-full g-centralize-items  overflow-hidden;
@@ -16,7 +16,7 @@
 
 /* ------graduate ------*/
 .g-dashboard--middle {
-  @apply g-justify-center g-background-darkGray flex-wrap overflow-hidden;
+  @apply w-auto g-justify-center g-background-darkGray flex-wrap overflow-hidden px-4 py-10 my-10 h-auto flex-shrink;
 }
 
 .g-dashboard--bottom {
@@ -34,12 +34,11 @@
   border: 3px solid #00c300;
 }
 
-/*Phone landscape*/
-@media (max-height: 500px) and (orientation: landscape) {
-}
-
 /* Tabled-portrait-up*/
 @media (min-width: 600px) and (min-height: 500px) {
+  .g-dashboard--middle {
+    @apply py-20 my-20;
+  }
 }
 /* Tablet-landscape-up*/
 @media (min-width: 900px) {
@@ -50,63 +49,94 @@
 /*Big-desktop-up*/
 @media (min-width: 1800px) {
 }
+/* ________graduate stats_________*/
+.g-dashboard-stats {
+  @apply w-auto h-auto flex .flex-wrap .justify-center;
+}
+.g-stats-card {
+  @apply shadow-lg border rounded-lg w-8/12 m-2 bg-white;
+}
+.g-stats-card--content {
+  @apply flex items-center  p-3;
+}
+.g-stats-card--square {
+  @apply flex items-center p-2 bg-purple-600 text-white rounded-lg mr-3;
+}
+.g-stats-card--square img {
+  width: 35px;
+}
+
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  .g-stats-card {
+    @apply w-2/5;
+  }
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-stats-card--square img {
+    width: 60px;
+  }
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}
 
 /* ________graduate cards_________*/
 
 .g-dashbord-card {
-  @apply flex flex-col p-5 text-center g-color-secondary w-2/5 m-3 bg-white border-gray-200 border-2 shadow-lg;
-  height: 90%;
+  @apply flex flex-col px-3 py-5 text-center g-color-secondary w-2/5 mx-3 bg-white border-gray-200 border-2 shadow-lg;
 }
 
 .g-dashbord-card img {
-  @apply my-1;
-  height: 20%;
+  @apply m-2;
+  height: 30px;
 }
 
 .g-dashboard-card--content {
-  @apply my-2  text-left text-black  border-b-2 border-black;
+  @apply py-2 px-2 text-left text-black;
+}
+.g-dashboard-card--content p {
+  @apply .border-b border-gray-200;
+}
+
+.g-dashboard-card--content:hover {
+  @apply bg-gray-300;
 }
 
 .g-article-title {
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media screen and (min-width: 700px) {
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
   .g-dashbord-card img {
     height: 80px;
   }
-}
-
-@media screen and (orientation: landscape) {
   .g-dashbord-card {
-    @apply w-3/12 p-2;
-
-    min-height: 50vh;
+    @apply px-5 py-8;
   }
-  .g-dashbord-card img {
-    @apply m-1;
-
-    height: 30px;
-  }
-
   .g-dashboard-card--content {
-    @apply my-1;
+    @apply py-5;
   }
 }
-@media screen and (min-width: 1025px) {
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
   .g-dashbord-card {
-    @apply w-3/12 p-10;
-
-    height: 70vh;
+    @apply w-1/3 mx-auto px-10;
   }
-  .g-dashbord-card img {
-    height: 150px;
-  }
-
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
   .g-dashboard-card--content {
-    @apply my-3;
+    @apply py-6;
   }
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
 }
 
 /* ------adm ------*/
