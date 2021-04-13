@@ -12,7 +12,7 @@
 }
 
 .g-base-btn-large {
-  @apply .g-btn-base  text-2xl	px-10 py-5;
+  @apply .g-btn-base  text-xl	px-6 py-4;
 }
 
 .g-disabled {
@@ -20,10 +20,10 @@
 }
 
 .g-base-btn-green {
-  @apply g-base-btn-regular g-background-green;
+  @apply g-base-btn-regular g-background-secondary;
 }
 .g-base-btn-blue {
-  @apply g-base-btn-regular g-background-blue;
+  @apply g-base-btn-regular g-background-primary;
 }
 
 /*Phone landscape*/

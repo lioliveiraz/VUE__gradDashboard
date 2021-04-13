@@ -31,3 +31,6 @@ html {
 *:focus {
   outline: none;
 }
+input {
+  color: black;
+}

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div v-if="isFormOpen" class="g-update-path--form focus:outline-none">
-      <div v-if="isFormOpen" class="g-update-path--overlay"></div>
+      <div v-if="isFormOpen" class="g-update-path--overlay "></div>
       <LazyHydrate on-interaction>
         <AddNewCourseForm :toggle-component="toggleComponent" />
       </LazyHydrate>

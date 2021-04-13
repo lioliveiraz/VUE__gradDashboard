@@ -1,50 +1,26 @@
+/*------common------*/
+
 .g-dashboard {
-  @apply h-screen flex-col overflow-scroll w-full;
+  @apply h-auto flex-col  w-full;
 }
 .g-dashboard--sections {
   @apply flex w-full g-centralize-items  overflow-hidden;
 }
 .g-dashboard--top {
-  @apply mt-20 g-dashboard--sections;
-  height: 15vh;
+  @apply g-dashboard--sections;
+  height: 18vh;
 }
 .g-dashboard--top img {
-  height: 100%;
+  height: 80%;
 }
-@media screen and (min-width: 760px) {
-  .g-dashboard--top {
-    height: 20vh;
-  }
-  .g-dashboard--top img {
-    width: 35%;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .g-dashboard--top {
-    height: 20vh;
-  }
-  .g-dashboard--top img {
-    height: 90%;
-  }
-}
+
+/* ------graduate ------*/
 .g-dashboard--middle {
   @apply g-justify-center g-background-darkGray flex-wrap overflow-hidden;
-  height: 35vh;
 }
-@media screen and (min-width: 1200px) {
-  .g-dashboard--middle {
-    height: 45vh;
-  }
-}
-@media screen and (orientation: landscape) {
-  .g-dashboard--middle {
-    @apply g-justify-center g-background-darkGray flex-wrap;
-    height: 35vh;
-  }
-}
+
 .g-dashboard--bottom {
   @apply g-dashboard--sections  flex-wrap;
-  height: 35vh;
 }
 
 .g-dashboard--bottom div {
@@ -52,29 +28,33 @@
 }
 
 .circled-hours {
-  @apply text-3xl	 font-bold g-color-blue rounded-full bg-white flex items-center justify-center font-mono;
+  @apply text-3xl	 font-bold g-color-primary  rounded-full bg-white flex items-center justify-center font-mono;
   height: 100px;
   width: 100px;
   border: 3px solid #00c300;
 }
-@media screen and (min-width: 760px) {
-  .g-dashboard--bottom {
-    height: 25vh;
-  }
-  .circled-hours {
-    height: 200px;
-    width: 200px;
-  }
+
+/*Phone landscape*/
+@media (max-height: 500px) and (orientation: landscape) {
 }
-@media screen and (min-width: 1200px) {
-  .g-dashboard--middle {
-    min-height: 80vh;
-  }
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
 }
-/*Dashboard cards*/
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}
+
+/* ________graduate cards_________*/
 
 .g-dashbord-card {
-  @apply flex flex-col p-5 text-center g-color-green w-2/5 m-3 bg-white border-gray-200 border-2 shadow-lg;
+  @apply flex flex-col p-5 text-center g-color-secondary w-2/5 m-3 bg-white border-gray-200 border-2 shadow-lg;
   height: 90%;
 }
 
@@ -87,6 +67,11 @@
   @apply my-2  text-left text-black  border-b-2 border-black;
 }
 
+.g-article-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media screen and (min-width: 700px) {
   .g-dashbord-card img {
     height: 80px;
@@ -124,48 +109,50 @@
   }
 }
 
-/*ADM dash*/
+/* ------adm ------*/
 .g-adm-dashboard--middle {
-  @apply w-full h-full  flex flex-wrap .justify-center;
-}
-.g-adm-dashboard--middle--inner {
-  @apply m-1 p-1 w-5/12 border-green-400 border-4 rounded shadow-lg g-background-blue;
-  height: 25vh;
-}
-.g-adm-dashboard--middle--inner:hover {
-  @apply border-teal-200;
+  @apply w-full h-auto  flex flex-wrap .justify-center;
 }
 .g-adm-dashboard-card {
-  @apply g-centralize-items overflow-hidden;
+  @apply overflow-hidden g-background-adm-secondary relative flex flex-col min-w-0 break-words  rounded my-3 mx-2 shadow-lg;
 }
 .g-adm-dashboard-card--title {
-  @apply text-white text-6xl;
+  @apply text-white text-3xl;
 }
 .g-adm-dashboard-card--subtitle {
   @apply text-white text-sm;
 }
+/*Phone landscape*/
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-adm-dashboard--middle {
+    @apply px-10;
+  }
+}
 
-@media screen and (min-width: 700px) {
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-adm-dashboard--middle {
+    @apply px-10;
+  }
   .g-adm-dashboard-card--title {
-    font-size: 8rem;
+    @apply text-5xl;
+  }
+  .g-adm-dashboard-card--subtitle {
+    @apply text-lg;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-adm-dashboard--middle {
+    @apply px-32;
+  }
+  .g-adm-dashboard-card--title {
+    @apply text-5xl;
   }
   .g-adm-dashboard-card--subtitle {
     @apply text-2xl;
   }
-}
-@media screen and (min-width: 1025px) {
-  .g-adm-dashboard--middle--inner {
-    @apply w-1/4 m-5;
-
-    height: 35vh;
-  }
-  .g-adm-dashboard-card--title {
-    font-size: 8rem;
-  }
-}
-
-.g-article-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

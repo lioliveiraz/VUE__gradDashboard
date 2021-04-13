@@ -1,12 +1,28 @@
 .g-table-wrapper {
-  @apply table-auto border-separate bg-white w-full;
+  @apply table-auto bg-white  w-full text-xl;
 }
-.g-table-cell {
-  @apply border-2 border-teal-600 p-1  items-center  text-xs;
+.g-table-header {
+  @apply bg-gray-200 text-gray-600 uppercase leading-normal;
+}
+.g-table-header-cell {
+  @apply py-3 px-6 text-left;
 }
 
-th {
-  text-transform: uppercase;
+.g-table-body {
+  @apply font-light;
+}
+
+.g-table-body-tr {
+  @apply border-b border-gray-200 capitalize;
+}
+.g-table-body-tr:hover {
+  @apply bg-gray-100;
+}
+.g-table-cell {
+  @apply py-1 px-6 text-left .font-semibold;
+}
+.g-table-week-cell {
+  @apply py-1 px-3 text-left .font-semibold;
 }
 
 .g-cell-passedAss {
@@ -16,14 +32,27 @@ th {
   @apply bg-red-700 text-gray-200;
 }
 
-@media screen and (min-width: 768px) {
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-table-wrapper {
+    @apply text-3xl;
+  }
   .g-table-cell {
-    @apply text-2xl;
+    @apply py-3 px-6;
   }
 }
-
-@media screen and (min-width: 1200px) {
-  .g-table-cell {
-    @apply p-2;
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  .g-table-wrapper {
+    @apply text-2xl;
   }
+  .g-table-cell {
+    @apply py-3 px-6;
+  }
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
 }

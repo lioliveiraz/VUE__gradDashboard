@@ -15,8 +15,20 @@ p {
   font-family: "Karla", sans-serif;
   font-display: swap;
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-base-btn-green {
+    @apply g-base-btn-small;
+  }
+  .g-base-btn-blue {
+    @apply g-base-btn-small;
+  }
+  .g-margin-top-button {
+    @apply mt-4;
+  }
+}
 
-@media screen and (min-width: 750px) {
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
   p {
     @apply text-3xl;
   }
@@ -31,10 +43,10 @@ p {
     @apply text-5xl;
   }
 }
-
-@media screen and (min-width: 1200px) {
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
   h1 {
-    font-size: 6rem;
+    font-size: 4.5rem;
   }
 
   h2,
@@ -44,4 +56,11 @@ p {
   h6 {
     @apply text-4xl;
   }
+}
+
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
 }

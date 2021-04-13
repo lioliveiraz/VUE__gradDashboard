@@ -1,14 +1,36 @@
 <template>
-  <div class="g-layout--wrapper">
+  <div :class="isAdm? 'g-layout--wrapper-adm':'g-layout--wrapper'">
     <div class="g-container">
-      <TheNav :links="isAdm ? links_adm : links_grads" :username="getName" />
-
-      <div class="g-container--inner">
-        <Nuxt />
+        <header class="g-header-wrapper">
+      <div
+        @click="toggleMenu"
+        :class="isMenu ? 'g-menu close ' : 'g-menu open '"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </div>
-    <TheFooter />
+
+        <h2 class="g-nav-logo">GRAP</h2>
+      <a
+        href="#"
+        v-for="locale in availableLocales"
+        :key="locale.code"
+        @click.prevent.stop="$i18n.setLocale(locale.code)"
+      >
+        <button class="g-language-toggle">{{ locale.name }}</button>
+      </a>
+    </header>
+    <div class="g-inner-container">
+      <TheNav :toggleMenu="toggleMenu" :links="isAdm ? links_adm : links_grads" :username="getName"  :isMenu="isMenu"/>
+      <Nuxt />
   </div>
+      <TheFooter />
+
+    </div>
+        </div>
+
+
 </template>
 
 <script>
@@ -34,7 +56,9 @@ export default {
     return {
       displayADMLinks: this.isAdm,
       THEname: "",
-      displayADMLinks: this.isAdm
+      displayADMLinks: this.isAdm,
+      isMenu: false,
+
     };
   },
 
@@ -79,6 +103,11 @@ export default {
           name: this.$t("PATH_NAME_NEW_COURSE")
         }
       ];
+    }
+  },
+  methods:{
+    toggleMenu(){
+      this.isMenu=!this.isMenu
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="g-dashboard">
     <section class="g-dashboard--top">
-      <h1>{{ $t("welcome") }}, {{ getName }}!</h1>
+      <h1 class="g-color-adm-primary">{{ $t("welcome") }}, {{ getName }}!</h1>
 
       <img src="../../assets/adm_img.svg" alt="hi" />
     </section>
@@ -9,7 +9,7 @@
       <div
         v-for="(grad, index) in grads"
         :key="index"
-        class="g-adm-dashboard--middle--inner"
+        class="g-adm-dashboard-card"
       >
         <nuxt-link :to="'gradscores/' + grad.empId">
             <BaseCard :graduated="grad" />

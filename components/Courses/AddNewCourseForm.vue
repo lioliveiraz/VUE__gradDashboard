@@ -1,8 +1,7 @@
 <template>
-  <div class="relative w-auto my-6 mx-auto h-auto">
     <div class="g-modal-form--inner focus:outline-none">
       <div class="border-blueGray-200 g-modal-form--header">
-        <h3 data-testId="course_form-title">Update Path</h3>
+        <h3 class="g-color-adm-secondary">Update Path</h3>
       </div>
       <div class="g-modal-form--content">
         <form @submit="handleSubmit" data-testId="course_form" :key="key">
@@ -54,14 +53,14 @@
                 required: true,
               }"
             />
-            <BaseInput
-              @getUserInput="getUserInput"
-              :attributeObj="{
-                type: this.CHECKBOX_INPUT,
-                name: this.ASSESSMENT_INPUT,
-              }"
-            />
 
+        <div class="g-checkbox-input--wrapper">
+
+              <input :name="this.ASSESSMENT_INPUT" :type=" this.CHECKBOX_INPUT" @change="getUserInput" class="g-checkbox-input">
+                          <label class="g-checkbox-label" >       assessment      </label>
+
+            </div>
+         
             <div class="g-addNewcourse-buttons">
               <input
                 type="submit"
@@ -77,7 +76,6 @@
         </form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

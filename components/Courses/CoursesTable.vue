@@ -1,56 +1,58 @@
 <template>
+
   <table class="g-table-wrapper" data-testId="course_table">
     <thead>
-      <tr class="font-bold">
-        <th class="g-table-cell">
+      <tr class="g-table-header">
+        <th class="g-table-week-cell">
           {{ $t("TABLE_HEAD_WEEK") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_COURSECODE") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_COURSENAME") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_MODE") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_SOURCE") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_DURATION") }}
         </th>
-        <th class="g-table-cell">
+        <th class="g-table-header-cell">
           {{ $t("TABLE_HEAD_LINK") }}
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr class="bg-emerald-200" v-for="course in courses" :key="course.id">
-        <td class="g-table-cell" data-testId="course_table-week">
+    <tbody class="g-table-body">
+      <tr class="g-table-body-tr" v-for="course in courses" :key="course.id">
+        <td class="g-table-week-cell" data-testId="course_table-week">
           {{ course.week }}
         </td>
-        <td class="g-table-cell" data-testId="course_table-code">
+        <td class=" g-color-primary g-table-cell" data-testId="course_table-code">
           {{ course.course_code }}
         </td>
-        <td class="g-table-cell" data-testId="course_table-name">
+        <td class="g-table-cell text-black" data-testId="course_table-name">
           {{ course.course_name }}
         </td>
-        <td class="g-table-cell" data-testId="course_table-assessment">
+        <td class="g-table-cell text-black" data-testId="course_table-assessment">
           {{ course.assessment ? $t("ASSESSMENTS_VALUE") : "self-paced" }}
         </td>
-        <td class="g-table-cell" data-testId="course_table-source">
+        <td class="g-table-cell text-gray-600" data-testId="course_table-source">
           {{ course.source }}
         </td>
-        <td class="g-table-cell" data-testId="course_table-duration">
+        <td class="g-table-cell text-black" data-testId="course_table-duration">
           {{ course.duration }}h
         </td>
         <td class="g-table-cell" data-testId="course_table-link">
-          <a :href="course.link">link</a>
+          <a :href="course.link" class="g-color-primary">link</a>
         </td>
       </tr>
     </tbody>
   </table>
+
 </template>
 
 <script>

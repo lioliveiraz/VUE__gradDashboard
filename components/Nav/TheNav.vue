@@ -1,24 +1,6 @@
 <template>
-  <header class="g-nav-wrapper">
-    <div class="flex justify-between">
-      <div
-        @click="isMenu = !isMenu"
-        :class="isMenu ? 'g-menu close ' : 'g-menu open '"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <a
-        href="#"
-        v-for="locale in availableLocales"
-        :key="locale.code"
-        @click.prevent.stop="$i18n.setLocale(locale.code)"
-      >
-        <button class="g-menu g-language-toggle">{{ locale.name }}</button>
-      </a>
-    </div>
+ 
+    
     <nav :class="+isMenu ? ' nav_open ' : ' nav_close '">
       <ul class="g-list">
         <li class="g-nav--profile">
@@ -33,7 +15,7 @@
         </li>
 
         <div v-for="(link, index) of links" :key="index">
-          <li @click="isMenu = !isMenu">
+          <li @click="toggleMenu">
             <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
           </li>
         </div>
@@ -45,29 +27,18 @@
         </li>
       </ul>
     </nav>
-  </header>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import BaseButton from "../Style/BaseButton";
 
 export default {
-  props: { links: Array, username: String },
+  props: { links: Array, username: String ,isMenu:Boolean, toggleMenu:Function},
   components: {
-    BaseButton,
+    BaseButton:() =>import("../Style/BaseButton"),
+ 
   },
-  data() {
-    return {
-      isMenu: false,
-    };
-  },
-
-  computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale);
-    },
-  },
+ 
   methods: {
     ...mapActions("auth", ["logout"]),
 
