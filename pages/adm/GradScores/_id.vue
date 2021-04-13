@@ -1,13 +1,13 @@
 <template>
-  <div class="employeeScore">
-    <div class="w-3/4">
-      <p class="employee-text">Employee: {{ empId }}</p>
-      <div v-if="scoresArr">
+  <div class="g-employee-score">
+    <div class="g-employee-score--content">
+      <p class="g-employee-text">Employee: {{ empId }}</p>
+      <div v-if="scoresArr" class="g-employee-score-table">
         <LazyHydrate never>
           <ScoresTable :scores="scoresArr" />
         </LazyHydrate>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
     LazyHydrate,
     ScoresTable: () => import("../../../components/Scores/ScoresTable"),
   },
-  layout: "graduate",
+  layout: "dash_layout",
   data() {
     return {
       empId: this.$route.params.id,

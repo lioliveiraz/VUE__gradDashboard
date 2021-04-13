@@ -33,7 +33,7 @@ export default {
     };
   },
   name: "gaduateScores",
-  layout: "graduate",
+  layout: "dash_layout",
   components: {
     LazyHydrate,
     ScoresTable: () => import("../../components/Scores/ScoresTable"),

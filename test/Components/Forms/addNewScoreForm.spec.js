@@ -24,7 +24,7 @@ describe('<AddNewScoreForm/>', () => {
         });
     });
     it('should render correctly', () => {
-        const elements = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-selector', ".g-selector--options", ".g-base-btn-submit"];
+        const elements = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-selector', ".g-selector--options", ".g-base-btn-green"];
         elements.forEach((id) => validateTruthiness(wrapper.find(id)));
         expect(wrapper).toMatchSnapshot();
 

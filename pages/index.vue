@@ -2,7 +2,7 @@
   <div class="g-login-box">
     <form
       @submit="handleSubmit"
-      class="g-form-wrapper"
+      class="g-form-wrapper "
       data-testId="login_form"
     >
       <div class="g-form-wrapper--inner">
@@ -33,15 +33,17 @@
             }"
           />
         </LazyHydrate>
+        <div class="g-margin-top-button">
         <input
           :type="this.BUTTON_SUBMIT"
           :class="
-            isFormValid ? 'g-base-btn-submit' : 'g-base-btn-submit g-disabled'
+            isFormValid ? 'g-base-btn-green ' : 'g-base-btn-green g-disabled'
           "
           :value="this.button_input"
           data-testId="login_button"
           :disabled="!isFormValid"
         />
+        </div>
       </div>
     </form>
   </div>

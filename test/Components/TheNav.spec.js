@@ -44,12 +44,12 @@ describe('<TheNav>', () => {
         validateObjectDataType(props);
         validateStringDataType(props.username);
         validateObjectToHaveProperty(props, "links");
+        validateObjectToHaveProperty(props, "username");
+        validateObjectToHaveProperty(props, "isMenu");
+
     });
 
-    it('data initialize correctly', () => {
-        expect(TheNav.data().isMenu).toEqual(expect.any(Boolean));
-    });
-
+  
     it("handleLogout should be called", async () => {
         await wrapper.vm.handleLogout();
         expect(wrapper.vm.$router).toEqual(["/"]);

@@ -1,36 +1,52 @@
-/* blue*/
-
-.g-color-blue{
-    color:#00aaff
-}
-.g-background-blue{
-    background-color:#00aaff
-}
+/*------------- common -------------*/
 
 /*gray*/
-.g-color-gray{
-    @apply text-gray-300	
+.g-color-gray {
+  @apply text-gray-300;
 }
-.g-background-gray{
-    @apply bg-gray-300	
+.g-background-gray {
+  @apply bg-gray-300;
 }
-
 
 /*dark gray*/
-.g-color-darkGray{
-    background:whitesmoke	
+.g-color-darkGray {
+  background: whitesmoke;
 }
-.g-background-darkGray{
-    background:whitesmoke	
+.g-background-darkGray {
+  background: whitesmoke;
 }
 
+/* -------------  graduate ------------- */
 
+.g-color-primary {
+  color: #00aaff;
+}
+.g-background-primary {
+  background-color: #00aaff;
+}
 
 /*green */
 
-.g-color-green{
-    color:#00c300
+.g-color-secondary {
+  color: #00c300;
 }
-.g-background-green{
-    background-color:#00c300
+.g-background-secondary {
+  background-color: #00c300;
+}
+
+/* ------------- adm -------------  */
+.g-color-adm-primary {
+  color: #1db1fc;
+}
+.g-background-adm-primary {
+  background-color: #0077b3;
+}
+
+/*green */
+
+.g-color-adm-secondary {
+  color: #b36300;
+}
+.g-background-adm-secondary {
+  background-color: #b36300;
 }

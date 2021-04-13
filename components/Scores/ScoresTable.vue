@@ -1,7 +1,7 @@
 <template>
   <table class="g-table-wrapper" data-testId="score_table">
     <thead>
-      <tr class="font-bold">
+      <tr class="g-table-header">
         <th class="g-table-cell">N</th>
 
         <th class="g-table-cell">
@@ -16,8 +16,8 @@
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr class="g-table-cell" v-for="({ code, score }, i) in scores" :key="i">
+    <tbody class="g-table-body">
+      <tr class="g-table-body-tr" v-for="({ code, score }, i) in scores" :key="i">
         <td class="g-table-cell" data-testId="score_table--index">
           {{ i + 1 }}
         </td>
@@ -44,10 +44,8 @@
 <script>
 export default {
   props: { scores: Array },
-  layout: "graduate",
+  layout: "dash_layout",
   middleware: "courses",
-
-  created() {},
 };
 </script>
 

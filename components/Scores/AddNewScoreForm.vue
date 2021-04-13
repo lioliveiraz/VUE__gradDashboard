@@ -20,7 +20,7 @@
         }"
       />
 
-      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-green" />
     </div>
   </form>
 </template>

@@ -1,40 +1,66 @@
-h1{
- @apply text-green-400 font-extrabold text-4xl	  capitalize text-center m-2 max-w-2xl;
-    font-family: 'Zilla Slab', serif ;
+h1 {
+  @apply text-green-400 font-extrabold text-4xl	 leading-normal capitalize text-center  mt-0 mb-2 max-w-2xl;
+  font-family: "Zilla Slab", serif;
 }
 
-h2,h3,h5,h6{
+h2,
+h3,
+h5,
+h6 {
   @apply text-green-400 text-2xl  font-semibold capitalize	 m-2;
-
 }
 
-p{
-  @apply text-sm m-2 	;
-  font-family: 'Karla', sans-serif;
+p {
+  @apply text-base m-2;
+  font-family: "Karla", sans-serif;
+  font-display: swap;
 }
-
-@media screen and ( min-width:750px){
-  p{
-   @apply text-3xl			;
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-base-btn-green {
+    @apply g-base-btn-small;
   }
-  h2,h3,h4,h5,h6{
-    @apply text-4xl		;
-
+  .g-base-btn-blue {
+    @apply g-base-btn-small;
   }
-  h1{
-    @apply text-5xl	
-  }
-}
-
-@media screen and ( min-width:1200px){
-  h1{
-    font-size: 6rem;
-  }
-  
-  h2,h3,h4,h5,h6{
-    @apply text-4xl
-
+  .g-margin-top-button {
+    @apply mt-4;
   }
 }
 
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  p {
+    @apply text-3xl;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-4xl;
+  }
+  h1 {
+    @apply text-5xl;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  h1 {
+    font-size: 4.5rem;
+  }
 
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-4xl;
+  }
+}
+
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}

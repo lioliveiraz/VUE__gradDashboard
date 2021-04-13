@@ -77,7 +77,7 @@ describe('<Index/>', () => {
         await wrapper.setData({
             isFormValid: true
         });
-        expect(wrapper.get('.g-base-btn-submit')).toBeTruthy();
+        expect(wrapper.get('.g-base-btn-green')).toBeTruthy();
 
 
     });

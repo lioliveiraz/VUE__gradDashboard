@@ -23,7 +23,7 @@ describe('<RegisterEmployeeForm/>', () => {
         });
     });
     it('should render correctly', () => {
-        const elements = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-base-btn-submit'];
+        const elements = [".g-form-wrapper", ".g-form-wrapper--inner", '.g-base-btn-green'];
         elements.forEach((id) => validateTruthiness(wrapper.find(id)));
         expect(wrapper).toMatchSnapshot();
 

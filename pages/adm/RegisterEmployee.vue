@@ -25,7 +25,7 @@ export default {
     RegisterEmployeeForm: () =>
       import("../../components/Register/RegisterEmployeeForm"),
   },
-  layout: "graduate",
+  layout: "dash_layout",
 };
 </script>
 

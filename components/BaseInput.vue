@@ -5,8 +5,8 @@
       data-testId="input"
       :class="
         checkObjectEmpty
-          ? 'g-base-input border-2 border-green-400	'
-          : 'g-base-input border-2 border-red-500'
+          ? 'g-base-input border-green-400	'
+          : 'g-base-input  border-red-500'
       "
       :type="attributeObj.type"
       :name="attributeObj.name"
