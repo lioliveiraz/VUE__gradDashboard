@@ -35,7 +35,7 @@ describe('<AddNewCourseForm/>', () => {
         const inputs = wrapper.findAllComponents(BaseInput);
         validateTruthiness(baseButton.exists());
         validateTruthiness(baseInput.exists());
-        validateLength(inputs, 6);
+        validateLength(inputs, 5);
 
 
     });

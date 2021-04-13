@@ -2,8 +2,31 @@
 
 exports[`<TheNav> should all elements render correctly 1`] = `
 VueWrapper {
-  "_emitted": Object {},
-  "_emittedByOrder": Array [],
+  "_emitted": Object {
+    "hook:beforeUpdate": Array [
+      Array [],
+    ],
+    "hook:mounted": Array [
+      Array [],
+    ],
+    "hook:updated": Array [
+      Array [],
+    ],
+  },
+  "_emittedByOrder": Array [
+    Object {
+      "args": Array [],
+      "name": "hook:mounted",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:beforeUpdate",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:updated",
+    },
+  ],
   "isFunctionalComponent": undefined,
 }
 `;

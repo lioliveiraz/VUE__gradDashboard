@@ -34,7 +34,7 @@ describe('<id/>', () => {
     });
 
     it('should render correctly', () => {
-        const elements = [".employeeScore", ".employee-text"];
+        const elements = [".g-employee-score--content", ".g-employee-text",".g-employee-score"];
         elements.forEach((id) => validateTruthiness(wrapper.get(id)));
         expect(wrapper).toMatchSnapshot();
 

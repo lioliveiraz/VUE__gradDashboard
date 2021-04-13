@@ -31,7 +31,7 @@ describe('<Dashboard/>', () => {
         }
     });
     it('should render correctly', () => {
-        const idArr = [".g-dashboard", ".g-dashboard--middle", ".g-dashboard--bottom"];
+        const idArr = [".g-dashboard", ".g-dashboard--middle"];
         idArr.forEach((id) => validateTruthiness(wrapper.get(id)));
         expect(wrapper).toMatchSnapshot();
     });
