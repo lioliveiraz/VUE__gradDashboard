@@ -23,8 +23,12 @@ export default {};
 </script>
 
 <style >
+@import "../assets/styles/global.css";
 @import "../assets/styles/styles.css";
+@import "../assets/styles/tables.css";
 @import "../assets/styles/colors.css";
 @import "../assets/styles/typography.css";
 @import "../assets/styles/forms.css";
+@import "../assets/styles/dashboard.css";
+@import "../assets/styles/buttons.css";
 </style>

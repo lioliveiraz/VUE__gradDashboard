@@ -1,13 +1,6 @@
 <template>
-  <header class="g-nav-wrapper">
-    <div
-      @click="isMenu = !isMenu"
-      :class="isMenu ? 'g-menu close ' : 'g-menu open '"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+ 
+    
     <nav :class="+isMenu ? ' nav_open ' : ' nav_close '">
       <ul class="g-list">
         <li class="g-nav--profile">
@@ -18,40 +11,38 @@
               :id="this.LOGO_IMAGE"
             />
           </div>
-          <p>Hello, {{ username }}</p>
+          <p>{{ $t("HELLO") }}, {{ username }}</p>
         </li>
+
         <div v-for="(link, index) of links" :key="index">
-          <li>
+          <li @click="toggleMenu">
             <nuxt-link :to="link.path"> {{ link.name }}</nuxt-link>
           </li>
         </div>
         <li>
-          <BaseButton :value="this.LOGOUT_BUTTON" :handleClick="handlelogout" />
+          <BaseButton
+            :value="$t('BUTTON_LOGOUT')"
+            :handleClick="handleLogout"
+          />
         </li>
       </ul>
     </nav>
-  </header>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import BaseButton from "../Style/BaseButton";
 
 export default {
-  props: { links: Array, username: String },
+  props: { links: Array, username: String ,isMenu:Boolean, toggleMenu:Function},
   components: {
-    BaseButton,
+    BaseButton:() =>import("../Style/BaseButton"),
+ 
   },
-  data() {
-    return {
-      isMenu: false,
-    };
-  },
-
+ 
   methods: {
     ...mapActions("auth", ["logout"]),
 
-    handlelogout() {
+    handleLogout() {
       this.logout();
       this.$router.push("/");
     },

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BaseCard/> should render correctly 1`] = `
+exports[`<_vue/> should render correctly 1`] = `
 VueWrapper {
   "_emitted": Object {},
   "_emittedByOrder": Array [],

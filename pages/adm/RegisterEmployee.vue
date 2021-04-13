@@ -1,32 +1,33 @@
 <template>
   <div class="g-register">
     <div class="g-register--form">
-      <RegisterEmployeeForm />
+      <LazyHydrate on-interaction>
+        <RegisterEmployeeForm />
+      </LazyHydrate>
     </div>
     <img src="../../assets/sittingMan.svg" alt="man sitting" />
   </div>
 </template>
 
 <script>
-import RegisterEmployeeForm from "../../components/Register/RegisterEmployeeForm";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Register employee",
     };
   },
-  components: { RegisterEmployeeForm },
-  layout: "graduate",
+  components: {
+    LazyHydrate,
+    RegisterEmployeeForm: () =>
+      import("../../components/Register/RegisterEmployeeForm"),
+  },
+  layout: "dash_layout",
 };
 </script>
 
 <style scoped>
-.register--main {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 </style>

@@ -1,61 +1,83 @@
 <template>
   <div class="g-dashboard">
-    <section class="g-dashboard--top">
-      <h1>Welcome {{ getName }}</h1>
+    <section class="g-dashboard-stats">
+      <LazyHydrate never>
+        <BaseStats :title="$t('STUDY_TIME')" :value="calculateCourseHours +'h'" />
+      </LazyHydrate>
+      <LazyHydrate never>
+        <BaseStats :title="$t('AVERAGE_SCORE')" :value="calculatedScores" code="" />
+      </LazyHydrate>
 
-      <img src="../../assets/hi.svg" alt="hi" />
-    </section>
-
+</section>
     <section class="g-dashboard--middle">
-      <BaseDashCard name="Cognizant News" :articles="cognizantTopics" />
-      <BaseDashCard name="Tech News" :articles="techTopics" />
+      <LazyHydrate on-interaction="hover">
+        <BaseDashCard
+          :name="$t('COGNIZANT_NEWS')"
+          :articles="cognizantTopics"
+        />
+      </LazyHydrate>
+      <LazyHydrate on-interaction="hover">
+        <BaseDashCard :name="$t('TECH_NEWS')" :articles="techTopics" />
+      </LazyHydrate>
     </section>
 
-    <section class="g-dashboard--bottom">
-      <div>
-        <h3>Your study time</h3>
-        <div class="circled-hours">{{ circle.text }}h</div>
-      </div>
-    </section>
+
   </div>
 </template>
 
 <script>
-import BaseDashCard from "../../components/BaseDashCard";
 import { getNewsFromApi } from "../../api/newsApi/request";
-
+import LazyHydrate from "vue-lazy-hydration";
 import { mapGetters } from "vuex";
 export default {
+  nuxtI18n: false,
+
   watchQuery: ["dashboard"],
-  layout: "graduate",
+  layout: "dash_layout",
   head() {
     return {
       title: "Dashboard",
     };
   },
   components: {
-    BaseDashCard,
+    LazyHydrate,
+    BaseDashCard: () => import("../../components/BaseDashCard"),
+    TheCircleStudyTime: () =>
+      import("../../components/Style/TheCircleStudyTime"),
+    DashboardHeader: () => import("../../components/Style/DashboardHeader"),
+    BaseStats:()=>import("../../components/Style/BaseStats")
   },
   data() {
     return {
-      circle: {
-        text: 0,
-      },
       courses: [],
       cognizantTopics: [],
       techTopics: [],
-    };
+      language: this.$i18n.locale,
+    
+      };
   },
-  layout: "graduate",
+  layout: "dash_layout",
+
   computed: {
     ...mapGetters("courses", ["getCourses", "getScores"]),
-    ...mapGetters("auth", ["getName"]),
-  },
-  async mounted() {
-    this.calculateCourseHours();
+    calculateCourseHours() {
+      return this.getCourses.reduce((acc, cur) => {
+        return acc + +cur.duration;
+      }, 0)
+  
+    },
+        calculatedScores() {
+      const sum= this.getScores.reduce((acc, cur) => {
+        return acc + +cur.score;
+      }, 0);
+
+      return Math.floor(sum/this.getScores.length).toString()
+  }},
+
+  async created() {
     try {
-      const cognizant = await getNewsFromApi("Cognizant");
-      const tech = await getNewsFromApi("Technology");
+      const cognizant = await getNewsFromApi("Cognizant", this.language);
+      const tech = await getNewsFromApi("Technology", this.language);
 
       this.cognizantTopics = cognizant.articles;
       this.techTopics = tech.articles;
@@ -64,14 +86,6 @@ export default {
         type: this.TOAST_ERROR,
       });
     }
-  },
-
-  methods: {
-    calculateCourseHours() {
-      this.circle.text = this.getCourses.reduce((acc, cur) => {
-        return acc + +cur.duration;
-      }, 0);
-    },
   },
 };
 </script>

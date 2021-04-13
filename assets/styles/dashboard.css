@@ -1,192 +1,188 @@
-.g-dashboard{
-    @apply   h-screen flex-col overflow-scroll w-full ;
+/*------common------*/
 
+.g-dashboard {
+  @apply h-auto flex-col  w-full min-h-screen;
 }
-.g-dashboard--sections{
-    @apply flex w-full g-centralize-items  overflow-hidden		;
-    min-height: 50vh;
-
+.g-dashboard--sections {
+  @apply flex w-full g-centralize-items  overflow-hidden;
 }
-.g-dashboard--top{
-    @apply  mt-20 g-dashboard--sections ;
+.g-dashboard--top {
+  @apply g-dashboard--sections;
+  height: 18vh;
 }
 .g-dashboard--top img {
-    width: 50%;
-  }
-  @media screen and ( min-width:760px){
- 
-    .g-dashboard--top img {
-         width: 35%;
-       }
-     
-  }
-  @media screen and ( min-width:1200px){
-    .g-dashboard--top{
-    
-        height: 43vh;
-
-    }
-    .g-dashboard--top img {
-         height: 90%;
-       }
-     
-  }
-  .g-dashboard--middle{
-    @apply  g-justify-center g-background-darkGray flex-wrap overflow-hidden		;
-    min-height: 50vh;
-
-  }
-  @media screen and (orientation:landscape){
-    .g-dashboard--middle{
-        @apply  g-justify-center g-background-darkGray flex-wrap	;
-        min-height: 60vh;
-      }
-
-}
-  .g-dashboard--bottom{
-    @apply  g-dashboard--sections  flex-wrap ;
-  }
-
-  .g-dashboard--bottom div{
-    @apply m-10 text-center	;
-  }
-
-
-  .circled-hours {
-    @apply text-5xl font-bold g-color-blue rounded-full bg-white flex items-center justify-center font-mono;
-    height: 150px;
-    width: 150px; 
-    border: 5px solid #00c300;
-
-}
-@media screen and ( min-width:760px){
- 
-    .circled-hours {
-        height: 200px;
-        width: 200px; 
-       }
-     
-  }
-  @media screen and ( min-width:1200px){
- 
-    .g-dashboard--middle{
-        min-height: 80vh;
-      }
-     
-  }
-  /*Dashboard cards*/
-
-.g-dashbord-card{
-    @apply flex flex-col p-5 text-center g-color-green w-2/5 m-3 bg-white border-gray-200 border-2 shadow-lg  ;
-    height:40vh;
-
+  height: 80%;
 }
 
-.g-dashbord-card img{
-    @apply  m-3;
-    height: 50px;
+/* ------graduate ------*/
+.g-dashboard--middle {
+  @apply w-auto g-justify-center g-background-darkGray flex-wrap overflow-hidden px-4 py-10 my-10 h-auto flex-shrink;
 }
 
-.g-dashboard-card--content{
-    @apply my-2  text-left text-black  border-b-2 border-black;
-    
+.g-dashboard--bottom {
+  @apply g-dashboard--sections  flex-wrap;
 }
 
-@media screen and ( min-width:700px){
- 
-    .g-dashbord-card img{
-            height: 80px;
-    }
-  }
-
-  @media screen and (orientation:landscape){
- 
-    .g-dashbord-card{
-        @apply  w-3/12 p-2;
-
-        min-height:50vh;
-    
-    }
-    .g-dashbord-card img{
-        @apply  m-1;
-
-            height: 30px;
-    }
- 
-    .g-dashboard-card--content{
-        @apply my-1   ;
-           
-    }
-  }
-@media screen and ( min-width:1025px){
-    .g-dashbord-card{
-        @apply  w-3/12 p-10;
-
-        height:70vh;
-    
-    }
-    .g-dashbord-card img{
-            height: 150px;
-    }
- 
-    .g-dashboard-card--content{
-        @apply my-3   ;
-           
-    }
-  }
-
-  /*ADM dash*/
-  .g-adm-dashboard--middle{
-    @apply w-full h-full  flex flex-wrap .justify-center;
-}
-.g-adm-dashboard--middle--inner{
-    @apply m-1 p-1 w-5/12 border-green-400 border-4 rounded shadow-lg g-background-blue;
-    height: 25vh;
- 
-}
-.g-adm-dashboard--middle--inner:hover{
- @apply border-teal-200;
-}
-.g-adm-dashboard-card{
-  @apply g-centralize-items overflow-hidden ;
-}
-.g-adm-dashboard-card--title{
-  @apply text-white text-6xl	;
-}
-.g-adm-dashboard-card--subtitle{
-  @apply text-white text-sm	;
-
+.g-dashboard--bottom div {
+  @apply text-center	g-centralize-items flex-col;
 }
 
-@media screen and (min-width:700px){
- 
-  .g-adm-dashboard-card--title{
-    font-size: 8rem
-   }
-  .g-adm-dashboard-card--subtitle{
-    @apply text-white text-2xl		;
-  
+.circled-hours {
+  @apply text-3xl	 font-bold g-color-primary  rounded-full bg-white flex items-center justify-center font-mono;
+  height: 100px;
+  width: 100px;
+  border: 3px solid #00c300;
+}
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-dashboard--middle {
+    @apply py-20 my-20;
   }
 }
-@media screen and ( min-width:1025px){
-  .g-adm-dashboard--middle--inner{
-    @apply w-1/4 m-5;
-
-    height: 35vh;
- 
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
 }
-  .g-adm-dashboard-card--title{
-   font-size: 8rem
-  }
-  .g-adm-dashboard-card--subtitle{
-    @apply text-white text-sm	;
-  
-  }
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}
+/* ________graduate stats_________*/
+.g-dashboard-stats {
+  @apply w-auto h-auto flex .flex-wrap .justify-center;
+}
+.g-stats-card {
+  @apply shadow-lg border rounded-lg w-8/12 m-2 bg-white;
+}
+.g-stats-card--content {
+  @apply flex items-center  p-3;
+}
+.g-stats-card--square {
+  @apply flex items-center p-2 bg-purple-600 text-white rounded-lg mr-3;
+}
+.g-stats-card--square img {
+  width: 35px;
 }
 
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  .g-stats-card {
+    @apply w-2/5;
+  }
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-stats-card--square img {
+    width: 60px;
+  }
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}
 
-.g-article-title{
+/* ________graduate cards_________*/
+
+.g-dashbord-card {
+  @apply flex flex-col px-3 py-5 text-center g-color-secondary w-2/5 mx-3 bg-white border-gray-200 border-2 shadow-lg;
+}
+
+.g-dashbord-card img {
+  @apply m-2;
+  height: 30px;
+}
+
+.g-dashboard-card--content {
+  @apply py-2 px-2 text-left text-black;
+}
+.g-dashboard-card--content p {
+  @apply .border-b border-gray-200;
+}
+
+.g-dashboard-card--content:hover {
+  @apply bg-gray-300;
+}
+
+.g-article-title {
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-dashbord-card img {
+    height: 80px;
+  }
+  .g-dashbord-card {
+    @apply px-5 py-8;
+  }
+  .g-dashboard-card--content {
+    @apply py-5;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  .g-dashbord-card {
+    @apply w-1/3 mx-auto px-10;
+  }
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-dashboard-card--content {
+    @apply py-6;
+  }
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}
+
+/* ------adm ------*/
+.g-adm-dashboard--middle {
+  @apply w-full h-auto  flex flex-wrap .justify-center;
+}
+.g-adm-dashboard-card {
+  @apply overflow-hidden g-background-adm-secondary relative flex flex-col min-w-0 break-words  rounded my-3 mx-2 shadow-lg;
+}
+.g-adm-dashboard-card--title {
+  @apply text-white text-3xl;
+}
+.g-adm-dashboard-card--subtitle {
+  @apply text-white text-sm;
+}
+/*Phone landscape*/
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-adm-dashboard--middle {
+    @apply px-10;
+  }
+}
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-adm-dashboard--middle {
+    @apply px-10;
+  }
+  .g-adm-dashboard-card--title {
+    @apply text-5xl;
+  }
+  .g-adm-dashboard-card--subtitle {
+    @apply text-lg;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-adm-dashboard--middle {
+    @apply px-32;
+  }
+  .g-adm-dashboard-card--title {
+    @apply text-5xl;
+  }
+  .g-adm-dashboard-card--subtitle {
+    @apply text-2xl;
+  }
 }

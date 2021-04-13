@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ADM Dashboard/> should render correctly 1`] = `
+VueWrapper {
+  "_emitted": Object {
+    "hook:beforeCreate": Array [
+      Array [],
+    ],
+    "hook:beforeMount": Array [
+      Array [],
+    ],
+    "hook:created": Array [
+      Array [],
+    ],
+    "hook:mounted": Array [
+      Array [],
+    ],
+  },
+  "_emittedByOrder": Array [
+    Object {
+      "args": Array [],
+      "name": "hook:beforeCreate",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:created",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:beforeMount",
+    },
+    Object {
+      "args": Array [],
+      "name": "hook:mounted",
+    },
+  ],
+  "isFunctionalComponent": undefined,
+}
+`;

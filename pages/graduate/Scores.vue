@@ -2,14 +2,18 @@
   <div class="g-scores" data-testId="score_component">
     <div class="g-scores--container">
       <section class="g-scores--form">
-        <h3 data-testId="score_form-title">Add new Score</h3>
-        <AddNewScoreForm />
+        <h3 data-testId="score_form-title">{{ $t("ADD_NEW_SCORE") }}</h3>
+        <LazyHydrate on-interaction>
+          <AddNewScoreForm />
+        </LazyHydrate>
       </section>
 
       <section class="g-scores--table">
-        <h3 data-testId="score_form-table">Your scores</h3>
+        <h3 data-testId="score_form-table">{{ $t("YOUR_SCORE") }}</h3>
         <div class="g-scores--table--inner">
-          <ScoresTable :scores="scores" />
+          <LazyHydrate never>
+            <ScoresTable :scores="scores" />
+          </LazyHydrate>
         </div>
       </section>
     </div>
@@ -17,19 +21,24 @@
 </template>
 
 <script>
-import ScoresTable from "../../components/Scores/ScoresTable";
-import AddNewScoreForm from "../../components/Scores/AddNewScoreForm";
 import { mapState } from "vuex";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: "Scores",
     };
   },
   name: "gaduateScores",
-  layout: "graduate",
-  components: { ScoresTable, AddNewScoreForm },
+  layout: "dash_layout",
+  components: {
+    LazyHydrate,
+    ScoresTable: () => import("../../components/Scores/ScoresTable"),
+    AddNewScoreForm: () => import("../../components/Scores/AddNewScoreForm"),
+  },
 
   computed: {
     ...mapState("courses", ["scores"]),
@@ -38,22 +47,4 @@ export default {
 </script>
 
 <style>
-.scores--container {
-  height: 90%;
-}
-.scores--container div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media (min-width: 700px) {
-  .scores--container {
-    width: 70%;
-    height: 85%;
-  }
-  .scores--container div:first-child {
-    width: 50%;
-  }
-}
 </style>

@@ -24,10 +24,6 @@ export default {
             TOAST_SUCCESS: 'success',
             TOAST_ERROR: 'error',
 
-
-
-
-
             TABLE_HEAD_WEEK_ENGLISH: "week",
             TABLE_HEAD_COURSECODE_ENGLISH: 'course code',
             TABLE_HEAD_COURSENAME_ENGLISH: "course name",
@@ -40,5 +36,6 @@ export default {
             TABLE_HEAD_SCORES_ENGLISH: "scores",
             TABLE_HEAD_PASSED_ENGLISH: "passed"
         };
+
     }
 }

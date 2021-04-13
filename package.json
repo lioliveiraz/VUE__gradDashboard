@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test:ci": "jest --coverage",
+    "test:ci": "jest --coverage && ./node_modules/jest-html-reporter",
     "test": "jest --watch",
     "start-server": "json-server --watch ./mock_server/db.json",
     "start-auth": "nodemon ./mock_server/server.js"
@@ -16,13 +16,15 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
+    "jest-html-reporter": "^3.3.0",
     "json-server": "^0.16.3",
     "jsonwebtoken": "^8.5.1",
-    "node-sass": "^5.0.0",
+    "lodash": "^4.17.21",
     "nuxt": "^2.14.12",
-    "sass": "^1.32.8",
-    "vue-i18n": "^8.24.1",
+    "nuxt-i18n": "^6.22.3",
+    "tailwindcss-toggle": "github:TowelSoftware/tailwindcss-toggle",
     "vue-jwt-decode": "^0.1.0",
+    "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-toastification": "^1.7.11",
     "vuex": "^3.6.2"
   },
@@ -32,9 +34,12 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.6.3",
     "bcrypt": "^5.0.1",
+    "fibers": "^5.0.0",
     "inject-loader": "^4.0.1",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "sass": "^1.32.8",
+    "sass-loader": "^10.1.1",
     "vue-jest": "^3.0.4"
   }
 }

@@ -1,29 +1,34 @@
 <template>
-  <div class="employeeScore">
-    <div class="w-3/4">
-      <p class="employee-text">Employee: {{ empId }}</p>
-      <div v-if="scoresArr">
-        <ScoresTable :scores="scoresArr" />
+  <div class="g-employee-score">
+    <div class="g-employee-score--content">
+      <p class="g-employee-text">Employee: {{ empId }}</p>
+      <div v-if="scoresArr" class="g-employee-score-table">
+        <LazyHydrate never>
+          <ScoresTable :scores="scoresArr" />
+        </LazyHydrate>
       </div>
-    </div>
+      </div>
   </div>
 </template>
 
 <script>
 import { getScores } from "../../../api/requests/get";
 import { mapGetters } from "vuex";
-import ScoresTable from "../../../components/Scores/ScoresTable";
+import LazyHydrate from "vue-lazy-hydration";
 
 export default {
+  nuxtI18n: false,
+
   head() {
     return {
       title: `Employee: ${this.empId}`,
     };
   },
   components: {
-    ScoresTable,
+    LazyHydrate,
+    ScoresTable: () => import("../../../components/Scores/ScoresTable"),
   },
-  layout: "graduate",
+  layout: "dash_layout",
   data() {
     return {
       empId: this.$route.params.id,
@@ -38,25 +43,13 @@ export default {
       const res = await getScores(this.empId, this.getToken);
       this.scoresArr = res.scores;
     } catch (err) {
-      console.log(err);
+      this.$toast("Something went wrong! Try again latter", {
+        type: this.TOAST_ERROR,
+      });
     }
   },
 };
 </script>
 
 <style>
-.employeeScore {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.employeeScore div:first-child {
-  height: 90%;
-  overflow-y: scroll;
-}
-.employee-text {
-  @apply text-blue-400 font-bold text-2xl;
-}
 </style>

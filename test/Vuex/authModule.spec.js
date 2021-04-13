@@ -9,16 +9,15 @@ describe("vuex store auth module", () => {
     });
     let state;
 
-    const { token, user_id, user_isAdm, user_name } = auth.state;
-    const { SET_TOKEN, SET_ID, SET_ADM, SET_NAME } = auth.mutations;
-    const { isLoggedIn, getToken, isAdm, getName } = auth.getters;
+    const { token, user_id, user_name } = auth.state;
+    const { SET_TOKEN, SET_ID, SET_NAME } = auth.mutations;
+    const { isLoggedIn, getToken, getName } = auth.getters;
     const { login, logout } = auth.actions;
 
     describe('test state', () => {
         it('should initial state be null', () => {
             expect(token).toBeNull();
             expect(user_id).toBeNull();
-            expect(user_isAdm).toBeNull();
             expect(user_name).toBeNull();
 
         });
@@ -29,17 +28,14 @@ describe("vuex store auth module", () => {
             state = {
                 token: null,
                 user_name: null,
-                user_isAdm: null,
                 user_id: null
             };
             await SET_TOKEN(state, "newValue");
             await SET_ID(state, "newValue");
-            await SET_ADM(state, "newValue");
             await SET_NAME(state, "newValue");
 
             expect(state.token).toEqual("newValue");
             expect(state.user_name).toEqual("newValue");
-            expect(state.user_isAdm).toEqual("newValue");
             expect(state.user_id).toEqual("newValue");
 
         });
@@ -49,23 +45,17 @@ describe("vuex store auth module", () => {
 
         it("should return false", async () => {
             await SET_TOKEN(state, null);
-            await SET_ADM(state, null);
             const loggedIn = await isLoggedIn(state);
-            const adm = await isAdm(state);
 
             expect(loggedIn).toBeFalsy();
-            expect(adm).toBeFalsy();
 
         });
         it("should return true", async () => {
             await SET_TOKEN(state, 'token');
-            await SET_ADM(state, "adm");
 
             const loggedIn = await isLoggedIn(state);
-            const adm = await isAdm(state);
 
             expect(loggedIn).toBeTruthy();
-            expect(adm).toBeTruthy();
 
         });
         it('should return the right value', async () => {
@@ -91,7 +81,6 @@ describe("vuex store auth module", () => {
                 user: {
 
                     id: 1,
-                    role: ["ADM"],
                     name: 'names'
                 }
             };
@@ -99,7 +88,7 @@ describe("vuex store auth module", () => {
             it('should call mutations 4 times', async () => {
                 await login({ commit }, data);
 
-                expect(commit).toHaveBeenCalledTimes(4);
+                expect(commit).toHaveBeenCalledTimes(3);
             });
 
 
@@ -109,7 +98,7 @@ describe("vuex store auth module", () => {
 
             it('should call mutations 4 times', async () => {
                 await logout({ commit });
-                expect(commit).toHaveBeenCalledTimes(4);
+                expect(commit).toHaveBeenCalledTimes(3);
             });
 
 

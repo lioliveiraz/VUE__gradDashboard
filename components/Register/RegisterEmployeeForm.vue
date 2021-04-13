@@ -10,7 +10,7 @@
           required: true,
         }"
       />
-      {{ errors.empId && errors.empId }}
+
       <BaseInput
         @getUserInput="getUserInput"
         :attributeObj="{
@@ -20,7 +20,6 @@
           required: true,
         }"
       />
-      {{ errors.password && errors.password }}
 
       <BaseInput
         @getUserInput="getUserInput"
@@ -31,9 +30,12 @@
           required: true,
         }"
       />
-      {{ errors.name && errors.name }}
 
-      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+      <input
+        :type="this.BUTTON_SUBMIT"
+        :class="isFormValid ? 'g-base-btn-green' : 'g-base-btn-green g-disabled'"
+        :disabled="!isFormValid"
+      />
     </div>
   </form>
 </template>
@@ -41,6 +43,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { registerEmployee } from "../../api/requests/post";
+import { isObjectEmpty, isObjectValuesEmpty } from "../../helpers/service";
 import { userValidation } from "../../helpers/validation";
 import BaseInput from "../BaseInput";
 
@@ -49,32 +52,42 @@ export default {
   data() {
     return {
       employeeObj: {},
-      errors: {},
       key: 0,
+      isFormValid: false,
     };
   },
   computed: {
     ...mapGetters("auth", ["getToken"]),
   },
   methods: {
+    formValidation() {
+      const errors = userValidation(this.employeeObj);
+      this.isFormValid = isObjectEmpty(errors);
+    },
     getUserInput(inputValue, inputName) {
       this.employeeObj[inputName] = inputValue;
+      if (
+        !isObjectEmpty(this.employeeObj) &&
+        isObjectValuesEmpty(this.employeeObj).length === 3
+      ) {
+        this.formValidation();
+      } else {
+        this.isFormValid = false;
+      }
     },
     async handleSubmit(e) {
       e.preventDefault();
       const errors = userValidation(this.employeeObj);
-      if (Object.entries(errors).length !== 0) {
-        this.errors = errors;
-      } else {
-        try {
-          const res = await registerEmployee(this.employeeObj, this.getToken);
-          this.errors = {};
+      if (!this.isFormValid) return null;
 
-          this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
-          this.key++;
-        } catch (err) {
-          this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
-        }
+      try {
+        const res = await registerEmployee(this.employeeObj, this.getToken);
+        this.errors = {};
+
+        this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
+        this.key = this.key + 1;
+      } catch (err) {
+        this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
       }
     },
   },
@@ -82,7 +95,5 @@ export default {
 </script>
 
 <style scoped>
-form {
-  width: 100%;
-}
+
 </style>

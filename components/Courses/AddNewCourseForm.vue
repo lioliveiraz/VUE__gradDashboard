@@ -1,11 +1,10 @@
 <template>
-  <div class="relative w-auto my-6 mx-auto h-auto">
     <div class="g-modal-form--inner focus:outline-none">
       <div class="border-blueGray-200 g-modal-form--header">
-        <h3>Update Path</h3>
+        <h3 class="g-color-adm-secondary">Update Path</h3>
       </div>
       <div class="g-modal-form--content">
-        <form @submit="handleSubmit" data-testId="form" :key="key">
+        <form @submit="handleSubmit" data-testId="course_form" :key="key">
           <div>
             <BaseInput
               @getUserInput="getUserInput"
@@ -16,7 +15,6 @@
                 required: true,
               }"
             />
-            {{ errors.week && errors.week }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -26,7 +24,6 @@
                 required: true,
               }"
             />
-            {{ errors.course_code && errors.course_code }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -36,7 +33,6 @@
                 required: true,
               }"
             />
-            {{ errors.course_name && errors.course_name }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -47,7 +43,6 @@
                 required: true,
               }"
             />
-            {{ errors.source && errors.source }}
 
             <BaseInput
               @getUserInput="getUserInput"
@@ -58,23 +53,29 @@
                 required: true,
               }"
             />
-            <BaseInput
-              @getUserInput="getUserInput"
-              :attributeObj="{
-                type: this.CHECKBOX_INPUT,
-                name: this.ASSESSMENT_INPUT,
-              }"
-            />
-            <div class="g-addNewcourse-buttons">
-              <BaseButton :handleClick="handleSubmit" value="Send" />
 
+        <div class="g-checkbox-input--wrapper">
+
+              <input :name="this.ASSESSMENT_INPUT" :type=" this.CHECKBOX_INPUT" @change="getUserInput" class="g-checkbox-input">
+                          <label class="g-checkbox-label" >       assessment      </label>
+
+            </div>
+         
+            <div class="g-addNewcourse-buttons">
+              <input
+                type="submit"
+                value="Send"
+                :class="
+                  isFormValid ? 'g-base-btn-blue' : 'g-base-btn-blue g-disabled'
+                "
+                :disabled="!isFormValid"
+              />
               <BaseButton :handleClick="toggleComponent" value="close" />
             </div>
           </div>
         </form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -83,6 +84,7 @@ import { addCourse } from "../../api/requests/post";
 import { mapGetters, mapActions } from "vuex";
 import { courseValidation } from "../../helpers/validation";
 import BaseButton from "../../components/Style/BaseButton";
+import { isObjectEmpty, isObjectValuesEmpty } from "../../helpers/service";
 
 export default {
   components: { BaseInput, BaseButton },
@@ -95,8 +97,8 @@ export default {
         link:
           "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
       },
-      errors: {},
       key: 0,
+      isFormValid: false,
     };
   },
   computed: {
@@ -105,30 +107,38 @@ export default {
   methods: {
     ...mapActions("courses", ["fetchCourses", "handleAddCourse"]),
 
+    formValidation() {
+      const errors = courseValidation(this.courseData);
+      this.isFormValid = isObjectEmpty(errors);
+    },
     getUserInput(inputValue, inputName) {
       this.courseData[inputName] = inputValue;
+      if (
+        !isObjectEmpty(this.courseData) &&
+        isObjectValuesEmpty(this.courseData).length === 7
+      ) {
+        this.formValidation();
+      } else {
+        this.isFormValid = false;
+      }
     },
     async handleSubmit(e) {
       e.preventDefault();
       this.courseData[this.DURATION_INPUT] = +this.courseData[
         this.DURATION_INPUT
       ];
-      const errors = courseValidation(this.courseData);
-      if (Object.entries(errors).length !== 0) {
-        this.errors = errors;
-      } else {
-        addCourse(this.courseData, this.getToken)
-          .then((res) => {
-            this.errors = {};
-            this.toggleComponent();
-            this.key++;
-            this.handleAddCourse(this.courseData);
-            this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
-          })
-          .catch((err) =>
-            this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
-          );
-      }
+      if (!this.isFormValid) return null;
+      addCourse(this.courseData, this.getToken)
+        .then((res) => {
+          this.errors = {};
+          this.toggleComponent();
+          this.key = this.key + 1;
+          this.handleAddCourse(this.courseData);
+          this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
+        })
+        .catch((err) =>
+          this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
+        );
     },
   },
 };

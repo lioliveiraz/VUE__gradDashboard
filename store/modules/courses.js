@@ -16,10 +16,10 @@ const actions = {
         if (token) {
             try {
                 const res = await getCourses(token);
-                const courses = res.filter((course) => course.assessment === false);
+                const courses = res.filter((course) => course.assessment === false).sort((a, b) => a.week - b.week);
                 const assessments = res.filter(
                     (course) => course.assessment === true
-                );
+                ).sort((a, b) => a.week - b.week);
                 commit('SET_COURSES', courses);
                 commit('SET_ASSESSMENTS', assessments);
 
@@ -71,11 +71,11 @@ const mutations = {
         state.scores = scores;
     },
     ADD_COURSE: (state, course) => {
-        state.courses = [...state.courses, { ...course }];
+        state.courses = [...state.courses, { ...course }].sort((a, b) => a.week - b.week);
 
     },
     ADD_ASSESSMENT: (state, course) => {
-        state.assessments = [...state.assessments, { ...course }];
+        state.assessments = [...state.assessments, { ...course }].sort((a, b) => a.week - b.week);
 
     },
     ADD_SCORE: (state, score) => {

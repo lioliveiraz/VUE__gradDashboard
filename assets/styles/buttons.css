@@ -1,0 +1,59 @@
+.g-btn-base {
+  @apply text-white  font-bold uppercase  ease-linear transition-all duration-150;
+}
+.g-margin-top-button {
+  @apply mt-5;
+}
+.g-base-btn-small {
+  @apply g-btn-base text-sm px-4 py-2;
+}
+.g-base-btn-regular {
+  @apply .g-btn-base  text-base px-6 py-3;
+}
+
+.g-base-btn-large {
+  @apply .g-btn-base  text-xl	px-6 py-4;
+}
+
+.g-disabled {
+  background-color: rgb(184, 183, 183) !important;
+}
+
+.g-base-btn-green {
+  @apply g-base-btn-regular g-background-secondary;
+}
+.g-base-btn-blue {
+  @apply g-base-btn-regular g-background-primary;
+}
+
+/*Phone landscape*/
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-base-btn-green {
+    @apply g-base-btn-small;
+  }
+  .g-base-btn-blue {
+    @apply g-base-btn-small;
+  }
+  .g-margin-top-button {
+    @apply mt-4;
+  }
+}
+
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-base-btn-green {
+    @apply g-base-btn-large;
+  }
+  .g-base-btn-blue {
+    @apply g-base-btn-large;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+}
+/*Big-desktop-up*/
+@media (min-width: 1800px) {
+}

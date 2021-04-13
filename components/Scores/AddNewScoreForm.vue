@@ -1,13 +1,14 @@
 <template>
   <form @submit="handleSubmit" :key="key" class="g-form-wrapper">
     <div class="g-form-wrapper--inner">
-      <select name="code" v-model="userInput.code" class="g-selector">
+      <select name="code" v-model="userInput.code" class="g-selector" required>
         <option
+          class="g-selector--options"
           :value="assessment.course_code"
           v-for="assessment in assessments"
           :key="assessment.id"
         >
-          {{ assessment.course_name }}({{ assessment.course_code }})
+          {{ assessment.course_name }} ({{ assessment.course_code }})
         </option>
       </select>
       <BaseInput
@@ -19,16 +20,15 @@
         }"
       />
 
-      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-submit" />
+      <input :type="this.BUTTON_SUBMIT" class="g-base-btn-green" />
     </div>
   </form>
 </template>
 
 <script>
 import { addScore } from "../../api/requests/post";
-import BaseInput from "../BaseInput";
 import { mapState, mapActions } from "vuex";
-
+import BaseInput from "../BaseInput";
 export default {
   data() {
     return {
@@ -40,6 +40,9 @@ export default {
   computed: {
     ...mapState("auth", ["user_id", "token"]),
     ...mapState("courses", ["courses", "assessments"]),
+    scoreInput() {
+      return this.$t("SCORE_INPUT");
+    },
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),

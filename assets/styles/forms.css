@@ -1,24 +1,115 @@
-.g-form-wrapper{
-    @apply  g-centralize-items w-full  text-left ;
-    height:90%;
-}
-.g-form-wrapper--inner{
-    @apply flex flex-col items-center  w-4/5 p-4 ;
+/* ---------------------------------------- Input base ----------------------------------------*/
+
+.g-base-input-wrapper {
+  @apply flex flex-col  w-full flex-wrap items-stretch mb-1;
 }
 
-
-
-/*Modal form*/
-
-.g-modal-form--main{
-@apply relative w-auto my-6 mx-auto h-auto
+.g-base-input-wrapper label {
+  font-weight: 700;
 }
-.g-modal-form--inner{
-    @apply border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none 
+.g-base-input,
+.g-selector {
+  @apply px-3 py-2 bg-white relative  rounded text-base border-2 shadow outline-none  w-full pl-5;
 }
-.g-modal-form--header{
-    @apply flex items-start justify-between p-6 border-b border-solid rounded-t
+
+.g-selector--options {
+  @apply flex items-center  .text-base m-2;
 }
-.g-modal-form--content{
-    @apply relative p-6 flex-auto
+.g-checkbox-input--wrapper {
+  @apply py-3  flex items-center;
+}
+.g-checkbox-input {
+  @apply h-5 w-5;
+}
+.g-checkbox-label {
+  @apply .text-xl .uppercase .font-bold ml-3;
+}
+/*Phone landscape*/
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-base-input,
+  .g-selector {
+    @apply p-2 text-sm;
+  }
+  .g-checkbox-label {
+    @apply .text-sm;
+  }
+  .g-checkbox-input {
+    @apply h-3 w-3;
+  }
+}
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 500px) {
+  .g-base-input-wrapper {
+    @apply .text-xl;
+  }
+  .g-base-input-wrapper {
+    @apply mb-3;
+  }
+  .g-base-input,
+  .g-selector {
+    @apply .text-xl px-3 py-4 pl-5;
+  }
+  .g-checkbox-label {
+    @apply .text-xl;
+  }
+  .g-checkbox-input {
+    @apply h-8 w-8;
+  }
+}
+
+/* ---------------------------------------- Form ----------------------------------------*/
+
+.g-form-wrapper {
+  @apply g-centralize-items w-full  text-left;
+  height: 90%;
+}
+.g-form-wrapper--inner {
+  @apply flex flex-col items-center  w-4/5 p-4;
+}
+
+/*---------------------------------------- Modal form ----------------------------------------*/
+
+.g-modal-form--main {
+  @apply relative  h-auto .w-full;
+  margin: auto;
+}
+.g-modal-form--inner {
+  @apply border-0 h-auto rounded-lg shadow-lg relative flex flex-col .w-full bg-white outline-none px-10 py-3;
+}
+.g-modal-form--header {
+  @apply flex items-start justify-between p-2 border-b border-solid rounded-t;
+}
+.g-modal-form--content {
+  @apply relative flex-auto;
+}
+
+.g-addNewcourse-buttons {
+  @apply flex py-5 w-full .justify-around;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .g-modal-form--inner {
+    @apply w-2/3;
+  }
+}
+/* Tabled-portrait-up*/
+@media (min-width: 600px) and (min-height: 501px) {
+  .g-modal-form--inner {
+    @apply w-4/6;
+  }
+}
+/* Tablet-landscape-up*/
+@media (min-width: 900px) {
+  .g-modal-form--inner {
+    @apply w-2/4;
+  }
+  .g-modal-form--content {
+    @apply px-5;
+  }
+}
+/*Desktop-up*/
+@media (min-width: 1200px) {
+  .g-modal-form--inner {
+    @apply w-1/3;
+  }
 }
