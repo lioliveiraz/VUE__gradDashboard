@@ -25,7 +25,7 @@ $ npm run generate
 
 ## 1.Motivation 
 
-This application was built to help new graduates from Cognizant organize themselves better when following the graduate programme's learning path. It is possible to check the courses and the assessments in the system to keep track of the assessment's scores and access Cognizant news. 
+This application was built to help new Cognizant's graduates to organize themselves. It is possible to check the courses and the assessments available in the system, keep track of the assessments' scores and access Cognizant news. 
 The application also allows an administrator to register the employees to the platform and update the learning path. 
 
 ## 2. The basics
@@ -50,6 +50,9 @@ The application also allows an administrator to register the employees to the pl
 <li><b>jest</b>: to test the application</li>
 <li><b>bycript</b>: to hash the passwords</li>
 <li><b>nodemon</b>: to run the server-side continuously </li>
+ <li><b>@nuxtjs/tailwindcss</b>: for the style </li>
+ <li><b>nuxt-i18n</b>: for the translator </li>
+
 </ul>
 
 ## 3. Mocked API
@@ -63,8 +66,11 @@ mock_server
   server.js
   user.json
 ```
+
 The API was built using `json-server` dependency. Using this tool, you can mock and run a database and server-side. This part of the application is separated into routers, database and server. You can have access to the files **db.json**, which mock a table of courses.
+
 #### The properties of courses are: 
+
 <ul>
  <li>id:Number</li>
 <li>week:Number</li>
@@ -89,7 +95,7 @@ There is another table that represents the user; you can find this data in **use
 </ul>
 
 The `server.js` mocks  Express Node.js server. It sets a listener on the `4020` portal and runs an authentication process using **JWT**. 
-The server gets the client's token and verifies if the user is authenticated for each route except the login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as: adding a new user, authenticating, getting data from the database, etc... Since the data is mocked, the database is made with **fs** dependency to read the file and change its content. The same thing occurs when you retrieve data from the database.
+The server gets the client's token and verifies if the user is authenticated for each route except the Login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as: **adding a new user, authenticating, getting data from the database, etc...**  Since the data is mocked, the database is made with **fs** dependency to read the file and change its content. The same thing occurs when you retrieve data from the database.
 
 ```bash
   fs.writeFile("./mock_server/db.json", JSON.stringify(coursesDb), (err, result) => {
@@ -108,7 +114,7 @@ In the helper folder, you will find the authentication helpers, and there is use
 
 ## 4. Assets
 
-- Logos, svgs and other images are in `/assets`
+- Logos, svgs and  images are in `/assets`
 - The stylesheets are in `/assets/`
 - The favicon is in `/static`
 
@@ -179,7 +185,7 @@ export default {
    middleware: "courses",}
 ```
 ## 7. Layout
-There are two layouts in this application, default and graduate. Before, there were three different layouts separating graduates from the administrator, but, I noticed that only one was needed. The layout holds not just the shared components (Nav and footer) but also important configuration:
+There are two layouts in this application, default and dash_layout. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
 **Mixin:** 
 The Mixin holds the global variable, and it is assigned to the layout. 
@@ -191,9 +197,11 @@ The layout wraps and configures the toats to the application.
 The layout assures that the middleware `course.js` is connected to the router. 
 
 To assign the layout to the page, you need to put this piece of code.
+
+
 ```bash
 export default {
-   layout: "graduate",}
+   layout: "dash_layout",}
 ```
 
 ## 8.VUEX && Localhost
@@ -209,7 +217,6 @@ The states holds:
 <ul>
   <li>token:String</li>
     <li>user_id:String</li>
-      <li>user_isAdm:String</li>
         <li>user_name:String</li>
   </ul>
 
@@ -218,7 +225,7 @@ Those properties are stored in the localStorage to certify that the user will be
 
 #### getters 
 
-The getters `isLoggedIn`and `isAdm`checked if there is a property assigned to the token or user_adm state and returns a boolean value. The other keys return the state. 
+The getters `isLoggedIn`checked if there is a property assigned to the token  and returns a boolean value. The other keys return the state. 
 
 #### actions
 The actions are login and logout. Both call the mutations and set or delete data from the localStorage. 
@@ -342,3 +349,6 @@ import global from "../mixin/global";
 Vue.mixin(global);
 
 ```
+## 12. Localizer 
+
+The applicatio uses `nuxt-i18n` to apply a translator. The current languages availabe are portuguese and english, but it is possible to add more languages configuring the module on `nuxt.config`. The translator dictionary is on `/plugin/i18n`
