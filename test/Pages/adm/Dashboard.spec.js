@@ -3,7 +3,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks as createStoreMocks, store } from '../../../store/__mocks__';
 import Dashboard from '../../../pages/adm/Dashboard.vue';
 import VueMeta from 'vue-meta';
-import { validateTruthiness, validateArrayDataType, validateStringDataType, validateMatchingStringValues } from './../../utils/index';
+import { validateTruthiness,  validateStringDataType, validateMatchingStringValues } from './../../utils/index';
 
 jest.mock('../../../store');
 
@@ -18,7 +18,7 @@ describe('<ADM Dashboard/>', () => {
         wrapper = await shallowMount(Dashboard, {
             store: store,
             mocks: {
-                $t: (msg) => msg,
+                $t: (msg) => `the message ${msg}`,
                 $toast: (msg) => msg
             },
             localVue
@@ -47,4 +47,10 @@ describe('<ADM Dashboard/>', () => {
         validateStringDataType(title);
         validateMatchingStringValues(title, mockedValue);
     });
+
+    it("function should return the right value ",()=>{
+        expect(wrapper.vm.toast_message).toBe("the message TOAST_FAIL_MESSAGE")
+    })
+
+  
 });

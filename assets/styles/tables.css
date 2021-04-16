@@ -50,9 +50,3 @@
     @apply py-3 px-6;
   }
 }
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
-}

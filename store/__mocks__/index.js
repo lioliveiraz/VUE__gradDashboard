@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export const getters = {
     isLoggedIn: jest.fn().mockReturnValue(true),
-    getToken: jest.fn().mockReturnValue({ token: "token" }),
+    getToken: jest.fn().mockReturnValue({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjpbIkFETSJdLCJpYXQiOjE2MTgzMjc3NjksImV4cCI6MTYxODM2Mzc2OX0.MFwvLw2P3cel1jGha7ueaYDkVqVH1Z1tYtomgyhULuI" }),
     getName: jest.fn().mockReturnValue(),
     getCourses: jest.fn().mockReturnValue([{ name: "course", duration: 1 }, { name: "course", duration: 2 }]),
     getAssessments: jest.fn().mockReturnValue([{ name: "assessments" }]),

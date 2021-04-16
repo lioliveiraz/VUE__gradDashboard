@@ -44,7 +44,6 @@ export default {
     BaseDashCard: () => import("../../components/BaseDashCard"),
     TheCircleStudyTime: () =>
       import("../../components/Style/TheCircleStudyTime"),
-    DashboardHeader: () => import("../../components/Style/DashboardHeader"),
     BaseStats:()=>import("../../components/Style/BaseStats")
   },
   data() {

@@ -52,4 +52,5 @@ describe('<BaseInput>', () => {
         await input.trigger('input');
         validateMatchingStringValues(wrapper.vm.currentValue, "value");
     });
+  
 });

@@ -14,32 +14,20 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 
-jest.mock('axios', () => ({
-
-    defaults: {
-        baseUrl: "http://localhost:4020/",
-    },
-
-    interceptors: {
-        request: {
-            use: jest.fn(),
-        },
-        response: {
-            use: jest.fn()
-        }
-    },
-    post: jest.fn(() => Promise.resolve({})),
-    post: jest.fn(() => Promise.rejects({}))
-
-}));
 
 describe('<AddNewCourseForm/>', () => {
     let wrapper;
     let toggleComponent = jest.fn();
+    const addScore =jest.fn(() => Promise.resolve("data"))
+
     beforeEach(async () => {
         wrapper = await shallowMount(AddNewCourseForm, {
             propsData: { toggleComponent },
             store: store,
+            mocks:{ 
+                addScore,
+                $toast:(message,type)=>message
+            },
             localVue
         });
     });
@@ -166,12 +154,10 @@ describe('<AddNewCourseForm/>', () => {
     });
 
     it("form should return null",async ()=>{
-        const form = wrapper.find('form')
         
         await wrapper.setData({
             isFormValid: false,
         });
-        await form.trigger('submit')
 
        const e = {preventDefault:jest.fn()}
         const submit = await wrapper.vm.handleSubmit(e)
@@ -180,6 +166,6 @@ describe('<AddNewCourseForm/>', () => {
 
     })
 
-
+   
 
 });

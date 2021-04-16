@@ -40,15 +40,7 @@
     @apply py-20 my-20;
   }
 }
-/* Tablet-landscape-up*/
-@media (min-width: 900px) {
-}
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
-}
+
 /* ________graduate stats_________*/
 .g-dashboard-stats {
   @apply w-auto h-auto flex .flex-wrap .justify-center;
@@ -77,9 +69,6 @@
   .g-stats-card--square img {
     width: 60px;
   }
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
 }
 
 /* ________graduate cards_________*/
@@ -135,9 +124,6 @@
     @apply py-6;
   }
 }
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
-}
 
 /* ------adm ------*/
 .g-adm-dashboard--middle {
@@ -171,9 +157,7 @@
     @apply text-lg;
   }
 }
-/* Tablet-landscape-up*/
-@media (min-width: 900px) {
-}
+
 /*Desktop-up*/
 @media (min-width: 1200px) {
   .g-adm-dashboard--middle {

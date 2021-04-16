@@ -170,7 +170,7 @@ a:hover {
     height: 6rem;
   }
   .nav_open {
-    @apply w-1/3;
+    @apply w-1/4;
   }
   .g-list li {
     @apply text-base;
@@ -351,12 +351,6 @@ a:hover {
     margin: 0 auto 0 auto;
     height: 70%;
   }
-}
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
 }
 
 /* ---------------------------------------- Update Path  ----------------------------------------*/

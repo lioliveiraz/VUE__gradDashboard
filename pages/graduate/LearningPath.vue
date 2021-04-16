@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import Courses from "../../components/Courses/Courses";
 import { mapState } from "vuex";
 import LazyHydrate from "vue-lazy-hydration";
 

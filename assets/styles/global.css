@@ -1,5 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Karla&family=Zilla+Slab&display=swap");
+/*Phone landscape
+@media (max-height: 500px) and (orientation: landscape) {
+}
+Tabled-portrait-up
+@media (min-width: 600px) and (min-height: 500px) {
+}
+Tablet-landscape-up
+@media (min-width: 900px) {
+}
+Desktop-up
+@media (min-width: 1200px) {
+}
+Big-desktop-up
+@media (min-width: 1800px) {
+}*/
 
 * {
   margin: 0;
