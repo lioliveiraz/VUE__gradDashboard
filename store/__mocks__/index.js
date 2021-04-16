@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {jest} from '@jest/globals'
 
 Vue.use(Vuex);
 
