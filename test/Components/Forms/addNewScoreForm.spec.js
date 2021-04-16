@@ -45,7 +45,7 @@ describe('<AddNewScoreForm/>', () => {
         expect(wrapper.vm.scoreInput).toBe("SCORE_INPUT");
 
     });
-    it("", async () => {
+    it("input should bind with data", async () => {
         const userInput = wrapper.vm.userInput;
 
         const mockedData = {
@@ -62,5 +62,6 @@ describe('<AddNewScoreForm/>', () => {
         expect(userInput).toEqual(expect.objectContaining(mockedData));
 
     });
+  
 
 });

@@ -68,6 +68,19 @@ describe('<RegisterEmployeeForm/>', () => {
         expect(data).toBeTruthy();
 
     });
+    it("form should return null",async ()=>{
+        const form = wrapper.find('form')
+        
+        await wrapper.setData({
+            isFormValid: false,
+        });
+        await form.trigger('submit')
 
+       const e = {preventDefault:jest.fn()}
+        const submit = await wrapper.vm.handleSubmit(e)
+
+        expect(submit).toBeNull()
+
+    })
 
 });

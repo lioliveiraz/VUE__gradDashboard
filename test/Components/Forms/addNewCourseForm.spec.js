@@ -5,12 +5,33 @@ import AddNewCourseForm from '../../../components/Courses/AddNewCourseForm.vue';
 import BaseButton from '../../../components/Style/BaseButton.vue';
 import BaseInput from '../../../components/BaseInput.vue';
 import { validateTruthiness, validateLength } from './../../utils/index';
+import { addCourse } from './../../../api/requests/post';
 
 jest.mock('../../../store');
 
 const localVue = createLocalVue();
 
 localVue.use(Vuex);
+
+
+jest.mock('axios', () => ({
+
+    defaults: {
+        baseUrl: "http://localhost:4020/",
+    },
+
+    interceptors: {
+        request: {
+            use: jest.fn(),
+        },
+        response: {
+            use: jest.fn()
+        }
+    },
+    post: jest.fn(() => Promise.resolve({})),
+    post: jest.fn(() => Promise.rejects({}))
+
+}));
 
 describe('<AddNewCourseForm/>', () => {
     let wrapper;
@@ -143,6 +164,22 @@ describe('<AddNewCourseForm/>', () => {
         expect(data).toBeFalsy();
 
     });
+
+    it("form should return null",async ()=>{
+        const form = wrapper.find('form')
+        
+        await wrapper.setData({
+            isFormValid: false,
+        });
+        await form.trigger('submit')
+
+       const e = {preventDefault:jest.fn()}
+        const submit = await wrapper.vm.handleSubmit(e)
+
+        expect(submit).toBeNull()
+
+    })
+
 
 
 });
