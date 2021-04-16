@@ -1,0 +1,7 @@
+
+[Settings]
+  ID = "grad_dashboard"
+
+[build]
+  publish = "dist/"
+  command = "npm run build"
