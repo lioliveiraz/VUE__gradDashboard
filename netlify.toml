@@ -4,4 +4,4 @@
 
 [build]
   publish = "dist/"
-  command = "nuxt build"
+  command = "npm run build"
