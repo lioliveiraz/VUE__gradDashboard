@@ -20,7 +20,7 @@
   @apply h-auto  w-full;
 }
 .g-inner-container {
-  @apply flex .h-auto;
+  @apply flex h-auto;
 }
 
 /*---------------------------------------- position ----------------------------------------*/
@@ -62,13 +62,13 @@
 /* Tablet-landscape-up*/
 @media (min-width: 900px) {
   .g-login-box {
-    height: 65%;
+    @apply w-1/3;
+    height: 75%;
   }
 }
 /*Desktop-up*/
 @media (min-width: 1200px) {
   .g-login-box {
-    @apply w-1/3;
     height: 85%;
   }
 }
@@ -81,14 +81,14 @@
 }
 
 .g-text {
-  @apply .g-logo-style;
+  @apply g-logo-style;
   text-transform: uppercase;
 
   font-size: 6rem;
   margin-bottom: 10px;
 }
 .g-nav-logo {
-  @apply .g-logo-style;
+  @apply g-logo-style;
 }
 
 @media screen and (min-width: 700px) {
@@ -99,7 +99,7 @@
 /*---------------------------------------- Header ----------------------------------------*/
 
 .g-header-wrapper {
-  @apply items-center relative m-0 flex .justify-between px-3 mb-10;
+  @apply items-center relative m-0 flex justify-between px-3 mb-10;
   height: 15%;
   width: 100%;
 }
@@ -323,7 +323,7 @@ a:hover {
 
 /* ---------------------------------------- ADM Register employee ----------------------------------------*/
 .g-register {
-  @apply h-screen flex-wrap flex .overflow-hidden w-full;
+  @apply h-screen flex-wrap flex overflow-hidden w-full;
 }
 .g-register--form {
   @apply g-background-darkGray w-full text-white g-centralize-items g-background-adm-secondary;
@@ -376,12 +376,12 @@ a:hover {
 }
 
 .g-update-path--form {
-  @apply modal .w-full overflow-x-hidden overflow-y-auto fixed inset-0 outline-none  justify-center items-center flex;
+  @apply modal w-full overflow-x-hidden overflow-y-auto fixed inset-0 outline-none  justify-center items-center flex;
   z-index: 10;
 }
 
 .g-update-path--overlay {
-  @apply fixed inset-0  .cursor-pointer;
+  @apply fixed inset-0 cursor-pointer;
 
   background-color: rgba(0, 0, 0, 0.868);
 }
@@ -391,7 +391,7 @@ a:hover {
   @apply h-screen  flex flex-col w-full;
 }
 .g-employee-text {
-  @apply g-color-adm-primary .text-2xl .font-bold;
+  @apply g-color-adm-primary text-2xl font-bold;
 }
 .g-employee-score--content {
   @apply w-10/12 h-auto;
@@ -399,6 +399,6 @@ a:hover {
 
 @media (min-width: 600px) {
   .g-employee-score {
-    @apply .items-center;
+    @apply items-center;
   }
 }

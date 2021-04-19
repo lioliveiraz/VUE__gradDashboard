@@ -8,11 +8,11 @@
   @apply g-btn-base text-sm px-4 py-2;
 }
 .g-base-btn-regular {
-  @apply .g-btn-base  text-base px-6 py-3;
+  @apply g-btn-base  text-base px-6 py-3;
 }
 
 .g-base-btn-large {
-  @apply .g-btn-base  text-xl	px-6 py-4;
+  @apply g-btn-base  text-xl	px-6 py-4;
 }
 
 .g-disabled {

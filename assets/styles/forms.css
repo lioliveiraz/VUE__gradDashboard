@@ -13,7 +13,7 @@
 }
 
 .g-selector--options {
-  @apply flex items-center  .text-base m-2;
+  @apply flex items-center  text-base m-2;
 }
 .g-checkbox-input--wrapper {
   @apply py-3  flex items-center;
@@ -22,7 +22,7 @@
   @apply h-5 w-5;
 }
 .g-checkbox-label {
-  @apply .text-xl .uppercase .font-bold ml-3;
+  @apply text-xl uppercase font-bold ml-3;
 }
 /*Phone landscape*/
 @media (max-height: 500px) and (orientation: landscape) {
@@ -31,7 +31,7 @@
     @apply p-2 text-sm;
   }
   .g-checkbox-label {
-    @apply .text-sm;
+    @apply text-sm;
   }
   .g-checkbox-input {
     @apply h-3 w-3;
@@ -40,17 +40,17 @@
 /* Tabled-portrait-up*/
 @media (min-width: 600px) and (min-height: 500px) {
   .g-base-input-wrapper {
-    @apply .text-xl;
+    @apply text-xl;
   }
   .g-base-input-wrapper {
     @apply mb-3;
   }
   .g-base-input,
   .g-selector {
-    @apply .text-xl px-3 py-4 pl-5;
+    @apply text-xl px-3 py-4 pl-5;
   }
   .g-checkbox-label {
-    @apply .text-xl;
+    @apply text-xl;
   }
   .g-checkbox-input {
     @apply h-8 w-8;
@@ -70,11 +70,11 @@
 /*---------------------------------------- Modal form ----------------------------------------*/
 
 .g-modal-form--main {
-  @apply relative  h-auto .w-full;
+  @apply relative  h-auto w-full;
   margin: auto;
 }
 .g-modal-form--inner {
-  @apply border-0 h-auto rounded-lg shadow-lg relative flex flex-col .w-full bg-white outline-none px-10 py-3;
+  @apply border-0 h-auto rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none px-10 py-3;
 }
 .g-modal-form--header {
   @apply flex items-start justify-between p-2 border-b border-solid rounded-t;
@@ -84,7 +84,7 @@
 }
 
 .g-addNewcourse-buttons {
-  @apply flex py-5 w-full .justify-around;
+  @apply flex py-5 w-full justify-around;
 }
 
 @media (max-height: 500px) and (orientation: landscape) {

@@ -15,7 +15,7 @@
       v-model="currentValue"
       :required="attributeObj.required"
     />
-    <p class="text-red-700 font-bold">{{ errorMessage }}</p>
+    <p class="text-red-700 font-bold text-base">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
       currentValue: "",
       userError: { initialError: "error" },
       courseError: { initialError: "error" },
-      errorMessage: "",
+      errorMessage: ""
     };
   },
   computed: {
@@ -43,19 +43,19 @@ export default {
           ? false
           : true;
       }
-    },
+    }
   },
   watch: {
-    currentValue: function () {
+    currentValue: function() {
       let inputObj = {};
       inputObj = { [this.attributeObj.name]: this.currentValue };
       this.userError = userValidation(inputObj);
       this.courseError = courseValidation(inputObj);
       this.$emit("getUserInput", this.currentValue, this.attributeObj.name);
       this.debouncedGetError();
-    },
+    }
   },
-  created: function () {
+  created: function() {
     this.debouncedGetError = _.debounce(this.getErrorMessage, 800);
   },
   methods: {
@@ -63,10 +63,9 @@ export default {
       this.errorMessage =
         this.userError[this.attributeObj.name] ||
         this.courseError[this.attributeObj.name];
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
