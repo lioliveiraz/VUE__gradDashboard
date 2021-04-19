@@ -75,15 +75,15 @@ export default {
     links_grads() {
       return [
         {
-          path: "dashboard",
+          path: "graduate/dashboard",
           name: this.$t("PATH_NAME_HOME")
         },
         {
-          path: "learningpath",
+          path: "graduate/learningpath",
           name: this.$t("PATH_NAME_COURSES")
         },
         {
-          path: "scores",
+          path: "graduate/scores",
           name: this.$t("PATH_NAME_SCORE")
         }
       ];
