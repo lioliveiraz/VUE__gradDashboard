@@ -2,10 +2,10 @@
   @apply table-auto bg-white  w-full text-xl h-full;
 }
 .g-table-header {
-  @apply bg-gray-200 text-gray-600 uppercase leading-normal;
+  @apply bg-gray-200  text-gray-600 uppercase leading-normal;
 }
 .g-table-header-cell {
-  @apply py-3 px-6 text-left;
+  @apply text-center p-3;
 }
 
 .g-table-body {
@@ -19,10 +19,10 @@
   @apply bg-gray-100;
 }
 .g-table-cell {
-  @apply py-1 px-6 text-left font-semibold;
+  @apply text-center  font-semibold px-5;
 }
 .g-table-week-cell {
-  @apply py-1 px-3 text-left font-semibold;
+  @apply text-center;
 }
 
 .g-cell-passedAss {
@@ -37,22 +37,10 @@
   .g-table-wrapper {
     @apply text-3xl;
   }
-  .g-table-cell {
-    @apply py-3 px-6;
-  }
 }
 /* Tablet-landscape-up*/
 @media (min-width: 900px) {
   .g-table-wrapper {
     @apply text-2xl;
   }
-  .g-table-cell {
-    @apply py-3 px-6;
-  }
-}
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
 }

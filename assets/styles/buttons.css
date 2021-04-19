@@ -48,12 +48,3 @@
     @apply g-base-btn-large;
   }
 }
-/* Tablet-landscape-up*/
-@media (min-width: 900px) {
-}
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
-}

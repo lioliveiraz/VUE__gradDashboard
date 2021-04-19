@@ -4,8 +4,10 @@ import { __createMocks, store } from '../../store/__mocks__';
 import Index from '../../pages';
 import VueMeta from 'vue-meta';
 import { validateTruthiness } from './../utils/index';
-import axios from 'axios';
-import { handleLogin } from './../../api/requests/post';
+
+import BaseInput from '../../components/BaseInput.vue'
+import TheLogo from '../../components/Style/TheLogo.vue'
+
 
 jest.mock('../../store');
 
@@ -36,11 +38,13 @@ describe('<Index/>', () => {
 
     beforeEach(async () => {
         wrapper = await shallowMount(Index, {
+        
             store: store,
             mocks: {
                 $t: (msg) => msg,
                 $router: [],
-                get: jest.fn(() => Promise.resolve({}))
+                get: jest.fn(() => Promise.resolve({})),
+                isUserAdm:(token)=>token
             },
             localVue
         });
@@ -52,9 +56,14 @@ describe('<Index/>', () => {
     });
 
     it('should render correctly', () => {
+        const baseInput = wrapper.findComponent(BaseInput)
+        const theLogo = wrapper.findComponent(TheLogo)
+
         const elements = ["login_form", "login_img", "login_button"];
         elements.forEach((id) => validateTruthiness(wrapper.find(id)));
         expect(wrapper).toMatchSnapshot();
+        validateTruthiness(theLogo)
+        validateTruthiness(baseInput)
 
     });
 

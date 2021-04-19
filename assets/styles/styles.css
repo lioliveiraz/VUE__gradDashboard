@@ -170,7 +170,7 @@ a:hover {
     height: 6rem;
   }
   .nav_open {
-    @apply w-1/3;
+    @apply w-1/4;
   }
   .g-list li {
     @apply text-base;
@@ -290,7 +290,7 @@ a:hover {
   height: 95%;
 }
 .g-tables-inner {
-  @apply w-11/12 h-full  overflow-scroll;
+  @apply w-11/12 h-full  overflow-scroll mt-10;
 }
 
 /* ---------------------------------------- Scores ----------------------------------------*/
@@ -352,12 +352,6 @@ a:hover {
     height: 70%;
   }
 }
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
-}
 
 /* ---------------------------------------- Update Path  ----------------------------------------*/
 
@@ -381,7 +375,7 @@ a:hover {
 }
 
 .g-update-path--overlay {
-  @apply fixed inset-0 cursor-pointer;
+  @apply fixed inset-0  cursor-pointer;
 
   background-color: rgba(0, 0, 0, 0.868);
 }

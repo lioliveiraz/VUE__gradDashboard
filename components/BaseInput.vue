@@ -24,6 +24,7 @@ import { isObjectEmpty } from "@/helpers/service";
 import { userValidation } from "@/helpers/validation";
 import { courseValidation } from "../helpers/validation";
 import _ from "lodash";
+
 export default {
   props: { attributeObj: Object },
   data() {
@@ -60,7 +61,7 @@ export default {
   },
   methods: {
     getErrorMessage() {
-      this.errorMessage =
+       this.errorMessage =
         this.userError[this.attributeObj.name] ||
         this.courseError[this.attributeObj.name];
     }

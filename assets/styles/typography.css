@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla&family=Zilla+Slab&display=swap");
+
 h1 {
   @apply text-green-400 font-extrabold text-4xl	 leading-normal capitalize text-center  mt-0 mb-2 max-w-2xl;
   font-family: "Zilla Slab", serif;
@@ -56,11 +59,4 @@ p {
   h6 {
     @apply text-4xl;
   }
-}
-
-/*Desktop-up*/
-@media (min-width: 1200px) {
-}
-/*Big-desktop-up*/
-@media (min-width: 1800px) {
 }

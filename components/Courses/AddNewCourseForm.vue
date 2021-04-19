@@ -130,14 +130,14 @@ export default {
       if (!this.isFormValid) return null;
       addCourse(this.courseData, this.getToken)
         .then((res) => {
-          this.errors = {};
           this.toggleComponent();
           this.key = this.key + 1;
           this.handleAddCourse(this.courseData);
           this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
         })
         .catch((err) =>
-          this.$toast(err.response.data.message, { type: this.TOAST_ERROR })
+         { this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
+          }
         );
     },
   },
