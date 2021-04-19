@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:4020/';
+axios.defaults.baseURL = 'https://grad-server.herokuapp.com/';
 axios.interceptors.response.use(null, error => {
     const clientErr = error.response && error.status >= 400 && error.status <= 500;
     !clientErr && console.log(error);
