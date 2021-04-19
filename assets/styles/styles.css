@@ -290,7 +290,7 @@ a:hover {
   height: 95%;
 }
 .g-tables-inner {
-  @apply w-11/12 h-full  overflow-scroll;
+  @apply w-11/12 h-full  overflow-scroll mt-10;
 }
 
 /* ---------------------------------------- Scores ----------------------------------------*/
