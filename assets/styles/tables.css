@@ -1,5 +1,5 @@
 .g-table-wrapper {
-  @apply table-auto bg-white  w-full text-xl .h-full;
+  @apply table-auto bg-white  w-full text-xl h-full;
 }
 .g-table-header {
   @apply bg-gray-200 text-gray-600 uppercase leading-normal;
@@ -19,10 +19,10 @@
   @apply bg-gray-100;
 }
 .g-table-cell {
-  @apply py-1 px-6 text-left .font-semibold;
+  @apply py-1 px-6 text-left font-semibold;
 }
 .g-table-week-cell {
-  @apply py-1 px-3 text-left .font-semibold;
+  @apply py-1 px-3 text-left font-semibold;
 }
 
 .g-cell-passedAss {

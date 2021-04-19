@@ -145,8 +145,6 @@ describe('<Index/>', () => {
         expect(submit).toBeNull()
 
     })
-it('',()=>{
-  expect(wrapper.vm.isAdm).toBe()
-})
+
 
 });
