@@ -7,6 +7,7 @@
           type: this.TEXT_INPUT,
           name: this.EMPID_INPUT,
           placeholder: 'employer ID',
+           label:'emp id',
           required: true,
         }"
       />

@@ -62,6 +62,12 @@ describe('<AddNewScoreForm/>', () => {
         expect(userInput).toEqual(expect.objectContaining(mockedData));
 
     });
-  
+  it("$toast has to be called with message", async ()=>{
+    const e= {preventDefault: jest.fn()}
+
+    await wrapper.vm.handleSubmit(e)
+
+    expect(wrapper.vm.$toast()).toBe("toast message")
+  })
 
 });

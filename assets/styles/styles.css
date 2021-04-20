@@ -69,7 +69,8 @@
 /*Desktop-up*/
 @media (min-width: 1200px) {
   .g-login-box {
-    height: 85%;
+    @apply w-1/4;
+    height: 80%;
   }
 }
 /*---------------------------------------- logo ----------------------------------------*/
@@ -93,13 +94,15 @@
 
 @media screen and (min-width: 700px) {
   .g-text {
+    margin-bottom: 50px;
     font-size: 8rem;
   }
 }
+
 /*---------------------------------------- Header ----------------------------------------*/
 
 .g-header-wrapper {
-  @apply items-center relative m-0 flex justify-between px-3 mb-10;
+  @apply items-center relative m-0 flex justify-between px-3 py-5;
   height: 15%;
   width: 100%;
 }

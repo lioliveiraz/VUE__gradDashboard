@@ -52,5 +52,14 @@ describe('<BaseInput>', () => {
         await input.trigger('input');
         validateMatchingStringValues(wrapper.vm.currentValue, "value");
     });
+    it("errorMessage should return the right value", async ()=>{
+        await wrapper.setData({
+            userError: {name:"value"}
+        });
+         await wrapper.vm.getErrorMessage() 
+
+        expect(wrapper.vm.errorMessage).toBe("value")
+
+    })
   
 });

@@ -19,6 +19,7 @@
               name: 'empId',
               placeholder: '875463',
               required: true,
+              label:'emp id'
             }"
           />
         </LazyHydrate>

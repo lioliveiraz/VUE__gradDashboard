@@ -1,11 +1,11 @@
 <template>
   <div class="g-base-input-wrapper">
-    <label data-testId="label">{{ attributeObj.name.toUpperCase() }}</label>
+    <label data-testId="label">{{ attributeObj.label? attributeObj.label.toUpperCase(): attributeObj.name.toUpperCase()   }}</label>
     <input
       data-testId="input"
       :class="
         checkObjectEmpty
-          ? 'g-base-input border-green-400	'
+          ? 'g-base-input 	'
           : 'g-base-input  border-red-500'
       "
       :type="attributeObj.type"
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     checkObjectEmpty() {
-      if (!this.currentValue) return false;
+      if (!this.currentValue) return true;
       else {
         return !isObjectEmpty(this.userError) ||
           !isObjectEmpty(this.courseError)
