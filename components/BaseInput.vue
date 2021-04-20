@@ -23,7 +23,7 @@
 import { isObjectEmpty } from "@/helpers/service";
 import { userValidation } from "@/helpers/validation";
 import { courseValidation } from "../helpers/validation";
-import _ from "lodash";
+import debounce from "lodash.debounce";
 
 export default {
   props: { attributeObj: Object },
@@ -57,7 +57,7 @@ export default {
     }
   },
   created: function() {
-    this.debouncedGetError = _.debounce(this.getErrorMessage, 800);
+    this.debouncedGetError = debounce(this.getErrorMessage, 800);
   },
   methods: {
     getErrorMessage() {
