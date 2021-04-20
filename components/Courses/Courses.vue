@@ -2,12 +2,12 @@
   <div class="g-courses-wrapper">
     <div class="g-tables">
 <div class="flex">
-     <button  @click="toggleCourses" :disabled="!isCourse"  :class="
-            isCourse ? 'g-base-btn-blue mx-2 ' : 'g-base-btn-blue g-disabled mx-2'
+     <button  @click="toggleCourses" :disabled="isCourse"  :class="
+            !isCourse ? 'g-base-btn-blue mx-2 ' : 'g-base-btn-blue g-disabled mx-2'
           ">{{courseValue}}</button>
 
-      <button  @click="toggleCourses" :disabled="isCourse"  :class="
-            !isCourse ? 'g-base-btn-blue ' : 'g-base-btn-blue g-disabled'
+      <button  @click="toggleCourses" :disabled="!isCourse"  :class="
+            isCourse ? 'g-base-btn-blue ' : 'g-base-btn-blue g-disabled'
           ">{{assessmentValue}}</button>
 </div>
       <div class="g-tables-inner">
