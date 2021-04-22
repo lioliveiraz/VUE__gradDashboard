@@ -29,6 +29,7 @@
 import { getNewsFromApi } from "../../api/newsApi/request";
 import LazyHydrate from "vue-lazy-hydration";
 import { mapGetters } from "vuex";
+
 export default {
   nuxtI18n: false,
 
@@ -66,6 +67,7 @@ export default {
   
     },
         calculatedScores() {
+        if(this.getScores.length===0) return "0"
       const sum= this.getScores.reduce((acc, cur) => {
         return acc + +cur.score;
       }, 0);

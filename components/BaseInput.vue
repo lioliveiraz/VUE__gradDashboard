@@ -1,13 +1,14 @@
 <template>
   <div class="g-base-input-wrapper">
-    <label data-testId="label">{{ attributeObj.label? attributeObj.label.toUpperCase(): attributeObj.name.toUpperCase()   }}</label>
+    <label data-testId="label">{{
+      attributeObj.label
+        ? attributeObj.label.toUpperCase()
+        : attributeObj.name.toUpperCase()
+    }}</label>
     <input
       data-testId="input"
-      :class="
-        checkObjectEmpty
-          ? 'g-base-input 	'
-          : 'g-base-input  border-red-500'
-      "
+      v-border:[checkObjectEmpty]
+      class = "g-base-input" 
       :type="attributeObj.type"
       :name="attributeObj.name"
       :placeholder="attributeObj.placeholder"
@@ -37,13 +38,25 @@ export default {
   },
   computed: {
     checkObjectEmpty() {
-      if (!this.currentValue) return true;
+      if (!this.currentValue) return 0;
       else {
         return !isObjectEmpty(this.userError) ||
           !isObjectEmpty(this.courseError)
-          ? false
-          : true;
+          ? 1
+          : 2;
       }
+    }
+  },
+  directives:{
+    border:{
+      update:function(el,binding){
+      const isInputCorrect = binding.arg
+      if(isInputCorrect ===1){
+       el.className=" g-base-input border-red-500"
+      } 
+      else if(isInputCorrect ===2) el.className = " g-base-input border-green-500"
+      else if(isInputCorrect===0) el.className = "g-base-input border-transparent"
+  }
     }
   },
   watch: {
@@ -57,14 +70,15 @@ export default {
     }
   },
   created: function() {
-    this.debouncedGetError = debounce(this.getErrorMessage, 800);
+    this.debouncedGetError = debounce(this.getErrorMessage, 1000);
   },
   methods: {
     getErrorMessage() {
-       this.errorMessage =
+      this.errorMessage =
         this.userError[this.attributeObj.name] ||
         this.courseError[this.attributeObj.name];
     }
+    
   }
 };
 </script>
