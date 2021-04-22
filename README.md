@@ -42,16 +42,13 @@ The application also allows an administrator to register the employees to the pl
 
 <li><b>axios</b> : to retrieve data from API</li>
 <li><b>vue-toastification</b>: to generate toasts</li>
-<li><b>json-server</b>: to mock an API and database</li>
 </ul>
 
 **Dev-Dependencies**
 <ul>
 <li><b>jest</b>: to test the application</li>
-<li><b>bycript</b>: to hash the passwords</li>
-<li><b>nodemon</b>: to run the server-side continuously </li>
- <li><b>@nuxtjs/tailwindcss</b>: for the style </li>
- <li><b>nuxt-i18n</b>: for the translator </li>
+<li><b>@nuxtjs/tailwindcss</b>: for the style </li>
+<li><b>nuxt-i18n</b>: for the translator </li>
 
 </ul>
 
