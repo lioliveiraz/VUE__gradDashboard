@@ -55,70 +55,14 @@ The application also allows an administrator to register the employees to the pl
 
 </ul>
 
-## 3. Mocked API
 
-
-```bash
-mock_server
-  >helpers
-  >router
-  db.json
-  server.js
-  user.json
-```
-
-The API was built using `json-server` dependency. Using this tool, you can mock and run a database and server-side. This part of the application is separated into routers, database and server. You can have access to the files **db.json**, which mock a table of courses.
-
-#### The properties of courses are: 
-
-<ul>
- <li>id:Number</li>
-<li>week:Number</li>
-<li>course_code:String</li>
-<li>course_name:String</li>
-<li>assessment:Boolean</li>
-<li>source:String</li>
-<li>duration:Number</li>
-<li>link:String</li>
-</ul>
-
-There is another table that represents the user; you can find this data in **user.json**
-
-#### The properties of users are: 
-<ul>
-<li>id:Number</li>
-<li>empId:Number</li>
-<li>password:String</li>
-<li>name:String</li>
-<li>role:Array</li>
-<li>assessments_score:Array</li>
-</ul>
-
-The `server.js` mocks  Express Node.js server. It sets a listener on the `4020` portal and runs an authentication process using **JWT**. 
-The server gets the client's token and verifies if the user is authenticated for each route except the Login page.  Also, in this file, the routes are called and assigned to a path. In the router files, you can find CRUD operations, such as: **adding a new user, authenticating, getting data from the database, etc...**  Since the data is mocked, the database is made with **fs** dependency to read the file and change its content. The same thing occurs when you retrieve data from the database.
-
-```bash
-  fs.writeFile("./mock_server/db.json", JSON.stringify(coursesDb), (err, result) => {
-            err && res.status(401).json({ message: err });
-            res.status(200).json({ message: "Your course was addeded" });
-            return;
-        });
-
-```
-In the helper folder, you will find the authentication helpers, and there is used **JWT** and **bycript**.  
-
-### There are 2 options to start the server:
-
--without an authentication process **npm run start-server**
--with an authentication process **npm run start-auth**
-
-## 4. Assets
+## 3. Assets
 
 - Logos, svgs and  images are in `/assets`
 - The stylesheets are in `/assets/`
 - The favicon is in `/static`
 
-## 5. Component Hierarchy
+## 4. Component Hierarchy
 
   >Everything that has to be reutilized has to become a component.  
 
@@ -135,7 +79,7 @@ In the helper folder, you will find the authentication helpers, and there is use
 
 ---The pages folder is separated by administrator and graduate. 
 
-## 6. Middleware
+## 5. Middleware
 
 There are two middlewares in this application.
 
@@ -184,7 +128,7 @@ The process is more straightforward. The middleware get the data from the store 
 export default {
    middleware: "courses",}
 ```
-## 7. Layout
+## 6. Layout
 There are two layouts in this application, default and dash_layout. The layout holds not just the shared components (Nav and footer) but also important configuration:
 
 **Mixin:** 
@@ -204,7 +148,7 @@ export default {
    layout: "dash_layout",}
 ```
 
-## 8.VUEX && Localhost
+## 7.VUEX && Localhost
 The store consists of 2 modules, auth and courses. 
 
 ### auth module
@@ -260,7 +204,7 @@ This function call the fetch function to API/request and set the score data to t
 This action call the mutations 'ADD_ASSESMENT'/'ADD_COURSE' and according to the assessment property:boolean, it changes the state, adding the new data passed.
 
 
-## 9.API
+## 8.API
 
 
 The API requests are made with **axios**. I separated the requests based on both API which this application fetches data. 
@@ -297,7 +241,7 @@ export const getCourses = async (token) => {
 
 If you don't intend to use those configuration just import axios in your file and make the request normally.
 
-## 10. Test
+## 9. Test
 
 The application has only unit tests made with `vue-test-utilities` and  `jest`. The test folder is separated in:
 <ul>
@@ -339,7 +283,7 @@ Then you can shallow the component using `vue-test-utils` and pass the mocked st
         });
 ```
 
-## 11. Mixin
+## 10. Mixin
 
 In the mixin, there is a file that stores all the global variables. This mixin is connected to the graduate layout, and you can connect to your page or layout using this piece of code. 
 
@@ -349,6 +293,6 @@ import global from "../mixin/global";
 Vue.mixin(global);
 
 ```
-## 12. Localizer 
+## 11. Localizer 
 
 The applicatio uses `nuxt-i18n` to apply a translator. The current languages availabe are portuguese and english, but it is possible to add more languages configuring the module on `nuxt.config`. The translator dictionary is on `/plugin/i18n`
