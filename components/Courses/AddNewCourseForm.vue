@@ -39,7 +39,7 @@
               :attributeObj="{
                 type: this.TEXT_INPUT,
                 name: this.TABLE_HEAD_SOURCE_ENGLISH,
-                placeholder: 'Udemy',
+                placeholder: 'Udemy or PluralSigh',
                 required: true,
               }"
             />
@@ -49,14 +49,13 @@
               :attributeObj="{
                 type: this.NUMBER_INPUT,
                 name: this.TABLE_HEAD_DURATION_ENGLISH,
-                placeholder: '875463',
                 required: true,
               }"
             />
 
         <div class="g-checkbox-input--wrapper">
 
-              <input :name="this.ASSESSMENT_INPUT" :type=" this.CHECKBOX_INPUT" @change="getUserInput" class="g-checkbox-input">
+              <input name="assessment" type="checkbox" @change="getCheckboxInput" class="g-checkbox-input">
                           <label class="g-checkbox-label" >       assessment      </label>
 
             </div>
@@ -82,46 +81,24 @@
 import BaseInput from "../BaseInput";
 import { addCourse } from "../../api/requests/post";
 import { mapGetters, mapActions } from "vuex";
-import { courseValidation } from "../../helpers/validation";
 import BaseButton from "../../components/Style/BaseButton";
-import { isObjectEmpty, isObjectValuesEmpty } from "../../helpers/service";
+import {formCoursesMixin} from '@/mixin/formCoursesMixin'
 
 export default {
+  mixins:[formCoursesMixin],
   components: { BaseInput, BaseButton },
   props: { toggleComponent: Function },
 
-  data() {
-    return {
-      courseData: {
-        assessment: false,
-        link:
-          "https://giphy.com/gifs/makespace-cat-yoga-xUPGcyi4YxcZp8dWZq/tile",
-      },
-      key: 0,
-      isFormValid: false,
-    };
-  },
   computed: {
     ...mapGetters("auth", ["getToken"]),
   },
   methods: {
     ...mapActions("courses", ["fetchCourses", "handleAddCourse"]),
 
-    formValidation() {
-      const errors = courseValidation(this.courseData);
-      this.isFormValid = isObjectEmpty(errors);
-    },
-    getUserInput(inputValue, inputName) {
-      this.courseData[inputName] = inputValue;
-      if (
-        !isObjectEmpty(this.courseData) &&
-        isObjectValuesEmpty(this.courseData).length === 7
-      ) {
-        this.formValidation();
-      } else {
-        this.isFormValid = false;
-      }
-    },
+    getCheckboxInput(e){
+                  this.courseData["assessment"] = e.target.checked;
+      },
+
     async handleSubmit(e) {
       e.preventDefault();
       this.courseData[this.DURATION_INPUT] = +this.courseData[

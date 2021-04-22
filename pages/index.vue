@@ -61,6 +61,7 @@ import {
   isObjectValuesEmpty,
 } from "../helpers/service";
 import LazyHydrate from "vue-lazy-hydration";
+import {formUserMixin} from '@/mixin/formUserMixin'
 
 export default {
   name: "HomePage",
@@ -70,14 +71,14 @@ export default {
     BaseInput: () => import("../components/BaseInput"),
     TheLogo: () => import("../components/Style/TheLogo"),
   },
-  mixins: [global],
+  mixins: [global,formUserMixin],
 
   head() {
     return { title: "Welcome" };
   },
   data() {
     return {
-      loginUserData: {},
+      formData: {},
       isFormValid: false,
     };
   },
@@ -93,27 +94,10 @@ export default {
   methods: {
     ...mapActions("auth", ["login"]),
 
-    formValidation() {
-      const errors = userValidation(this.loginUserData);
-      this.isFormValid = isObjectEmpty(errors);
-    },
-
-    getUserInput(inputValue, inputName) {
-      this.loginUserData[inputName] = inputValue;
-      if (
-        !isObjectEmpty(this.loginUserData) &&
-        isObjectValuesEmpty(this.loginUserData).length === 2
-      ) {
-        this.formValidation();
-      } else {
-        this.isFormValid = false;
-      }
-    },
-
     async handleSubmit(e) {
       e.preventDefault();
       if (!this.isFormValid) return null;
-      handleLogin(this.loginUserData)
+      handleLogin(this.formData)
         .then((res) => {
           this.login(res.data);
           this.isAdm
