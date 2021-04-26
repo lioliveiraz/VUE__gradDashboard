@@ -51,13 +51,7 @@ import {formUserMixin} from '@/mixin/formUserMixin'
 export default {
   components: { BaseInput },
   mixins:[formUserMixin],
-  data() {
-    return {
-      formData: {},
-      key: 0,
-      isFormValid: false,
-    };
-  },
+
   computed: {
     ...mapGetters("auth", ["getToken"]),
   },

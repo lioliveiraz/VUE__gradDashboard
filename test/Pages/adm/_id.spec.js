@@ -4,7 +4,6 @@ import { __createMocks, store } from '../../../store/__mocks__';
 import id from '../../../pages/adm/GradScores/_id.vue';
 import VueMeta from 'vue-meta';
 import { validateTruthiness, validateMatchingStringValues } from './../../utils/index';
-import axios from 'axios';
 
 
 jest.mock('../../../store');
@@ -22,7 +21,7 @@ describe('<id/>', () => {
             mocks: {
                 $t: (msg) => msg,
                 $route: { params: { id: 1 } },
-                $toast: "",
+                $toast: ()=>"",
             },
             localVue
         });

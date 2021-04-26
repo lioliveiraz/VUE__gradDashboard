@@ -5,8 +5,8 @@ import AddNewCourseForm from '../../../components/Courses/AddNewCourseForm.vue';
 import BaseButton from '../../../components/Style/BaseButton.vue';
 import BaseInput from '../../../components/BaseInput.vue';
 import { validateTruthiness, validateLength } from './../../utils/index';
-import { addCourse } from './../../../api/requests/post';
 import { formCoursesMixin } from './../../../mixin/formCoursesMixin';
+import global from "./../../../mixin/global"
 
 jest.mock('../../../store');
 
@@ -24,7 +24,7 @@ describe('<AddNewCourseForm/>', () => {
     beforeEach(async () => {
         wrapper = await shallowMount(AddNewCourseForm, {
             propsData: { toggleComponent },
-            mixins:formCoursesMixin,
+            mixins:[formCoursesMixin,global],
             store: store,
             mocks:{ 
                 addScore,
@@ -59,8 +59,8 @@ describe('<AddNewCourseForm/>', () => {
         let courseDataMock = {
             assessment: expect.any(Boolean), link: expect.any(String)
         };
-        expect(AddNewCourseForm.data().courseData).toEqual(expect.objectContaining(courseDataMock));
-        expect(AddNewCourseForm.data().key).toEqual(0);
+        expect(wrapper.vm.courseData).toEqual(expect.objectContaining(courseDataMock));
+        expect(wrapper.vm.key).toEqual(0);
 
     });
     it("should return an object with errors", async () => {

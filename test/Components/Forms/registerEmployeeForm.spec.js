@@ -4,7 +4,8 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { __createMocks, store } from '../../../store/__mocks__';
 import BaseInput from '../../../components/BaseInput.vue';
 import { validateTruthiness, validateLength, validateObjectDataType, validateObjectToHaveProperty } from './../../utils/index';
-
+import global from './../../../mixin/global'
+import {formUserMixin} from './../../../mixin/formUserMixin'
 
 jest.mock('../../../store');
 
@@ -18,6 +19,7 @@ describe('<RegisterEmployeeForm/>', () => {
     errors = {};
     beforeEach(async () => {
         wrapper = await shallowMount(RegisterEmployeeForm, {
+            mixins:[formUserMixin,global],
             store: store,
             localVue
         });
@@ -35,8 +37,8 @@ describe('<RegisterEmployeeForm/>', () => {
         validateLength(inputs, 3);
     });
     it('data initialize correctly', () => {
-        const employeeOvj = RegisterEmployeeForm.data().employeeObj;
-        const key = RegisterEmployeeForm.data().key;
+        const employeeOvj = wrapper.vm.formData;
+        const key = wrapper.vm.key;
         validateObjectDataType(employeeOvj);
         expect(key).toEqual(0);
     });
@@ -48,7 +50,7 @@ describe('<RegisterEmployeeForm/>', () => {
         let object = {
             name: "value"
         };
-        expect(wrapper.vm.employeeObj).toEqual(expect.objectContaining(object));
+        expect(wrapper.vm.formData).toEqual(expect.objectContaining(object));
 
     });
     it("getUserInput should change the data for true", async () => {
@@ -59,7 +61,7 @@ describe('<RegisterEmployeeForm/>', () => {
 
         await wrapper.setData({
             isFormValid: false,
-            employeeObj: employeeDataMock
+            formData: employeeDataMock
         });
 
         await wrapper.vm.getUserInput('name', "name");

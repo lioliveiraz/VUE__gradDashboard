@@ -18,7 +18,7 @@ describe('<AddNewScoreForm/>', () => {
             store: store,
             mocks: {
                 $t: (msg) => msg,
-                $toast: () => "toast message"
+                $toast: (msg) => msg +"message"
             },
             localVue
         });
@@ -63,11 +63,8 @@ describe('<AddNewScoreForm/>', () => {
 
     });
   it("$toast has to be called with message", async ()=>{
-    const e= {preventDefault: jest.fn()}
 
-    await wrapper.vm.handleSubmit(e)
-
-    expect(wrapper.vm.$toast()).toBe("toast message")
+    expect(wrapper.vm.$toast("toast ")).toBe("toast message")
   })
 
 });
