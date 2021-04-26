@@ -8,6 +8,8 @@ import { validateTruthiness } from './../utils/index';
 import BaseInput from '../../components/BaseInput.vue'
 import TheLogo from '../../components/Style/TheLogo.vue'
 
+import { formUserMixin } from './../../mixin/formUserMixin';
+import global from './../../mixin/global'
 
 jest.mock('../../store');
 
@@ -38,13 +40,13 @@ describe('<Index/>', () => {
 
     beforeEach(async () => {
         wrapper = await shallowMount(Index, {
-        
+            mixins:[formUserMixin,global],
             store: store,
             mocks: {
                 $t: (msg) => msg,
                 $router: [],
                 get: jest.fn(() => Promise.resolve({})),
-                isUserAdm:(token)=>token
+                $toast:(msg)=>msg
             },
             localVue
         });
@@ -68,8 +70,8 @@ describe('<Index/>', () => {
     });
 
     it('data should initialize correctly', () => {
-        const loginUserData = Index.data().loginUserData;
-        const isFormValid = Index.data().isFormValid;
+        const loginUserData = wrapper.vm.formData;
+        const isFormValid = wrapper.vm.isFormValid;
         validateTruthiness(loginUserData);
         expect(isFormValid).toBeFalsy();
 
@@ -99,7 +101,7 @@ describe('<Index/>', () => {
         let object = {
             empId: "111111"
         };
-        expect(wrapper.vm.loginUserData).toEqual(expect.objectContaining(object));
+        expect(wrapper.vm.formData).toEqual(expect.objectContaining(object));
 
     });
     it("computed should return the right data", () => {
@@ -113,7 +115,7 @@ describe('<Index/>', () => {
 
         await wrapper.setData({
             isFormValid: false,
-            loginUserData: object
+            formData: object
         });
 
         await wrapper.vm.getUserInput('empId', "111111");
@@ -137,12 +139,12 @@ describe('<Index/>', () => {
         await wrapper.setData({
             isFormValid: false,
         });
-        await form.trigger('submit')
-
+ 
        const e = {preventDefault:jest.fn()}
         const submit = await wrapper.vm.handleSubmit(e)
 
         expect(submit).toBeNull()
+    
 
     })
 

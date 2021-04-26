@@ -1,5 +1,6 @@
 .g-btn-base {
   @apply text-white  font-bold uppercase  ease-linear transition-all duration-150;
+  cursor: pointer;
 }
 .g-margin-top-button {
   @apply mt-5;
