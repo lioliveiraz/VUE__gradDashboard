@@ -78,15 +78,13 @@
 </template>
 
 <script>
-import BaseInput from "../BaseInput";
 import { addCourse } from "../../api/requests/post";
 import { mapGetters, mapActions } from "vuex";
-import BaseButton from "../../components/Style/BaseButton";
 import {formCoursesMixin} from '@/mixin/formCoursesMixin'
 
 export default {
   mixins:[formCoursesMixin],
-  components: { BaseInput, BaseButton },
+  components: { BaseInput:()=>import("../BaseInput"), BaseButton:()=>import("../../components/Style/BaseButton") },
   props: { toggleComponent: Function },
 
   computed: {

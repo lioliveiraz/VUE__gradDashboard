@@ -51,9 +51,7 @@ export default {
     border:{
       update:function(el,binding){
       const isInputCorrect = binding.arg
-      if(isInputCorrect ===1){
-       el.className=" g-base-input border-red-500"
-      } 
+      if(isInputCorrect ===1)  el.className=" g-base-input border-red-500" 
       else if(isInputCorrect ===2) el.className = " g-base-input border-green-500"
       else if(isInputCorrect===0) el.className = "g-base-input border-transparent"
   }

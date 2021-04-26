@@ -6,6 +6,7 @@ import BaseButton from '../../../components/Style/BaseButton.vue';
 import BaseInput from '../../../components/BaseInput.vue';
 import { validateTruthiness, validateLength } from './../../utils/index';
 import { addCourse } from './../../../api/requests/post';
+import { formCoursesMixin } from './../../../mixin/formCoursesMixin';
 
 jest.mock('../../../store');
 
@@ -23,6 +24,7 @@ describe('<AddNewCourseForm/>', () => {
     beforeEach(async () => {
         wrapper = await shallowMount(AddNewCourseForm, {
             propsData: { toggleComponent },
+            mixins:formCoursesMixin,
             store: store,
             mocks:{ 
                 addScore,
