@@ -7,8 +7,8 @@
           type: this.TEXT_INPUT,
           name: this.EMPID_INPUT,
           placeholder: 'employer ID',
-           label:'emp id',
-          required: true,
+          label: 'emp id',
+          required: true
         }"
       />
 
@@ -18,7 +18,7 @@
           type: this.PASSWORD_INPUT,
           name: this.PASSWORD_INPUT,
 
-          required: true,
+          required: true
         }"
       />
 
@@ -27,14 +27,15 @@
         :attributeObj="{
           type: this.TEXT_INPUT,
           name: this.EMP_NAME_INPUT,
-          placeholder: 'employer name',
-        
+          placeholder: 'employer name'
         }"
       />
 
       <input
         :type="this.BUTTON_SUBMIT"
-        :class="isFormValid ? 'g-base-btn-green' : 'g-base-btn-green g-disabled'"
+        :class="
+          isFormValid ? 'g-base-btn-green' : 'g-base-btn-green g-disabled'
+        "
         :disabled="!isFormValid"
       />
     </div>
@@ -46,14 +47,14 @@ import { mapGetters } from "vuex";
 import { registerEmployee } from "../../api/requests/post";
 import { userValidation } from "../../helpers/validation";
 import BaseInput from "../BaseInput";
-import {formUserMixin} from '@/mixin/formUserMixin'
+import { formUserMixin } from "@/mixin/formUserMixin";
 
 export default {
   components: { BaseInput },
-  mixins:[formUserMixin],
+  mixins: [formUserMixin],
 
   computed: {
-    ...mapGetters("auth", ["getToken"]),
+    ...mapGetters("auth", ["getToken"])
   },
   methods: {
     async handleSubmit(e) {
@@ -63,18 +64,14 @@ export default {
 
       try {
         const res = await registerEmployee(this.formData, this.getToken);
-        this.errors = {};
 
         this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
-        this.key = this.key + 1;
       } catch (err) {
         this.$toast(err.response.data.message, { type: this.TOAST_ERROR });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

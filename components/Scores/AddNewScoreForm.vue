@@ -16,7 +16,7 @@
         :attributeObj="{
           type: this.NUMBER_INPUT,
           name: this.SCORE_INPUT,
-          required: true,
+          required: true
         }"
       />
 
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       userInput: {},
-      key: 0,
+      key: 0
     };
   },
   components: { BaseInput },
@@ -42,7 +42,7 @@ export default {
     ...mapState("courses", ["courses", "assessments"]),
     scoreInput() {
       return this.$t("SCORE_INPUT");
-    },
+    }
   },
   methods: {
     ...mapActions("courses", ["handleAddScore"]),
@@ -55,18 +55,18 @@ export default {
       e.preventDefault();
       try {
         const res = await addScore(this.userInput, this.user_id, this.token);
+
         this.handleAddScore(this.userInput);
         this.$toast(res.data.message, { type: this.TOAST_SUCCESS });
         this.key++;
       } catch (err) {
         this.$toast("Something went wrong! Try again latter", {
-          type: this.TOAST_ERROR,
+          type: this.TOAST_ERROR
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
