@@ -2,13 +2,19 @@
   <div class="g-dashboard">
     <section class="g-dashboard-stats">
       <LazyHydrate never>
-        <BaseStats :title="$t('STUDY_TIME')" :value="calculateCourseHours +'h'" />
+        <BaseStats
+          :title="$t('STUDY_TIME')"
+          :value="calculateCourseHours + 'h'"
+        />
       </LazyHydrate>
       <LazyHydrate never>
-        <BaseStats :title="$t('AVERAGE_SCORE')" :value="calculatedScores" code="" />
+        <BaseStats
+          :title="$t('AVERAGE_SCORE')"
+          :value="calculatedScores"
+          code=""
+        />
       </LazyHydrate>
-
-</section>
+    </section>
     <section class="g-dashboard--middle">
       <LazyHydrate on-interaction="hover">
         <BaseDashCard
@@ -20,8 +26,6 @@
         <BaseDashCard :name="$t('TECH_NEWS')" :articles="techTopics" />
       </LazyHydrate>
     </section>
-
-
   </div>
 </template>
 
@@ -37,7 +41,7 @@ export default {
   layout: "dash_layout",
   head() {
     return {
-      title: "Dashboard",
+      title: "Dashboard"
     };
   },
   components: {
@@ -45,16 +49,15 @@ export default {
     BaseDashCard: () => import("../../components/BaseDashCard"),
     TheCircleStudyTime: () =>
       import("../../components/Style/TheCircleStudyTime"),
-    BaseStats:()=>import("../../components/Style/BaseStats")
+    BaseStats: () => import("../../components/Style/BaseStats")
   },
   data() {
     return {
       courses: [],
       cognizantTopics: [],
       techTopics: [],
-      language: this.$i18n.locale,
-    
-      };
+      language: this.$i18n.locale
+    };
   },
   layout: "dash_layout",
 
@@ -63,33 +66,32 @@ export default {
     calculateCourseHours() {
       return this.getCourses.reduce((acc, cur) => {
         return acc + +cur.duration;
-      }, 0)
-  
+      }, 0);
     },
-        calculatedScores() {
-        if(this.getScores.length===0) return "0"
-      const sum= this.getScores.reduce((acc, cur) => {
+    calculatedScores() {
+      if (this.getScores.length === 0) return "0";
+      const sum = this.getScores.reduce((acc, cur) => {
         return acc + +cur.score;
       }, 0);
 
-      return Math.floor(sum/this.getScores.length).toString()
-  }},
+      return Math.floor(sum / this.getScores.length).toString();
+    }
+  },
 
   async created() {
     try {
       const cognizant = await getNewsFromApi("Cognizant", this.language);
       const tech = await getNewsFromApi("Technology", this.language);
-
+      console.log(cognizant);
       this.cognizantTopics = cognizant.articles;
       this.techTopics = tech.articles;
     } catch (error) {
       this.$toast("Something is wrong with our server! Try again later", {
-        type: this.TOAST_ERROR,
+        type: this.TOAST_ERROR
       });
     }
-  },
+  }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

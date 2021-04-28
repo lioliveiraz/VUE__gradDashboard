@@ -19,7 +19,7 @@
               name: 'empId',
               placeholder: '875463',
               required: true,
-              label:'emp id'
+              label: 'emp id'
             }"
           />
         </LazyHydrate>
@@ -30,20 +30,20 @@
             :attributeObj="{
               type: this.PASSWORD_INPUT,
               name: this.PASSWORD_INPUT,
-              required: true,
+              required: true
             }"
           />
         </LazyHydrate>
         <div class="g-margin-top-button">
-        <input
-          :type="this.BUTTON_SUBMIT"
-          :class="
-            isFormValid ? 'g-base-btn-green ' : 'g-base-btn-green g-disabled'
-          "
-          :value="this.button_input"
-          data-testId="login_button"
-          :disabled="!isFormValid"
-        />
+          <input
+            :type="this.BUTTON_SUBMIT"
+            :class="
+              isFormValid ? 'g-base-btn-green ' : 'g-base-btn-green g-disabled'
+            "
+            :value="this.button_input"
+            data-testId="login_button"
+            :disabled="!isFormValid"
+          />
         </div>
       </div>
     </form>
@@ -53,15 +53,10 @@
 <script>
 import { handleLogin } from "../api/requests/post";
 import { mapActions, mapGetters } from "vuex";
-import { userValidation } from "../helpers/validation";
 import global from "../mixin/global";
-import {
-  isObjectEmpty,
-  isUserAdm,
-  isObjectValuesEmpty,
-} from "../helpers/service";
+import { isUserAdm } from "../helpers/service";
 import LazyHydrate from "vue-lazy-hydration";
-import {formUserMixin} from '@/mixin/formUserMixin'
+import { formUserMixin } from "@/mixin/formUserMixin";
 
 export default {
   name: "HomePage",
@@ -69,9 +64,9 @@ export default {
   components: {
     LazyHydrate,
     BaseInput: () => import("../components/BaseInput"),
-    TheLogo: () => import("../components/Style/TheLogo"),
+    TheLogo: () => import("../components/Style/TheLogo")
   },
-  mixins: [global,formUserMixin],
+  mixins: [global, formUserMixin],
 
   head() {
     return { title: "Welcome" };
@@ -79,7 +74,7 @@ export default {
   data() {
     return {
       formData: {},
-      isFormValid: false,
+      isFormValid: false
     };
   },
   computed: {
@@ -89,7 +84,7 @@ export default {
     },
     button_input() {
       return this.$t("BUTTON_LOGIN");
-    },
+    }
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -98,19 +93,18 @@ export default {
       e.preventDefault();
       if (!this.isFormValid) return null;
       handleLogin(this.formData)
-        .then((res) => {
+        .then(res => {
           this.login(res.data);
           this.isAdm
             ? this.$router.push({ query: "adm_dashboard" })
             : this.$router.push({ query: "dashboard" });
         })
-        .catch((err) =>
-          this.$toast(err.response.data.message, { type: "error" })
-        );
-    },
-  },
+        .catch(err => {
+          this.$toast(err.response.data.message, { type: "error" });
+        });
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
